@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'url_assets' => asset(''),
             'flash' => [
                 'bien' => fn () => $request->session()->get('bien'),
                 'error' => fn () => $request->session()->get('error'),

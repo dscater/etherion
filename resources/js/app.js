@@ -6,7 +6,6 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 
-
 // sweetalert2
 import Swal from "sweetalert2";
 window.Swal = Swal;
@@ -31,9 +30,9 @@ import { createPinia } from "pinia";
 const pinia = createPinia();
 
 // mis scripts
-import "./assets/css/config.css";
-import "./assets/css/datatables.css";
-import "./assets/css/form.css";
+import "../assets/css/config.css";
+import "../assets/css/datatables.css";
+import "../assets/css/form.css";
 
 // Default Layout
 import App from "@/Layouts/App.vue";

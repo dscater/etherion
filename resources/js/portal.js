@@ -17,10 +17,8 @@ import "@mdi/font/css/materialdesignicons.css";
 import { createPinia } from "pinia";
 const pinia = createPinia();
 
-// mis scripts
-import "./assets/css/config.css";
-import "./assets/css/datatables.css";
-import "./assets/css/form.css";
+// mis archivos css
+import "../assets/css/portal.css";
 
 // Default Layout
 import Portal from "@/Layouts/Portal.vue";
