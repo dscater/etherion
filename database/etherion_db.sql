@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-04-2024 a las 15:31:22
+-- Tiempo de generación: 04-04-2024 a las 16:20:30
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -50,6 +50,13 @@ CREATE TABLE `apis` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `apis`
+--
+
+INSERT INTO `apis` (`id`, `google_maps`, `map_id`, `created_at`, `updated_at`) VALUES
+(1, 'AIzaSyDhJquXCekb8guwEiX1aLHvPePi3SMkKis', '1fb896f332f7b53c', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -469,7 +476,7 @@ ALTER TABLE `afiliados`
 -- AUTO_INCREMENT de la tabla `apis`
 --
 ALTER TABLE `apis`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`

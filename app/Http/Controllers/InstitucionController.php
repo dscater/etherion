@@ -40,7 +40,7 @@ class InstitucionController extends Controller
 
         $institucion = Institucion::first();
 
-        return Inertia::render("Institucions/Index", compact("institucion"));
+        return Inertia::render("Admin/Institucions/Index", compact("institucion"));
     }
 
     public function getInstitucion()

@@ -34,7 +34,7 @@ class ProductoController extends Controller
 
     public function index()
     {
-        return Inertia::render("Productos/Index");
+        return Inertia::render("Admin/Productos/Index");
     }
 
     public function listado(Request $request)

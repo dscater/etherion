@@ -153,6 +153,7 @@ onMounted(() => {
                                                 type="submit"
                                                 >ACCEDER</v-btn
                                             >
+                                            <a href="/">Volver al portal</a>
                                         </v-col>
                                     </v-row>
                                 </v-card-text>

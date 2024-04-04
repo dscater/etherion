@@ -10,7 +10,7 @@ class UserController extends Controller
 
 
     public static $permisos = [
-        "GERENTE GENERAL" => [
+        "ADMINISTRADOR" => [
             "usuarios.index",
             "usuarios.create",
             "usuarios.edit",

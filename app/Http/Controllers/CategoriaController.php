@@ -29,7 +29,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        return Inertia::render("Categorias/Index");
+        return Inertia::render("Admin/Categorias/Index");
     }
 
     public function listado(Request $request)

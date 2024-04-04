@@ -8,6 +8,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
+use App\Http\Controllers\PortalController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
@@ -39,7 +40,12 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
+
+
+Route::get('/', [PortalController::class, 'index'])->name("portal.inicio");
+
+
+Route::get('/login', function () {
     if (Auth::check()) {
         return redirect()->route('inicio');
     }
@@ -48,15 +54,10 @@ Route::get('/', function () {
 
 Route::get("institucions/getInstitucion", [InstitucionController::class, 'getInstitucion'])->name("institucions.getInstitucion");
 
-Route::middleware('auth')->group(function () {
-    // BORRAR
-    Route::get('/vuetify', function () {
-        return Inertia::render('Vuetify/Index');
-    })->name("vuetify");
-
+Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
-    Route::get('/inicio', function () {
-        return Inertia::render('Home');
+    Route::get('inicio', function () {
+        return Inertia::render('Admin/Home');
     })->name('inicio');
 
     // INSTITUCION
@@ -65,43 +66,42 @@ Route::middleware('auth')->group(function () {
     );
 
     // USUARIO
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::patch('/profile/update_foto', [ProfileController::class, 'update_foto'])->name('profile.update_foto');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('profile/update_foto', [ProfileController::class, 'update_foto'])->name('profile.update_foto');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get("/getUser", [UserController::class, 'getUser'])->name('users.getUser');
-    Route::get("/permisos", [UserController::class, 'permisos']);
-    Route::get("/menu_user", [UserController::class, 'permisos']);
+    Route::get("getUser", [UserController::class, 'getUser'])->name('users.getUser');
+    Route::get("permisos", [UserController::class, 'permisos']);
+    Route::get("menu_user", [UserController::class, 'permisos']);
 
     // USUARIOS
-    Route::put("/usuarios/password/{user}", [UsuarioController::class, 'actualizaPassword'])->name("usuarios.password");
-    Route::get("/usuarios/paginado", [UsuarioController::class, 'paginado'])->name("usuarios.paginado");
-    Route::get("/usuarios/listado", [UsuarioController::class, 'listado'])->name("usuarios.listado");
-    Route::get("/usuarios/listado/byTipo", [UsuarioController::class, 'byTipo'])->name("usuarios.byTipo");
-    Route::get("/usuarios/show/{user}", [UsuarioController::class, 'show'])->name("usuarios.show");
-    Route::put("/usuarios/update/{user}", [UsuarioController::class, 'update'])->name("usuarios.update");
-    Route::delete("/usuarios/{user}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
+    Route::put("usuarios/password/{user}", [UsuarioController::class, 'actualizaPassword'])->name("usuarios.password");
+    Route::get("usuarios/paginado", [UsuarioController::class, 'paginado'])->name("usuarios.paginado");
+    Route::get("usuarios/listado", [UsuarioController::class, 'listado'])->name("usuarios.listado");
+    Route::get("usuarios/listado/byTipo", [UsuarioController::class, 'byTipo'])->name("usuarios.byTipo");
+    Route::get("usuarios/show/{user}", [UsuarioController::class, 'show'])->name("usuarios.show");
+    Route::put("usuarios/update/{user}", [UsuarioController::class, 'update'])->name("usuarios.update");
+    Route::delete("usuarios/{user}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
     Route::resource("usuarios", UsuarioController::class)->only(
         ["index", "store"]
     );
 
     // CATEGORIAS
-    Route::get("/categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
-    Route::get("/categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
+    Route::get("categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
+    Route::get("categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
     Route::resource("categorias", CategoriaController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 
     // PRODUCTOS
-    Route::get("/productos/getObra/{obra}", [ProductoController::class, 'getObra'])->name("productos.getObra");
-    Route::get("/productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
-    Route::get("/productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
-    Route::get("/productos/geolocalizacion", [ProductoController::class, 'geolocalizacion'])->name("productos.geolocalizacion");
+    Route::get("productos/getObra/{obra}", [ProductoController::class, 'getObra'])->name("productos.getObra");
+    Route::get("productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
+    Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
+    Route::get("productos/geolocalizacion", [ProductoController::class, 'geolocalizacion'])->name("productos.geolocalizacion");
     Route::resource("productos", ProductoController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
-
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

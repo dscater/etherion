@@ -43,7 +43,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        return Inertia::render("Usuarios/Index");
+        return Inertia::render("Admin/Usuarios/Index");
     }
 
     public function listado()
