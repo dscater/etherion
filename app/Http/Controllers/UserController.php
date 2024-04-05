@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-
     public static $permisos = [
         "ADMINISTRADOR" => [
             "usuarios.index",
@@ -16,106 +14,26 @@ class UserController extends Controller
             "usuarios.edit",
             "usuarios.destroy",
 
-            "institucions.index",
-            "institucions.create",
-            "institucions.edit",
-            "institucions.destroy",
-
-            "materials.index",
-            "materials.create",
-            "materials.edit",
-            "materials.destroy",
-
-            "operarios.index",
-            "operarios.create",
-            "operarios.edit",
-            "operarios.destroy",
-
-            "maquinarias.index",
-            "maquinarias.create",
-            "maquinarias.edit",
-            "maquinarias.destroy",
-
             "categorias.index",
             "categorias.create",
             "categorias.edit",
             "categorias.destroy",
 
-            "obras.index",
-            "obras.create",
-            "obras.edit",
-            "obras.destroy",
-            "obras.geolocalizacion",
-
-            "presupuestos.index",
-            "presupuestos.create",
-            "presupuestos.edit",
-            "presupuestos.destroy",
-
-            "avance_obras.index",
-            "avance_obras.create",
-            "avance_obras.edit",
-            "avance_obras.destroy",
-
-            "notificacions.index",
+            "producto_tamanos.index",
+            "producto_tamanos.create",
+            "producto_tamanos.edit",
+            "producto_tamanos.destroy",
 
             "reportes.usuarios",
-            "reportes.presupuestos",
-            "reportes.operarios",
-            "reportes.obras",
-            "reportes.avance_obras",
         ],
-        "GERENTE REGIONAL" => [
-            "materials.index",
-            "materials.create",
-            "materials.edit",
-            "materials.destroy",
-
-            "operarios.index",
-            "operarios.create",
-            "operarios.edit",
-            "operarios.destroy",
-
-            "maquinarias.index",
-            "maquinarias.create",
-            "maquinarias.edit",
-            "maquinarias.destroy",
-
-            "obras.index",
-            "obras.geolocalizacion",
-
-            "presupuestos.index",
-            "presupuestos.create",
-            "presupuestos.edit",
-            "presupuestos.destroy",
-
-            "avance_obras.index",
-            "avance_obras.create",
-            "avance_obras.edit",
-            "avance_obras.destroy",
-
-            "notificacions.index",
-
-            "reportes.presupuestos",
-            "reportes.operarios",
-            "reportes.obras",
-            "reportes.avance_obras",
+        "OPERADOR" => [],
+        "AFILIADO" => [
+            "productos.index",
+            "productos.create",
+            "productos.edit",
+            "productos.destroy",
         ],
-        "ADMINISTRADOR DE PERSONAL" => [
-            "operarios.index",
-            "operarios.create",
-            "operarios.edit",
-            "operarios.destroy",
-
-            "reportes.operarios",
-        ],
-        "ENCARGADO DE OBRA" => [
-            "avance_obras.index",
-            "avance_obras.create",
-            "avance_obras.edit",
-
-            "obras.geolocalizacion",
-        ],
+        "CLIENTE" => [],
     ];
 
     public static function getPermisosUser()

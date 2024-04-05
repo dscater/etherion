@@ -156,172 +156,53 @@ const scrollActive = () => {
                 <span v-else>ADMINISTRACIÓN</span></v-list-item
             >
             <v-list-item
-                :class="[route_current == 'avance_obras.index' ? 'active' : '']"
-                v-if="oUser.permisos.includes('avance_obras.index')"
-                prepend-icon="mdi-clipboard-check-outline"
-                @click="cambiarUrl(route('avance_obras.index'))"
-                link
-            >
-                <v-list-item-title>Avance de Obras</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Avance de Obras</v-tooltip
-                >
-            </v-list-item>
-            <v-list-item
-                :class="[
-                    route_current == 'presupuestos.index' ||
-                    route_current == 'presupuestos.create' ||
-                    route_current == 'presupuestos.edit'
-                        ? 'active'
-                        : '',
-                ]"
-                v-if="oUser.permisos.includes('presupuestos.index')"
-                prepend-icon="mdi-table-check"
-                @click="cambiarUrl(route('presupuestos.index'))"
-                link
-            >
-                <v-list-item-title>Presupuestos</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Presupuestos</v-tooltip
-                >
-            </v-list-item>
-
-            <v-list-item
-                :class="[
-                    route_current == 'obras.index' ||
-                    route_current == 'obras.create' ||
-                    route_current == 'obras.edit'
-                        ? 'active'
-                        : '',
-                ]"
-                v-if="oUser.permisos.includes('obras.index')"
+                :class="[route_current == 'productos.index' ? 'active' : '']"
+                v-if="oUser.permisos.includes('productos.index')"
                 prepend-icon="mdi-view-list"
-                @click="cambiarUrl(route('obras.index'))"
+                @click="cambiarUrl(route('productos.index'))"
                 link
             >
-                <v-list-item-title>Obras</v-list-item-title>
+                <v-list-item-title>Productos</v-list-item-title>
                 <v-tooltip
                     v-if="rail && !mobile"
                     color="white"
                     activator="parent"
                     location="end"
-                    >Obras</v-tooltip
+                    >Productos</v-tooltip
                 >
             </v-list-item>
-
-            <v-list-item
-                :class="[
-                    route_current == 'obras.geolocalizacion' ? 'active' : '',
-                ]"
-                v-if="oUser.permisos.includes('obras.geolocalizacion')"
-                prepend-icon="mdi-map-search"
-                @click="cambiarUrl(route('obras.geolocalizacion'))"
-                link
-            >
-                <v-list-item-title>Geolocalización de Obras</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Geolocalización de Obras</v-tooltip
-                >
-            </v-list-item>
-            <v-list-item
-                :class="[
-                    route_current == 'notificacions.index' ||
-                    route_current == 'notificacions.show'
-                        ? 'active'
-                        : '',
-                ]"
-                v-if="oUser.permisos.includes('notificacions.index')"
-                prepend-icon="mdi-bell"
-                @click="cambiarUrl(route('notificacions.index'))"
-                link
-            >
-                <v-list-item-title>Notificaciones</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Notificaciones</v-tooltip
-                >
-            </v-list-item>
-
             <v-list-item
                 :class="[route_current == 'categorias.index' ? 'active' : '']"
                 v-if="oUser.permisos.includes('categorias.index')"
-                prepend-icon="mdi-clipboard-list"
+                prepend-icon="mdi-tag-multiple"
                 @click="cambiarUrl(route('categorias.index'))"
                 link
             >
-                <v-list-item-title>Categorías</v-list-item-title>
+                <v-list-item-title>Categorías de Productos</v-list-item-title>
                 <v-tooltip
                     v-if="rail && !mobile"
                     color="white"
                     activator="parent"
                     location="end"
-                    >Categorías</v-tooltip
+                    >Categorías de Productos</v-tooltip
                 >
             </v-list-item>
-
             <v-list-item
-                :class="[route_current == 'maquinarias.index' ? 'active' : '']"
-                v-if="oUser.permisos.includes('maquinarias.index')"
-                prepend-icon="mdi-tow-truck"
-                @click="cambiarUrl(route('maquinarias.index'))"
+                :class="[
+                    route_current == 'producto_tamanos.index' ? 'active' : '',
+                ]"
+                v-if="oUser.permisos.includes('producto_tamanos.index')"
+                prepend-icon="mdi-ruler-square"
+                @click="cambiarUrl(route('producto_tamanos.index'))"
                 link
             >
-                <v-list-item-title>Maquinarias</v-list-item-title>
+                <v-list-item-title>Tamaño de Productos</v-list-item-title>
                 <v-tooltip
                     v-if="rail && !mobile"
                     color="white"
                     activator="parent"
                     location="end"
-                    >Maquinarias</v-tooltip
-                >
-            </v-list-item>
-
-            <v-list-item
-                :class="[route_current == 'operarios.index' ? 'active' : '']"
-                v-if="oUser.permisos.includes('operarios.index')"
-                prepend-icon="mdi-account-group-outline"
-                @click="cambiarUrl(route('operarios.index'))"
-                link
-            >
-                <v-list-item-title>Operarios</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Operarios</v-tooltip
-                >
-            </v-list-item>
-
-            <v-list-item
-                :class="[route_current == 'materials.index' ? 'active' : '']"
-                v-if="oUser.permisos.includes('materials.index')"
-                prepend-icon="mdi-view-list-outline"
-                @click="cambiarUrl(route('materials.index'))"
-                link
-            >
-                <v-list-item-title>Materiales</v-list-item-title>
-                <v-tooltip
-                    v-if="rail && !mobile"
-                    color="white"
-                    activator="parent"
-                    location="end"
-                    >Materiales</v-tooltip
+                    >Tamaño de Productos</v-tooltip
                 >
             </v-list-item>
 

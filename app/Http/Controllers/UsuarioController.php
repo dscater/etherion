@@ -34,6 +34,7 @@ class UsuarioController extends Controller
         "ci.unique" => "Este C.I. ya fue registrado",
         "ci.min" => "Debes ingresar al menos :min caracteres",
         "ci_exp.required" => "Este campo es obligatorio",
+        "email.unique" => "El correo electrónico ya fue registrado",
         "dir.required" => "Este campo es obligatorio",
         "dir.min" => "Debes ingresar al menos :min caracteres",
         "fono.required" => "Este campo es obligatorio",
@@ -93,6 +94,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci';
+        $this->validacion['email'] = 'required|unique:users,ci';
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }
@@ -152,6 +154,7 @@ class UsuarioController extends Controller
     public function update(User $user, Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci,' . $user->id;
+        $this->validacion['email'] = 'required|unique:users,ci,' . $user->id;
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }

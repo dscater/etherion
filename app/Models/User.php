@@ -104,4 +104,15 @@ class User extends Authenticatable
 
         return $nombre_user;
     }
+
+    // RELACIONES
+    public function afiliado()
+    {
+        return $this->hasOne(Afiliado::class, 'user_id');
+    }
+
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'user_id');
+    }
 }

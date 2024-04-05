@@ -13,7 +13,7 @@ class ReporteController extends Controller
 {
     public function usuarios()
     {
-        return Inertia::render("Reportes/Usuarios");
+        return Inertia::render("Admin/Reportes/Usuarios");
     }
 
     public function r_usuarios(Request $request)

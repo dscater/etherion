@@ -53,7 +53,6 @@
 
 
     <script>
-        const url_assets = "{{ asset('') }}";
         var mapa_id = "MAP_ID";
         var interval_notificacions = null;
         // 1fb896f332f7b53c

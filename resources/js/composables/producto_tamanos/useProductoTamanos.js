@@ -2,7 +2,7 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oCategoria = ref({
+const oProductoTamano = ref({
     id: 0,
     nombre: "",
     descripcion: "",
@@ -10,14 +10,17 @@ const oCategoria = ref({
     _method: "POST",
 });
 
-export const useCategorias = () => {
+export const useProductoTamanos = () => {
     const { flash } = usePage().props;
-    const getCategorias = async () => {
+    const getProductoTamanos = async () => {
         try {
-            const response = await axios.get(route("categorias.listado"), {
-                headers: { Accept: "application/json" },
-            });
-            return response.data.categorias;
+            const response = await axios.get(
+                route("producto_tamanos.listado"),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
+            return response.data.producto_tamanos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -36,15 +39,15 @@ export const useCategorias = () => {
         }
     };
 
-    const getCategoriasApi = async (data) => {
+    const getProductoTamanosApi = async (data) => {
         try {
             const response = await axios.get(
-                route("categorias.paginado", data),
+                route("producto_tamanos.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.categorias;
+            return response.data.producto_tamanos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -62,11 +65,14 @@ export const useCategorias = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveCategoria = async (data) => {
+    const saveProductoTamano = async (data) => {
         try {
-            const response = await axios.post(route("categorias.store", data), {
-                headers: { Accept: "application/json" },
-            });
+            const response = await axios.post(
+                route("producto_tamanos.store", data),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -94,10 +100,10 @@ export const useCategorias = () => {
         }
     };
 
-    const deleteCategoria = async (id) => {
+    const deleteProductoTamano = async (id) => {
         try {
             const response = await axios.delete(
-                route("categorias.destroy", id),
+                route("producto_tamanos.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -128,35 +134,35 @@ export const useCategorias = () => {
         }
     };
 
-    const setCategoria = (item = null) => {
+    const setProductoTamano = (item = null) => {
         if (item) {
-            oCategoria.value.id = item.id;
-            oCategoria.value.nombre = item.nombre;
-            oCategoria.value.descripcion = item.descripcion;
-            oCategoria.value.p_comision = item.p_comision;
-            oCategoria.value._method = "PUT";
-            return oCategoria;
+            oProductoTamano.value.id = item.id;
+            oProductoTamano.value.nombre = item.nombre;
+            oProductoTamano.value.descripcion = item.descripcion;
+            oProductoTamano.value.p_comision = item.p_comision;
+            oProductoTamano.value._method = "PUT";
+            return oProductoTamano;
         }
         return false;
     };
 
-    const limpiarCategoria = () => {
-        oCategoria.value.id = 0;
-        oCategoria.value.nombre = "";
-        oCategoria.value.descripcion = "";
-        oCategoria.value.p_comision = 0;
-        oCategoria.value._method = "POST";
+    const limpiarProductoTamano = () => {
+        oProductoTamano.value.id = 0;
+        oProductoTamano.value.nombre = "";
+        oProductoTamano.value.descripcion = "";
+        oProductoTamano.value.p_comision = 0;
+        oProductoTamano.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oCategoria,
-        getCategorias,
-        getCategoriasApi,
-        saveCategoria,
-        deleteCategoria,
-        setCategoria,
-        limpiarCategoria,
+        oProductoTamano,
+        getProductoTamanos,
+        getProductoTamanosApi,
+        saveProductoTamano,
+        deleteProductoTamano,
+        setProductoTamano,
+        limpiarProductoTamano,
     };
 };

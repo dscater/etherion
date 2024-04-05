@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-04-2024 a las 16:20:30
+-- Tiempo de generación: 05-04-2024 a las 17:47:16
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -74,6 +74,14 @@ CREATE TABLE `categorias` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `p_comision`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'CATEGORIA #1', 'DESC. CAT. #1', 4.00, '2024-04-05', '2024-04-05 16:01:20', '2024-04-05 16:01:51'),
+(2, 'CATEGORIA #2', '', 10.00, '2024-04-05', '2024-04-05 16:01:45', '2024-04-05 16:01:45');
+
 -- --------------------------------------------------------
 
 --
@@ -137,6 +145,29 @@ CREATE TABLE `historial_accions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `historial_accions`
+--
+
+INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:13<br/>', NULL, 'CATEGORIAS', '2024-04-05', '11:59:13', '2024-04-05 15:59:13', '2024-04-05 15:59:13'),
+(2, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:13<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.55<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:22<br/>', 'CATEGORIAS', '2024-04-05', '11:59:22', '2024-04-05 15:59:22', '2024-04-05 15:59:22'),
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.55<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:22<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.555<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:26<br/>', 'CATEGORIAS', '2024-04-05', '11:59:26', '2024-04-05 15:59:26', '2024-04-05 15:59:26'),
+(4, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.55<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 11:59:26<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:21<br/>', 'CATEGORIAS', '2024-04-05', '12:00:21', '2024-04-05 16:00:21', '2024-04-05 16:00:21'),
+(5, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:21<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.54<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:25<br/>', 'CATEGORIAS', '2024-04-05', '12:00:25', '2024-04-05 16:00:25', '2024-04-05 16:00:25'),
+(6, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5.54<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:25<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:30<br/>', 'CATEGORIAS', '2024-04-05', '12:00:30', '2024-04-05 16:00:30', '2024-04-05 16:00:30'),
+(7, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CATEGORIA #1<br/>p_comision: 5<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 11:59:13<br/>updated_at: 2024-04-05 12:00:30<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:00:59', '2024-04-05 16:00:59', '2024-04-05 16:00:59'),
+(8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:20<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:01:20', '2024-04-05 16:01:20', '2024-04-05 16:01:20'),
+(9, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:20<br/>', 'id: 1<br/>nombre: CATEGORIA #1S<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:24<br/>', 'CATEGORIAS', '2024-04-05', '12:01:24', '2024-04-05 16:01:24', '2024-04-05 16:01:24'),
+(10, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1S<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:24<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:28<br/>', 'CATEGORIAS', '2024-04-05', '12:01:28', '2024-04-05 16:01:28', '2024-04-05 16:01:28'),
+(11, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:01:45', '2024-04-05 16:01:45', '2024-04-05 16:01:45'),
+(12, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 0<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:28<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 4<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:51<br/>', 'CATEGORIAS', '2024-04-05', '12:01:51', '2024-04-05 16:01:51', '2024-04-05 16:01:51'),
+(13, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TAMAÑO #1<br/>descripcion: DESC. TAM. #1<br/>p_comision: 7<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:40<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:13:40', '2024-04-05 16:13:40', '2024-04-05 16:13:40'),
+(14, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TAMAÑO #1<br/>descripcion: DESC. TAM. #1<br/>p_comision: 7<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:40<br/>', 'id: 1<br/>nombre: TAMAÑO #1S<br/>descripcion: DESC. TAM. #1S<br/>p_comision: 7.88<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:52<br/>', 'CATEGORIAS', '2024-04-05', '12:13:52', '2024-04-05 16:13:52', '2024-04-05 16:13:52'),
+(15, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: TAMAÑO #1S<br/>descripcion: DESC. TAM. #1S<br/>p_comision: 7.88<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:52<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:13:56', '2024-04-05 16:13:56', '2024-04-05 16:13:56'),
+(16, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: 50X50 CM<br/>descripcion: TAMAÑO#1<br/>p_comision: 3<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:14:22<br/>updated_at: 2024-04-05 12:14:22<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:14:22', '2024-04-05 16:14:22', '2024-04-05 16:14:22'),
+(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: 1X1M<br/>descripcion: TAMAÑO #2<br/>p_comision: 8<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:14:36<br/>updated_at: 2024-04-05 12:14:36<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:14:36', '2024-04-05 16:14:36', '2024-04-05 16:14:36');
 
 -- --------------------------------------------------------
 
@@ -316,6 +347,14 @@ CREATE TABLE `producto_tamanos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `producto_tamanos`
+--
+
+INSERT INTO `producto_tamanos` (`id`, `nombre`, `descripcion`, `p_comision`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, '50X50 CM', 'TAMAÑO#1', 3.00, '2024-04-05', '2024-04-05 16:14:22', '2024-04-05 16:14:22'),
+(2, '1X1M', 'TAMAÑO #2', 8.00, '2024-04-05', '2024-04-05 16:14:36', '2024-04-05 16:14:36');
+
 -- --------------------------------------------------------
 
 --
@@ -482,7 +521,7 @@ ALTER TABLE `apis`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -506,7 +545,7 @@ ALTER TABLE `foto_productos`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -554,7 +593,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `producto_tamanos`
 --
 ALTER TABLE `producto_tamanos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

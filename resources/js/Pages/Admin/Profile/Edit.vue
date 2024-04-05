@@ -135,7 +135,7 @@ const enviaFormulario = () => {
                         <v-container>
                             <v-row>
                                 <v-col cols="12 text-center">
-                                    <v-avatar color="primary-darken-3" size="80">
+                                    <v-avatar color="blue-darken-3" size="80">
                                         <v-img
                                             cover
                                             v-if="user.url_foto"

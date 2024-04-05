@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useProductoTamanos } from "@/composables/producto_tamanos/useProductoTamanos";
 import { watch, ref, computed, defineEmits } from "vue";
 const props = defineProps({
     open_dialog: {
@@ -13,16 +13,16 @@ const props = defineProps({
     },
 });
 
-const { oCategoria, limpiarCategoria } = useCategorias();
+const { oProductoTamano, limpiarProductoTamano } = useProductoTamanos();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
-let form = useForm(oCategoria.value);
+let form = useForm(oProductoTamano.value);
 watch(
     () => props.open_dialog,
     (newValue) => {
         dialog.value = newValue;
         if (dialog.value) {
-            form = useForm(oCategoria.value);
+            form = useForm(oProductoTamano.value);
         }
     }
 );
@@ -42,8 +42,8 @@ const tituloDialog = computed(() => {
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("categorias.store")
-            : route("categorias.update", form.id);
+            ? route("producto_tamanos.store")
+            : route("producto_tamanos.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -56,7 +56,7 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            limpiarCategoria();
+            limpiarProductoTamano();
             emits("envio-formulario");
         },
         onError: (err) => {
@@ -124,7 +124,7 @@ const cerrarDialog = () => {
                                                 : ''
                                         "
                                         variant="outlined"
-                                        label="Nombre de Categoria*"
+                                        label="Nombre de Tamaño*"
                                         required
                                         density="compact"
                                         v-model="form.nombre"

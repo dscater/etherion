@@ -8,8 +8,11 @@ export default {
 
 <script setup>
 import { useInstitucion } from "@/composables/institucion/useInstitucion";
-import { useForm, Head } from "@inertiajs/vue3";
+import { useForm, Head, usePage, Link } from "@inertiajs/vue3";
 import { ref } from "vue";
+const { props } = usePage();
+var url_principal = "";
+var url_assets = "";
 
 const { oInstitucion } = useInstitucion();
 const form = useForm({
@@ -36,10 +39,9 @@ const submit = () => {
     });
 };
 
-const url_asset = ref("/");
-
 onMounted(() => {
-    url_asset.value = url_assets;
+    url_assets = props.url_assets;
+    url_principal = props.url_principal;
 });
 </script>
 
@@ -70,7 +72,7 @@ onMounted(() => {
                                     <p
                                         class="text-caption text-center text-medium-emphasis"
                                     >
-                                        Ingresa tu usuario y contraseña
+                                        Ingresa tu correo y contraseña
                                     </p>
                                     <v-row
                                         align="center"
@@ -81,7 +83,7 @@ onMounted(() => {
                                             <div
                                                 class="text-subtitle-1 text-medium-emphasis"
                                             >
-                                                Usuario
+                                                Correo
                                             </div>
 
                                             <v-text-field
@@ -96,8 +98,8 @@ onMounted(() => {
                                                         ? form.errors?.usuario
                                                         : ''
                                                 "
-                                                placeholder="Ingresa tu usuario"
-                                                prepend-inner-icon="mdi-account"
+                                                placeholder="Ingresa tu correo electrónico"
+                                                prepend-inner-icon="mdi-email"
                                                 variant="outlined"
                                                 color="primary"
                                                 autocomplete="false"
@@ -153,6 +155,19 @@ onMounted(() => {
                                                 type="submit"
                                                 >ACCEDER</v-btn
                                             >
+                                        </v-col>
+                                        <v-col
+                                            cols="12"
+                                            sm="10"
+                                            class="text-center pt-0"
+                                        >
+                                            <Link
+                                                :href="route('registro')"
+                                                class="v-btn v-btn--block text-body-2 bg-orange-darken-3 v-btn--density-default rounded-0 v-btn--size-default v-btn--variant-elevated mt-2"
+                                                >Registrarme</Link
+                                            >
+                                        </v-col>
+                                        <v-col cols="12" class="text-center">
                                             <a href="/">Volver al portal</a>
                                         </v-col>
                                     </v-row>
@@ -167,12 +182,15 @@ onMounted(() => {
 </template>
 
 <style scoped>
+body {
+    overflow: hidden !important;
+}
 .v-container {
     background-color: var(--transparente);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     min-width: 100vw;
 }
 </style>

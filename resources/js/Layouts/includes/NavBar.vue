@@ -12,33 +12,30 @@ const { oInstitucion } = useInstitucion();
 
 const listNotificacions = ref([]);
 const sin_ver = ref(0);
-const getNotificacions = () => {
-    let tipo_usuario = props.auth.user.tipo;
-    if (
-        tipo_usuario == "GERENTE GENERAL" ||
-        tipo_usuario == "GERENTE REGIONAL"
-    ) {
-        axios
-            .get(route("notificacions.byUser"), {
-                params: {
-                    sin_ver: sin_ver.value,
-                },
-            })
-            .then((response) => {
-                if (
-                    response.data.list_notificacions.length !=
-                        listNotificacions.value.length ||
-                    sin_ver.value != response.data.sin_ver
-                ) {
-                    listNotificacions.value = response.data.list_notificacions;
-                }
-                sin_ver.value = response.data.sin_ver;
-            });
-    }
-};
+// const getNotificacions = () => {
+//     let tipo_usuario = props.auth.user.tipo;
+//     if (tipo_usuario == "ADMINISTRADOR") {
+//         axios
+//             .get(route("notificacions.byUser"), {
+//                 params: {
+//                     sin_ver: sin_ver.value,
+//                 },
+//             })
+//             .then((response) => {
+//                 if (
+//                     response.data.list_notificacions.length !=
+//                         listNotificacions.value.length ||
+//                     sin_ver.value != response.data.sin_ver
+//                 ) {
+//                     listNotificacions.value = response.data.list_notificacions;
+//                 }
+//                 sin_ver.value = response.data.sin_ver;
+//             });
+//     }
+// };
 onMounted(() => {
-    getNotificacions();
-    interval_notificacions = setInterval(getNotificacions, 1500);
+    // getNotificacions();
+    // interval_notificacions = setInterval(getNotificacions, 1500);
 });
 </script>
 <template>
@@ -86,11 +83,8 @@ onMounted(() => {
                 </div>
             </div>
             <div class="user">
-                <v-menu
-                    v-if="
-                        props.auth.user.tipo == 'GERENTE GENERAL' ||
-                        props.auth.user.tipo == 'GERENTE REGIONAL'
-                    "
+                <!-- <v-menu
+                    v-if="props.auth.user.tipo == 'ADMINISTRADOR'"
                     :width="mobile ? '100%' : '20%'"
                     rounded
                 >
@@ -166,7 +160,7 @@ onMounted(() => {
                             ></v-divider>
                         </template>
                     </v-list>
-                </v-menu>
+                </v-menu> -->
 
                 <v-menu :width="mobile ? '50%' : '13%'" rounded>
                     <template v-slot:activator="{ props }">

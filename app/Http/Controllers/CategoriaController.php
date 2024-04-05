@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\HistorialAccion;
-use App\Models\Obra;
+use App\Models\Producto;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +16,17 @@ class CategoriaController extends Controller
 {
     public $validacion = [
         "nombre" => "required|min:1",
-        "nro_avances" => "required|numeric|min:1",
+        "p_comision" => "required|numeric|min:0|max:100|regex:/^\d+(\.\d{1,2})?$/",
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
         "nombre.min" => "Debes ingresar al menos :min caracteres",
-        "nro_avances.required" => "Este campo es obligatorio",
-        "nro_avances.numeric" => "Debes ingresar un valor númerico",
-        "nro_avances.min" => "Debes ingresar al menos :min",
+        "p_comision.required" => "Este campo es obligatorio",
+        "p_comision.numeric" => "Debes ingresar un valor númerico",
+        "p_comision.min" => "El valor no puede ser menor a :min",
+        "p_comision.max" => "El valor no puede ser mayor a :max",
+        "p_comision.regex" => "Solo se permiten valores con 0 o 2 decimales",
     ];
 
     public function index()
@@ -131,7 +133,7 @@ class CategoriaController extends Controller
     {
         DB::beginTransaction();
         try {
-            $usos = Obra::where("categoria_id", $categoria->id)->get();
+            $usos = Producto::where("categoria_id", $categoria->id)->get();
             if (count($usos) > 0) {
                 throw ValidationException::withMessages([
                     'error' =>  "No es posible eliminar esta categoría porque esta siendo utilizada por otros registros",

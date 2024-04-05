@@ -11,7 +11,8 @@ class Categoria extends Model
 
     protected $fillable = [
         "nombre",
-        "nro_avances",
+        "descripcion",
+        "p_comision",
         "fecha_registro",
     ];
 
