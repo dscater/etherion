@@ -67,8 +67,10 @@ Route::get('/login', function () {
 Route::post("afiliados/registro", [AfiliadoController::class, 'registro'])->name("afiliados.registro");
 Route::post("clientes/registro", [ClienteController::class, 'registro'])->name("clientes.registro");
 
-
 Route::get("institucions/getInstitucion", [InstitucionController::class, 'getInstitucion'])->name("institucions.getInstitucion");
+
+// PRODUCTOS PORTAL
+Route::get("productos", [ProductoController::class, 'portal'])->name("productos.portal");
 
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO

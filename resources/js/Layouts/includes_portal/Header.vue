@@ -152,25 +152,11 @@ onMounted(() => {
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
                 <div
-                    class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search"
-                >
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-
-                <div
                     class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
                     data-notify="2"
                 >
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
-
-                <a
-                    href="#"
-                    class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-                    data-notify="0"
-                >
-                    <i class="zmdi zmdi-favorite-outline"></i>
-                </a>
             </div>
 
             <!-- Button show menu -->
@@ -194,7 +180,7 @@ onMounted(() => {
                             :href="url_principal + '/login'"
                             class="flex-c-m p-lr-10 trans-04"
                         >
-                            <i class="fa fa-sign-in"></i> Iniciar sesión
+                            <i class="fa fa-sign-in"></i>&nbsp;Iniciar sesión
                         </a>
                     </div>
                 </li>
@@ -238,32 +224,6 @@ onMounted(() => {
                     <a href="contact.html">Contact</a>
                 </li>
             </ul>
-        </div>
-
-        <!-- Modal Search -->
-        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-            <div class="container-search-header">
-                <button
-                    class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search"
-                >
-                    <img
-                        :src="url_assets + '/images/icons/icon-close2.png'"
-                        alt="CLOSE"
-                    />
-                </button>
-
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input
-                        class="plh3"
-                        type="text"
-                        name="search"
-                        placeholder="Search..."
-                    />
-                </form>
-            </div>
         </div>
     </header>
 

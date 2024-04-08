@@ -44,6 +44,11 @@ const headers = ref([
         sortable: false,
     },
     {
+        title: "Afiliado",
+        align: "start",
+        sortable: false,
+    },
+    {
         title: "Descripción del Producto",
         align: "start",
         sortable: false,
@@ -135,11 +140,6 @@ const showFotos = (item) => {
     setProducto(item, true);
     open_fotos.value = true;
 };
-const editarProducto = (item) => {
-    setProducto(item, true);
-    accion_dialog.value = 1;
-    open_dialog.value = true;
-};
 const eliminarProducto = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
@@ -164,17 +164,6 @@ const eliminarProducto = (item) => {
     <Head title="Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
-        <v-row class="mt-0">
-            <v-col cols="12" class="d-flex justify-end">
-                <v-btn
-                    color="primary"
-                    prepend-icon="mdi-plus"
-                    @click="agregarRegistro"
-                >
-                    Agregar</v-btn
-                >
-            </v-col>
-        </v-row>
         <v-row class="mt-0">
             <v-col cols="12">
                 <v-card flat>
@@ -222,6 +211,7 @@ const eliminarProducto = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>{{ item.id }}</td>
+                                    <td>{{ item.user.full_name }}</td>
                                     <td>{{ item.descripcion }}</td>
                                     <td>{{ item.foto_productos.length }}</td>
                                     <td>{{ item.categoria.nombre }}</td>
@@ -236,13 +226,6 @@ const eliminarProducto = (item) => {
                                             class="pa-1 ma-1"
                                             @click="showFotos(item)"
                                             icon="mdi-image-multiple"
-                                        ></v-btn>
-                                        <v-btn
-                                            color="yellow"
-                                            size="small"
-                                            class="pa-1 ma-1"
-                                            @click="editarProducto(item)"
-                                            icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
                                             color="error"
@@ -261,6 +244,12 @@ const eliminarProducto = (item) => {
                                                 data-label="Id"
                                             >
                                                 {{ item.id }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Afiliado:"
+                                            >
+                                                {{ item.user.full_name }}
                                             </li>
                                             <li
                                                 class="flex-item"
@@ -318,15 +307,6 @@ const eliminarProducto = (item) => {
                                                     class="pa-1 ma-1"
                                                     @click="showFotos(item)"
                                                     icon="mdi-image-multiple"
-                                                ></v-btn>
-                                                <v-btn
-                                                    color="yellow"
-                                                    size="small"
-                                                    class="pa-1 ma-1"
-                                                    @click="
-                                                        editarProducto(item)
-                                                    "
-                                                    icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
                                                     color="error"

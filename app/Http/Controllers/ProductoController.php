@@ -15,7 +15,7 @@ use Inertia\Inertia;
 class ProductoController extends Controller
 {
     public $validacion = [
-        "descripcion" => "required|min:1",
+        "descripcion" => "required|min:1|max:250",
         "categoria_id" => "required",
         "producto_tamano_id" => "required",
         "precio" => "required|numeric|min:0|max:1000000",
@@ -25,6 +25,7 @@ class ProductoController extends Controller
     public $mensajes = [
         "descripcion.required" => "Este campo es obligatorio",
         "descripcion.min" => "Debes ingresar al menos :min caracteres",
+        "descripcion.max" => "No puedes ingresar mas de :max caracteres",
         "categoria_id.required" => "Este campo es obligatorio",
         "producto_tamano_id.required" => "Este campo es obligatorio",
         "precio.required" => "Este campo es obligatorio",
@@ -37,7 +38,15 @@ class ProductoController extends Controller
 
     public function index()
     {
-        return Inertia::render("Admin/Productos/Index");
+        if (Auth::user()->tipo == 'AFILIADO') {
+            return Inertia::render("Admin/Productos/Index");
+        }
+        return Inertia::render("Admin/Productos/Afiliados");
+    }
+
+    public function afiliados()
+    {
+        return Inertia::render("Admin/Productos/Afiliados");
     }
 
     public function listado(Request $request)
@@ -65,9 +74,33 @@ class ProductoController extends Controller
         ]);
     }
 
+    public function portal(Request $request)
+    {
+        $categoria_id = $request->categoria_id;
+        $search = $request->search;
+        $per_page = 10;
+        if (isset($request->itemsPerPage) && $request->itemsPerPage) {
+            $per_page = $request->itemsPerPage;
+        }
+
+        $productos = Producto::with(["categoria", "producto_tamano", "user", "foto_productos"])->select("productos.*");
+
+        if (trim($search) != "") {
+            $productos->where("productos.descripcion", "LIKE", "%$search%");
+        }
+
+        if (trim($categoria_id) != "") {
+            $productos->where("productos.categoria_id", $categoria_id);
+        }
+
+        $productos = $productos->paginate($request->per_page);
+        return response()->JSON([
+            "productos" => $productos
+        ]);
+    }
+
     public function paginado(Request $request)
     {
-
         $search = $request->search;
 
         $productos = Producto::with(["categoria", "producto_tamano", "user", "foto_productos"])->select("productos.*");
