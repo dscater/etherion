@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 05-04-2024 a las 17:47:16
+-- Tiempo de generación: 08-04-2024 a las 16:53:16
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -36,6 +36,13 @@ CREATE TABLE `afiliados` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `afiliados`
+--
+
+INSERT INTO `afiliados` (`id`, `user_id`, `banco`, `nro_cuenta`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
+(1, 2, 'BANCO UNION', '10000011222', 1, '2024-04-08 15:10:05', '2024-04-08 15:10:05');
 
 -- --------------------------------------------------------
 
@@ -96,6 +103,13 @@ CREATE TABLE `clientes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `user_id`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, '2024-04-08 15:45:24', '2024-04-08 15:45:24');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +139,14 @@ CREATE TABLE `foto_productos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `foto_productos`
+--
+
+INSERT INTO `foto_productos` (`id`, `producto_id`, `foto`, `created_at`, `updated_at`) VALUES
+(6, 2, 'imagen21712595183_0.png', '2024-04-08 16:53:03', '2024-04-08 16:53:03'),
+(7, 2, 'imagen21712595183_1.png', '2024-04-08 16:53:03', '2024-04-08 16:53:03');
 
 -- --------------------------------------------------------
 
@@ -167,7 +189,11 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (14, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TAMAÑO #1<br/>descripcion: DESC. TAM. #1<br/>p_comision: 7<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:40<br/>', 'id: 1<br/>nombre: TAMAÑO #1S<br/>descripcion: DESC. TAM. #1S<br/>p_comision: 7.88<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:52<br/>', 'CATEGORIAS', '2024-04-05', '12:13:52', '2024-04-05 16:13:52', '2024-04-05 16:13:52'),
 (15, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: TAMAÑO #1S<br/>descripcion: DESC. TAM. #1S<br/>p_comision: 7.88<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:13:40<br/>updated_at: 2024-04-05 12:13:52<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:13:56', '2024-04-05 16:13:56', '2024-04-05 16:13:56'),
 (16, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: 50X50 CM<br/>descripcion: TAMAÑO#1<br/>p_comision: 3<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:14:22<br/>updated_at: 2024-04-05 12:14:22<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:14:22', '2024-04-05 16:14:22', '2024-04-05 16:14:22'),
-(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: 1X1M<br/>descripcion: TAMAÑO #2<br/>p_comision: 8<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:14:36<br/>updated_at: 2024-04-05 12:14:36<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:14:36', '2024-04-05 16:14:36', '2024-04-05 16:14:36');
+(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: 1X1M<br/>descripcion: TAMAÑO #2<br/>p_comision: 8<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:14:36<br/>updated_at: 2024-04-05 12:14:36<br/>', NULL, 'CATEGORIAS', '2024-04-05', '12:14:36', '2024-04-05 16:14:36', '2024-04-05 16:14:36'),
+(19, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', NULL, 'PRODUCTOS', '2024-04-08', '12:46:02', '2024-04-08 16:46:02', '2024-04-08 16:46:02'),
+(20, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:52:20', '2024-04-08 16:52:20', '2024-04-08 16:52:20'),
+(21, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:52:35', '2024-04-08 16:52:35', '2024-04-08 16:52:35'),
+(22, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:53:03', '2024-04-08 16:53:03', '2024-04-08 16:53:03');
 
 -- --------------------------------------------------------
 
@@ -204,7 +230,7 @@ CREATE TABLE `institucions` (
 --
 
 INSERT INTO `institucions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `nit`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `host`, `puerto`, `encriptado`, `email`, `nombre`, `password`, `driver`, `created_at`, `updated_at`) VALUES
-(1, 'SISOBRAS', 'SO', 'SISOBRAS S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'SISOBRAS@GMAIL.COM', 'SISOBRAS.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'smtp', NULL, '2024-03-09 16:40:13');
+(1, 'ETHERION', 'ET', 'ETHERION S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'ETHERION@GMAIL.COM', 'ETHERION.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'smtp', NULL, '2024-04-08 15:46:09');
 
 -- --------------------------------------------------------
 
@@ -331,6 +357,13 @@ CREATE TABLE `productos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `producto_tamano_id`, `precio`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(2, 2, 'PRODUCTO #1 AFILIADO 1', 1, 1, 400.00, '2024-04-08', '2024-04-08 16:46:02', '2024-04-08 16:46:02');
+
 -- --------------------------------------------------------
 
 --
@@ -386,7 +419,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58');
+(1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
+(2, 'eduardo@gmail.com', '$2y$12$H210oHjJfzjgkQ0eqteu.ecgcHOdMQtJF/ibwoc4SBLBntnGQfrBS', 'EDUARDO', 'RAMIRES', 'RAMIRES', '3434', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '77777777', 'AFILIADO', NULL, 1, '2024-04-08', '2024-04-08 15:10:05', '2024-04-08 15:40:05'),
+(4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45');
 
 --
 -- Índices para tablas volcadas
@@ -509,7 +544,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `afiliados`
 --
 ALTER TABLE `afiliados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `apis`
@@ -527,7 +562,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion_pagos`
@@ -539,13 +574,13 @@ ALTER TABLE `configuracion_pagos`
 -- AUTO_INCREMENT de la tabla `foto_productos`
 --
 ALTER TABLE `foto_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -587,7 +622,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_tamanos`
@@ -599,7 +634,7 @@ ALTER TABLE `producto_tamanos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

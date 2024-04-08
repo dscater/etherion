@@ -100,7 +100,7 @@ onMounted(() => {
                             :href="url_principal + '/login'"
                             class="flex-c-m trans-04 p-lr-25"
                         >
-                            Iniciar Sesión
+                        <i class="fa fa-sign-in"></i>&nbsp; Iniciar Sesión
                         </a>
                     </div>
                 </div>
@@ -194,7 +194,7 @@ onMounted(() => {
                             :href="url_principal + '/login'"
                             class="flex-c-m p-lr-10 trans-04"
                         >
-                            Iniciar sesión
+                            <i class="fa fa-sign-in"></i> Iniciar sesión
                         </a>
                     </div>
                 </li>

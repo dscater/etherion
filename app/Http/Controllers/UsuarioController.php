@@ -151,6 +151,16 @@ class UsuarioController extends Controller
     {
     }
 
+    public function actualizaAcceso(User $user, Request $request)
+    {
+        $user->acceso = $request->acceso;
+        $user->save();
+        return response()->JSON([
+            "user" => $user,
+            "message" => "Acceso actualizado"
+        ]);
+    }
+
     public function update(User $user, Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci,' . $user->id;

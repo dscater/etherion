@@ -53,7 +53,7 @@ const submit = () => {
     let url = route("afiliados.registro");
     if (form.tipo == "AFILIADO") {
     } else {
-        let url = route("clientes.registro");
+        url = route("clientes.registro");
     }
 
     form.post(url, {

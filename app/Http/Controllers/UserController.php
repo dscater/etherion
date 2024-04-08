@@ -14,6 +14,21 @@ class UserController extends Controller
             "usuarios.edit",
             "usuarios.destroy",
 
+            "institucions.index",
+            "institucions.create",
+            "institucions.edit",
+            "institucions.destroy",
+
+            "afiliados.index",
+            "afiliados.create",
+            "afiliados.edit",
+            "afiliados.destroy",
+
+            "clientes.index",
+            "clientes.create",
+            "clientes.edit",
+            "clientes.destroy",
+
             "categorias.index",
             "categorias.create",
             "categorias.edit",
@@ -23,6 +38,9 @@ class UserController extends Controller
             "producto_tamanos.create",
             "producto_tamanos.edit",
             "producto_tamanos.destroy",
+
+            "productos.index",
+            "productos.destroy",
 
             "reportes.usuarios",
         ],

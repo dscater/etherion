@@ -92,6 +92,7 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("menu_user", [UserController::class, 'permisos']);
 
     // USUARIOS
+    Route::patch("usuarios/actualizaAcceso/{user}", [UsuarioController::class, 'actualizaAcceso'])->name("usuarios.actualizaAcceso");
     Route::put("usuarios/password/{user}", [UsuarioController::class, 'actualizaPassword'])->name("usuarios.password");
     Route::get("usuarios/paginado", [UsuarioController::class, 'paginado'])->name("usuarios.paginado");
     Route::get("usuarios/listado", [UsuarioController::class, 'listado'])->name("usuarios.listado");
@@ -113,6 +114,16 @@ Route::middleware('auth')->prefix("admin")->group(function () {
         ["index", "store"]
     );
 
+    // CLIENTES
+    Route::get("clientes/paginado", [ClienteController::class, 'paginado'])->name("clientes.paginado");
+    Route::get("clientes/listado", [ClienteController::class, 'listado'])->name("clientes.listado");
+    Route::get("clientes/show/{user}", [ClienteController::class, 'show'])->name("clientes.show");
+    Route::put("clientes/update/{user}", [ClienteController::class, 'update'])->name("clientes.update");
+    Route::delete("clientes/{user}", [ClienteController::class, 'destroy'])->name("clientes.destroy");
+    Route::resource("clientes", ClienteController::class)->only(
+        ["index", "store"]
+    );
+
     // CATEGORIAS
     Route::get("categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
     Route::get("categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
@@ -128,7 +139,7 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     );
 
     // PRODUCTOS
-    Route::get("productos/getObra/{obra}", [ProductoController::class, 'getObra'])->name("productos.getObra");
+    Route::get("productos/getProducto/{producto}", [ProductoController::class, 'getProducto'])->name("productos.getProducto");
     Route::get("productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
     Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
     Route::get("productos/geolocalizacion", [ProductoController::class, 'geolocalizacion'])->name("productos.geolocalizacion");

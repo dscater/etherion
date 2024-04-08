@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Categorías",
+        title: "Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -40,24 +40,40 @@ const headers = ref([
     {
         title: "Id",
         align: "start",
-        key: "id",
         sortable: false,
     },
     {
-        title: "Nombre de Producto",
-        key: "nombre",
+        title: "Descripción del Producto",
         align: "start",
         sortable: false,
     },
     {
-        title: "Nro. de Avances",
-        key: "nro_avances",
+        title: "No. Fotos",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Categoría",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Tamaño del Producto",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Precio",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Precio de Venta",
         align: "start",
         sortable: false,
     },
     {
         title: "Fecha de Registro",
-        key: "fecha_registro",
         align: "start",
         sortable: false,
     },
@@ -114,7 +130,7 @@ const agregarRegistro = () => {
     open_dialog.value = true;
 };
 const editarProducto = (item) => {
-    setProducto(item);
+    setProducto(item, true);
     accion_dialog.value = 1;
     open_dialog.value = true;
 };
@@ -139,7 +155,7 @@ const eliminarProducto = (item) => {
 };
 </script>
 <template>
-    <Head title="Categorías"></Head>
+    <Head title="Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
@@ -158,7 +174,7 @@ const eliminarProducto = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Categorías </v-col>
+                            <v-col cols="12" sm="6" md="4"> Productos </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -200,10 +216,12 @@ const eliminarProducto = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>{{ item.id }}</td>
-                                    <td>{{ item.nombre }}</td>
-                                    <td>
-                                        {{ item.nro_avances }}
-                                    </td>
+                                    <td>{{ item.descripcion }}</td>
+                                    <td>{{ item.foto_productos.length }}</td>
+                                    <td>{{ item.categoria.nombre }}</td>
+                                    <td>{{ item.producto_tamano.nombre }}</td>
+                                    <td>{{ item.precio }}</td>
+                                    <td>{{ item.precio_total }}</td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
@@ -233,15 +251,41 @@ const eliminarProducto = (item) => {
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de Producto:"
+                                                data-label="Descripción del Producto:"
                                             >
-                                                {{ item.nombre }}
+                                                {{ item.descripcion }}
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nro. de Avances:"
+                                                data-label="No. Fotos:"
                                             >
-                                                {{ item.nro_avances }}
+                                                {{ item.foto_productos.length }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Categoría:"
+                                            >
+                                                {{ item.categoria.nombre }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Tamaño del Producto:"
+                                            >
+                                                {{
+                                                    item.producto_tamano.nombre
+                                                }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Precio:"
+                                            >
+                                                {{ item.precio }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Precio de Venta:"
+                                            >
+                                                {{ item.precio_total }}
                                             </li>
                                             <li
                                                 class="flex-item"

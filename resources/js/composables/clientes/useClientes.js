@@ -1,28 +1,31 @@
 import axios from "axios";
-import { onMounted, reactive } from "vue";
+import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oProducto = reactive({
+const oUsuario = ref({
     id: 0,
-    user_id: "",
-    descripcion: "",
-    categoria_id: "",
-    producto_tamano_id: "",
-    precio: "",
-    precio_total: "",
-    foto_productos: reactive([]),
-    eliminados: reactive([]),
+    nombre: "",
+    paterno: "",
+    materno: "",
+    ci: "",
+    ci_exp: "",
+    dir: "",
+    email: "",
+    fono: "",
+    tipo: "",
+    foto: "",
+    acceso: 0 + "",
     _method: "POST",
 });
 
-export const useProductos = () => {
+export const useClientes = () => {
     const { flash } = usePage().props;
-    const getProductos = async () => {
+    const getUsuarios = async () => {
         try {
-            const response = await axios.get(route("productos.listado"), {
+            const response = await axios.get(route("clientes.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.productos;
+            return response.data.usuarios;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -41,15 +44,28 @@ export const useProductos = () => {
         }
     };
 
-    const getProductosApi = async (data) => {
+    const getUsuariosByTipo = async (data) => {
+        try {
+            const response = await axios.get(route("clientes.byTipo"), {
+                headers: { Accept: "application/json" },
+                params: data,
+            });
+            return response.data.usuarios;
+        } catch (error) {
+            console.error("Error:", error);
+            throw error; // Puedes manejar el error según tus necesidades
+        }
+    };
+
+    const getUsuariosApi = async (data) => {
         try {
             const response = await axios.get(
-                route("productos.paginado", data),
+                route("clientes.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.productos;
+            return response.data.usuarios;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -67,9 +83,9 @@ export const useProductos = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveProducto = async (data) => {
+    const saveUsuario = async (data) => {
         try {
-            const response = await axios.post(route("productos.store", data), {
+            const response = await axios.post(route("clientes.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -94,15 +110,14 @@ export const useProductos = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
 
-    const deleteProducto = async (id) => {
+    const deleteUsuario = async (id) => {
         try {
             const response = await axios.delete(
-                route("productos.destroy", id),
+                route("clientes.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -133,48 +148,52 @@ export const useProductos = () => {
         }
     };
 
-    const setProducto = (item = null, archivos = false) => {
+    const setUsuario = (item = null) => {
         if (item) {
-            oProducto.id = item.id;
-            oProducto.user_id = item.user_id;
-            oProducto.descripcion = item.descripcion;
-            oProducto.categoria_id = item.categoria_id;
-            oProducto.producto_tamano_id = item.producto_tamano_id;
-            oProducto.precio = item.precio;
-            oProducto.precio_total = item.precio_total;
-            oProducto.foto_productos = reactive([]);
-            oProducto.eliminados = reactive([]);
-            if (archivos) {
-                oProducto.foto_productos = reactive([...item.foto_productos]);
-            }
-            oProducto._method = "PUT";
-            return oProducto;
+            oUsuario.value.id = item.id;
+            oUsuario.value.nombre = item.nombre;
+            oUsuario.value.paterno = item.paterno;
+            oUsuario.value.materno = item.materno;
+            oUsuario.value.ci = item.ci;
+            oUsuario.value.ci_exp = item.ci_exp;
+            oUsuario.value.dir = item.dir;
+            oUsuario.value.email = item.email;
+            oUsuario.value.fono = item.fono;
+            oUsuario.value.tipo = item.tipo;
+            oUsuario.value.foto = item.foto;
+            oUsuario.value.acceso = item.acceso + "";
+            oUsuario.value._method = "PUT";
+            return oUsuario;
         }
         return false;
     };
 
-    const limpiarProducto = () => {
-        oProducto.id = 0;
-        oProducto.user_id = "";
-        oProducto.descripcion = "";
-        oProducto.categoria_id = "";
-        oProducto.producto_tamano_id = "";
-        oProducto.precio = "";
-        oProducto.precio_total = "";
-        oProducto.foto_productos = reactive([]);
-        oProducto.eliminados = reactive([]);
-        oProducto._method = "POST";
+    const limpiarUsuario = () => {
+        oUsuario.value.id = 0;
+        oUsuario.value.nombre = "";
+        oUsuario.value.paterno = "";
+        oUsuario.value.materno = "";
+        oUsuario.value.ci = "";
+        oUsuario.value.ci_exp = "";
+        oUsuario.value.dir = "";
+        oUsuario.value.email = "";
+        oUsuario.value.fono = "";
+        oUsuario.value.tipo = "";
+        oUsuario.value.foto = "";
+        oUsuario.value.acceso = 0 + "";
+        oUsuario.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oProducto,
-        getProductos,
-        getProductosApi,
-        saveProducto,
-        deleteProducto,
-        setProducto,
-        limpiarProducto,
+        oUsuario,
+        getUsuarios,
+        getUsuariosApi,
+        saveUsuario,
+        deleteUsuario,
+        setUsuario,
+        limpiarUsuario,
+        getUsuariosByTipo,
     };
 };

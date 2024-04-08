@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 class AfiliadoController extends Controller
 {
@@ -127,7 +128,11 @@ class AfiliadoController extends Controller
         try {
             // crear el Usuario
             $nuevo_usuario = User::create(array_map('mb_strtoupper', $request->except('foto')));
-
+            // $nuevo_usuario->afiliado()->create([
+            //     "banco" => $request->banco,
+            //     "nro_cuenta" => $request->nro_cuenta,
+            //     "acepto_contrato" => $request->acepto_contrato,
+            // ]);
             DB::commit();
             return redirect()->route("usuarios.index")->with("bien", "Registro realizado");
         } catch (\Exception $e) {

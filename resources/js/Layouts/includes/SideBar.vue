@@ -139,15 +139,11 @@ const scrollActive = () => {
                 class="text-caption"
                 v-if="
                     oUser.permisos.includes('usuarios.index') ||
-                    oUser.permisos.includes('avance_obras.index') ||
-                    oUser.permisos.includes('presupuestos.index') ||
-                    oUser.permisos.includes('obras.index') ||
-                    oUser.permisos.includes('obras.geolocalizacion') ||
-                    oUser.permisos.includes('notificacions.index') ||
-                    oUser.permisos.includes('categorias.index') ||
-                    oUser.permisos.includes('maquinarias.index') ||
-                    oUser.permisos.includes('operarios.index') ||
-                    oUser.permisos.includes('materials.index')
+                    oUser.permisos.includes('productos.index') ||
+                    oUser.permisos.includes('cateorias.index') ||
+                    oUser.permisos.includes('producto_tamanos.index') ||
+                    oUser.permisos.includes('clientes.index') ||
+                    oUser.permisos.includes('afiliados.index')
                 "
             >
                 <span v-if="rail && !mobile" class="text-center d-block"
@@ -203,6 +199,40 @@ const scrollActive = () => {
                     activator="parent"
                     location="end"
                     >Tamaño de Productos</v-tooltip
+                >
+            </v-list-item>
+
+            <v-list-item
+                :class="[route_current == 'clientes.index' ? 'active' : '']"
+                v-if="oUser.permisos.includes('clientes.index')"
+                prepend-icon="mdi-account-group"
+                @click="cambiarUrl(route('clientes.index'))"
+                link
+            >
+                <v-list-item-title>Clientes</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Clientes</v-tooltip
+                >
+            </v-list-item>
+
+            <v-list-item
+                :class="[route_current == 'afiliados.index' ? 'active' : '']"
+                v-if="oUser.permisos.includes('afiliados.index')"
+                prepend-icon="mdi-account-group"
+                @click="cambiarUrl(route('afiliados.index'))"
+                link
+            >
+                <v-list-item-title>Afiliados</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Afiliados</v-tooltip
                 >
             </v-list-item>
 

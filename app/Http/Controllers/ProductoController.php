@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FotoProducto;
 use App\Models\HistorialAccion;
 use App\Models\Producto;
 use App\Models\Presupuesto;
@@ -14,22 +15,24 @@ use Inertia\Inertia;
 class ProductoController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:1",
-        "gerente_regional_id" => "required",
-        "encargado_producto_id" => "required",
-        "fecha_pent" => "required",
-        "fecha_peje" => "required",
+        "descripcion" => "required|min:1",
         "categoria_id" => "required",
+        "producto_tamano_id" => "required",
+        "precio" => "required|numeric|min:0|max:1000000",
+        "foto_productos" => "required|array|min:1|max:3",
     ];
 
     public $mensajes = [
-        "nombre.required" => "Este campo es obligatorio",
-        "nombre.min" => "Debes ingresar al menos :min caracteres",
-        "gerente_regional_id.required" => "Este campo es obligatorio",
-        "encargado_producto_id.required" => "Este campo es obligatorio",
-        "fecha_pent.required" => "Este campo es obligatorio",
-        "fecha_peje.required" => "Este campo es obligatorio",
+        "descripcion.required" => "Este campo es obligatorio",
+        "descripcion.min" => "Debes ingresar al menos :min caracteres",
         "categoria_id.required" => "Este campo es obligatorio",
+        "producto_tamano_id.required" => "Este campo es obligatorio",
+        "precio.required" => "Este campo es obligatorio",
+        "precio.min" => "El precio no puede ser menor que :min",
+        "precio.max" => "El precio no puede ser mayor que :max",
+        "foto_productos.required" => "Debes cargar al menos una imagen",
+        "foto_productos.min" => "Debes cargar al menos :min imagen",
+        "foto_productos.max" => "No puedes cargar mas de :max imagenes",
     ];
 
     public function index()
@@ -39,32 +42,10 @@ class ProductoController extends Controller
 
     public function listado(Request $request)
     {
-        $productos = Producto::with(["gerente_regional", "encargado_producto", "categoria"]);
+        $productos = Producto::with(["categoria", "producto_tamano", "user", "foto_productos"]);
 
-        if ($request->sin_presupuesto) {
-            if ($request->id && $request->id != '') {
-                $productos = $productos->whereNotExists(function ($query) {
-                    $query->select(DB::raw(1))
-                        ->from('presupuestos')
-                        ->whereRaw('presupuestos.producto_id = productos.id');
-                })->orWhere(function ($subquery) use ($request) {
-                    $subquery->whereIn('productos.id', [$request->id]);
-                });
-            } else {
-                $productos = $productos->whereNotExists(function ($query) {
-                    $query->select(DB::raw(1))
-                        ->from('presupuestos')
-                        ->whereRaw('presupuestos.producto_id = productos.id');
-                });
-            }
-        }
-
-        if (Auth::user()->tipo == 'GERENTE REGIONAL') {
-            $productos = $productos->where("gerente_regional_id", Auth::user()->id);
-        }
-
-        if (Auth::user()->tipo == 'ENCARGADO DE OBRA') {
-            $productos = $productos->where("encargado_producto_id", Auth::user()->id);
+        if (Auth::user()->tipo == 'AFILIADO') {
+            $productos = $productos->where("user_id", Auth::user()->id);
         }
 
         if (isset($request->order)) {
@@ -89,18 +70,14 @@ class ProductoController extends Controller
 
         $search = $request->search;
 
-        $productos = Producto::with(["gerente_regional", "encargado_producto", "categoria"])->select("productos.*");
+        $productos = Producto::with(["categoria", "producto_tamano", "user", "foto_productos"])->select("productos.*");
 
         if (trim($search) != "") {
-            $productos->where("productos.nombre", "LIKE", "%$search%");
+            $productos->where("productos.descripcion", "LIKE", "%$search%");
         }
 
-        if (Auth::user()->tipo == 'GERENTE REGIONAL') {
-            $productos = $productos->where("gerente_regional_id", Auth::user()->id);
-        }
-
-        if (Auth::user()->tipo == 'ENCARGADO DE OBRA') {
-            $productos = $productos->where("encargado_producto_id", Auth::user()->id);
+        if (Auth::user()->tipo == 'AFILIADO') {
+            $productos = $productos->where("user_id", Auth::user()->id);
         }
 
         $productos = $productos->paginate($request->itemsPerPage);
@@ -113,20 +90,33 @@ class ProductoController extends Controller
     {
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
+        $request['user_id'] = Auth::user()->id;
         DB::beginTransaction();
         try {
             // crear el Producto
-            $nuevo_producto = Producto::create(array_map('mb_strtoupper', $request->all()));
+            $nuevo_producto = Producto::create(array_map('mb_strtoupper', $request->except("eliminados", "foto_productos", "categoria", "producto_tamano", "user")));
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_producto, "productos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' REGISTRO UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' REGISTRO UN PRODUCTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+
+
+            if ($request->file("foto_productos")) {
+                $foto_productos = $request->file('foto_productos');
+                foreach ($foto_productos as $key => $file) {
+                    $nom_archivo = "imagen" . $nuevo_producto->id . time() . "_" . $key . "." . $file->getClientOriginalExtension();
+                    $nuevo_producto->foto_productos()->create([
+                        "foto" => $nom_archivo,
+                    ]);
+                    $file->move(public_path() . '/imgs/productos/', $nom_archivo);
+                }
+            }
 
             DB::commit();
             return redirect()->route("productos.index")->with("bien", "Registro realizado");
@@ -148,20 +138,42 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
-            $producto->update(array_map('mb_strtoupper', $request->all()));
+            $producto->update(array_map('mb_strtoupper', $request->except("eliminados", "foto_productos", "categoria", "producto_tamano", "user")));
 
             $datos_nuevo = HistorialAccion::getDetalleRegistro($producto, "productos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' MODIFICÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' MODIFICÓ UN PRODUCTO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
 
+
+            if (isset($request->eliminados)) {
+                foreach ($request->eliminados as $e) {
+                    $foto_producto = FotoProducto::find($e);
+                    if (file_exists(public_path("imgs/productos/" . $foto_producto->foto))) {
+                        \File::delete(public_path("imgs/productos/" . $foto_producto->foto));
+                    }
+                    $foto_producto->delete();
+                }
+            }
+
+            $foto_productos = [];
+            if ($request->file("foto_productos")) {
+                $foto_productos = $request->file('foto_productos');
+                foreach ($foto_productos as $key => $file) {
+                    $nom_archivo = "imagen" . $producto->id . time() . "_" . $key . "." . $file->getClientOriginalExtension();
+                    $producto->foto_productos()->create([
+                        "foto" => $nom_archivo,
+                    ]);
+                    $file->move(public_path() . '/imgs/productos/', $nom_archivo);
+                }
+            }
 
             DB::commit();
             return redirect()->route("productos.index")->with("bien", "Registro actualizado");
@@ -176,11 +188,11 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
-            $usos = Presupuesto::where("producto_id", $producto->id)->get();
-            if (count($usos) > 0) {
-                throw ValidationException::withMessages([
-                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
-                ]);
+            foreach ($producto->foto_productos as $item) {
+                if (file_exists(public_path("imgs/productos/" . $item->imagen))) {
+                    \File::delete(public_path("imgs/productos/" . $item->imagen));
+                }
+                $item->delete();
             }
 
             $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
@@ -188,9 +200,9 @@ class ProductoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' ELIMINÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->producto . ' ELIMINÓ UN PRODUCTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

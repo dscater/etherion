@@ -1,7 +1,10 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import { useProductos } from "@/composables/productos/useProductos";
-import { watch, ref, computed, defineEmits } from "vue";
+import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useProductoTamanos } from "@/composables/producto_tamanos/useProductoTamanos";
+import { watch, ref, computed, defineEmits, onMounted } from "vue";
+import MiDropZone from "@/Components/MiDropZone.vue";
 const props = defineProps({
     open_dialog: {
         type: Boolean,
@@ -14,15 +17,21 @@ const props = defineProps({
 });
 
 const { oProducto, limpiarProducto } = useProductos();
+const { getCategorias } = useCategorias();
+const { getProductoTamanos } = useProductoTamanos();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
-let form = useForm(oProducto.value);
+const listCategorias = ref([]);
+const listProductoTamanos = ref([]);
+
+let form = useForm(oProducto);
 watch(
     () => props.open_dialog,
     (newValue) => {
         dialog.value = newValue;
         if (dialog.value) {
-            form = useForm(oProducto.value);
+            cargarListas();
+            form = useForm(oProducto);
         }
     }
 );
@@ -36,7 +45,7 @@ watch(
 const { flash } = usePage().props;
 
 const tituloDialog = computed(() => {
-    return accion.value == 0 ? `Agregar Categoría` : `Editar Categoría`;
+    return accion.value == 0 ? `Agregar Producto` : `Editar Producto`;
 });
 
 const enviarFormulario = () => {
@@ -77,8 +86,32 @@ const enviarFormulario = () => {
     });
 };
 
-const emits = defineEmits(["cerrar-dialog", "envio-formulario"]);
+const disabled = ref(false);
+const detectaArchivos = (files) => {
+    disabled.value = true;
+    form.foto_productos = [];
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        form.foto_productos.push(file.file);
+    }
+    setTimeout(() => {
+        disabled.value = false;
+    }, 500);
+};
 
+const detectaEliminados = (files) => {
+    disabled.value = true;
+    form.eliminados = [];
+    for (let i = 0; i < files.length; i++) {
+        const id = files[i];
+        form.eliminados.push(id);
+    }
+    setTimeout(() => {
+        disabled.value = false;
+    }, 500);
+};
+
+const emits = defineEmits(["cerrar-dialog", "envio-formulario"]);
 watch(dialog, (newVal) => {
     if (!newVal) {
         emits("cerrar-dialog");
@@ -88,6 +121,15 @@ watch(dialog, (newVal) => {
 const cerrarDialog = () => {
     dialog.value = false;
 };
+
+const cargarListas = async () => {
+    listCategorias.value = await getCategorias();
+    listProductoTamanos.value = await getProductoTamanos();
+};
+
+onMounted(() => {
+    cargarListas();
+});
 </script>
 
 <template>
@@ -111,49 +153,126 @@ const cerrarDialog = () => {
                         <form>
                             <v-row>
                                 <v-col cols="12" sm="6" md="6">
-                                    <v-text-field
+                                    <v-textarea
                                         :hide-details="
-                                            form.errors?.nombre ? false : true
-                                        "
-                                        :error="
-                                            form.errors?.nombre ? true : false
-                                        "
-                                        :error-messages="
-                                            form.errors?.nombre
-                                                ? form.errors?.nombre
-                                                : ''
-                                        "
-                                        variant="outlined"
-                                        label="Nombre de Producto*"
-                                        required
-                                        density="compact"
-                                        v-model="form.nombre"
-                                    ></v-text-field>
-                                </v-col>
-                                <v-col cols="12" sm="6" md="6">
-                                    <v-text-field
-                                        :hide-details="
-                                            form.errors?.nro_avances
+                                            form.errors?.descripcion
                                                 ? false
                                                 : true
                                         "
                                         :error="
-                                            form.errors?.nro_avances
+                                            form.errors?.descripcion
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.nro_avances
-                                                ? form.errors?.nro_avances
+                                            form.errors?.descripcion
+                                                ? form.errors?.descripcion
+                                                : ''
+                                        "
+                                        variant="outlined"
+                                        density="compact"
+                                        label="Descripción del producto*"
+                                        rows="1"
+                                        auto-grow
+                                        v-model="form.descripcion"
+                                    ></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-select
+                                        no-data-text="Sin registros"
+                                        :hide-details="
+                                            form.errors?.categoria_id
+                                                ? false
+                                                : true
+                                        "
+                                        :error="
+                                            form.errors?.categoria_id
+                                                ? true
+                                                : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.categoria_id
+                                                ? form.errors?.categoria_id
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        clearable
+                                        :items="listCategorias"
+                                        item-value="id"
+                                        item-title="nombre"
+                                        label="Seleccionar Categoria*"
+                                        v-model="form.categoria_id"
+                                        required
+                                    ></v-select>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-select
+                                        no-data-text="Sin registros"
+                                        :hide-details="
+                                            form.errors?.producto_tamano_id
+                                                ? false
+                                                : true
+                                        "
+                                        :error="
+                                            form.errors?.producto_tamano_id
+                                                ? true
+                                                : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.producto_tamano_id
+                                                ? form.errors
+                                                      ?.producto_tamano_id
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        clearable
+                                        :items="listProductoTamanos"
+                                        item-value="id"
+                                        item-title="nombre"
+                                        label="Seleccionar Tamaño del Producto*"
+                                        v-model="form.producto_tamano_id"
+                                        required
+                                    ></v-select>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.precio ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.precio ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.precio
+                                                ? form.errors?.precio
                                                 : ''
                                         "
                                         density="compact"
                                         variant="outlined"
                                         type="number"
-                                        label="Nro. de Avances"
-                                        v-model="form.nro_avances"
+                                        step="0.01"
+                                        label="Precio de Venta*"
+                                        v-model="form.precio"
                                         required
                                     ></v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <label>Cargar Imagenes/Fotos (máximo 3):</label>
+                                    <MiDropZone
+                                        :files="form.foto_productos"
+                                        :maximo="3"
+                                        @UpdateFiles="detectaArchivos"
+                                        @addEliminados="detectaEliminados"
+                                    ></MiDropZone>
+
+                                    <p
+                                        class="text-body-2 text-red-darken-3 text-center"
+                                        v-if="form.errors?.foto_productos"
+                                    >
+                                        {{ form.errors?.foto_productos }}
+                                    </p>
                                 </v-col>
                             </v-row>
                         </form>
@@ -172,6 +291,7 @@ const cerrarDialog = () => {
                         class="bg-primary"
                         prepend-icon="mdi-content-save"
                         @click="enviarFormulario"
+                        :disabled="disabled"
                     >
                         Guardar
                     </v-btn>

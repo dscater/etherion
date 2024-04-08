@@ -212,7 +212,7 @@ const enviaFormulario = () => {
                                             >Correo:
                                         </v-col>
                                         <v-col cols="8">{{
-                                            user.correo
+                                            user.email
                                         }}</v-col>
                                     </v-row>
                                     <v-row>
