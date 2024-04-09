@@ -11,4 +11,9 @@ class PortalController extends Controller
     {
         return Inertia::render("Portal/Inicio");
     }
+
+    public function carrito()
+    {
+        return Inertia::render("Portal/Carrito");
+    }
 }

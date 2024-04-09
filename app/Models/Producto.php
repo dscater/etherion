@@ -15,22 +15,11 @@ class Producto extends Model
         "categoria_id",
         "producto_tamano_id",
         "precio",
+        "precio_total",
         "fecha_registro",
     ];
 
-    protected $appends = ["fecha_registro_t", "precio_total"];
-
-    public function getPrecioTotalAttribute()
-    {
-        $p_categoria = $this->categoria->p_comision;
-        $p_tamano = $this->producto_tamano->p_comision;
-
-        $p_total = (float)$p_categoria + (float)$p_tamano;
-
-        $p_total = 1 + ($p_total / 100);
-
-        return number_format($this->precio * $p_total, 2, ".", "");
-    }
+    protected $appends = ["fecha_registro_t"];
 
     public function getFechaRegistroTAttribute()
     {

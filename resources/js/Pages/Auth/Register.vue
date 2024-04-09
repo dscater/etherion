@@ -609,7 +609,7 @@ onMounted(() => {
                                         </v-col>
                                     </v-row>
                                     <v-row align="center" justify="center">
-                                        <v-col cols="12" sm="10">
+                                        <v-col cols="12" sm="12" md="6" xl="4" class="mx-auto">
                                             <v-btn
                                                 class="mt-2"
                                                 elevation="4"
@@ -620,9 +620,9 @@ onMounted(() => {
                                                 type="submit"
                                                 >Crear Cuenta</v-btn
                                             >
-                                        </v-col>
-                                        <v-col cols="12" class="text-center">
-                                            <Link :href="route('login')"
+                                            <Link
+                                                :href="route('login')"
+                                                class="v-btn v-btn--block v-btn--elevated v-theme--light bg-default v-btn--density-default elevation-4 rounded-0 v-btn--size-default text-body-2 v-btn--variant-elevated mt-2"
                                                 >Iniciar Sesión</Link
                                             >
                                         </v-col>

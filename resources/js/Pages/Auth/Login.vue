@@ -49,7 +49,7 @@ onMounted(() => {
     <Head title="Login" />
     <v-container class="ma-0 login">
         <v-row align="center" justify="center">
-            <v-col cols="12" md="6" xl="4">
+            <v-col cols="12" md="4" xl="4">
                 <v-card class="elevation-6 mt-10 contenedor">
                     <v-row>
                         <v-col cols="12" class="border">

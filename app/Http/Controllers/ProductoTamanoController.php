@@ -118,6 +118,7 @@ class ProductoTamanoController extends Controller
                 'hora' => date('H:i:s')
             ]);
 
+            ProductoController::actualizaPrecioTotalByTamanoProducto($producto_tamano->id);
 
             DB::commit();
             return redirect()->route("producto_tamanos.index")->with("bien", "Registro actualizado");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\FotoProducto;
 use App\Models\HistorialAccion;
 use App\Models\Producto;
@@ -9,6 +10,7 @@ use App\Models\Presupuesto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -76,9 +78,13 @@ class ProductoController extends Controller
 
     public function portal(Request $request)
     {
+        Log::debug($request);
+
         $categoria_id = $request->categoria_id;
+        $order = $request->order;
+        $orderBy = $request->orderBy;
         $search = $request->search;
-        $per_page = 10;
+        $per_page = 12;
         if (isset($request->itemsPerPage) && $request->itemsPerPage) {
             $per_page = $request->itemsPerPage;
         }
@@ -93,7 +99,11 @@ class ProductoController extends Controller
             $productos->where("productos.categoria_id", $categoria_id);
         }
 
-        $productos = $productos->paginate($request->per_page);
+        if (isset($request->order)) {
+            $productos->orderBy($orderBy, $order);
+        }
+
+        $productos = $productos->paginate($per_page);
         return response()->JSON([
             "productos" => $productos
         ]);
@@ -250,5 +260,38 @@ class ProductoController extends Controller
                 'error' =>  $e->getMessage(),
             ]);
         }
+    }
+
+    public static function actualizaPrecioTotalByCategoria($categoria_id)
+    {
+        $categoria = Categoria::find($categoria_id);
+
+        $productos = Producto::where("categoria_id", $categoria->id)->get();
+        foreach ($productos as $p) {
+            $p_categoria = $categoria->p_comision;
+            $p_tamano = $p->producto_tamano->p_comision;
+            $p_total = (float)$p_categoria + (float)$p_tamano;
+
+            $p_total = 1 + ($p_total / 100);
+            $p->precio_total  = number_format((float)$p->precio * $p_total, 2, ".", "");
+            $p->save();
+        }
+
+        return true;
+    }
+
+    public static function actualizaPrecioTotalByTamanoProducto($producto_tamano_id)
+    {
+        $producto_tamano = Categoria::find($producto_tamano_id);
+        $productos = Producto::where("producto_tamano_id", $producto_tamano->id)->get();
+        foreach ($productos as $p) {
+            $p_tamano = $producto_tamano->p_comision;
+            $p_categoria = $p->categoria->p_comision;
+            $p_total = (float)$p_categoria + (float)$p_tamano;
+            $p_total = 1 + ($p_total / 100);
+            $p->precio_total  = number_format((float)$p->precio * $p_total, 2, ".", "");
+            $p->save();
+        }
+        return true;
     }
 }

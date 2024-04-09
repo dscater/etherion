@@ -12,6 +12,30 @@ const oCategoria = ref({
 
 export const useCategorias = () => {
     const { flash } = usePage().props;
+
+    const getCategoriasPortal = async () => {
+        try {
+            const response = await axios.get(route("categorias.portal"), {
+                headers: { Accept: "application/json" },
+            });
+            return response.data.categorias;
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `${
+                    flash.error
+                        ? flash.error
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
+                }`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            throw err; // Puedes manejar el error según tus necesidades
+        }
+    };
     const getCategorias = async () => {
         try {
             const response = await axios.get(route("categorias.listado"), {
@@ -152,6 +176,7 @@ export const useCategorias = () => {
 
     return {
         oCategoria,
+        getCategoriasPortal,
         getCategorias,
         getCategoriasApi,
         saveCategoria,

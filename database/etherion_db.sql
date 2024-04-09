@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 08-04-2024 a las 16:53:16
+-- Tiempo de generación: 09-04-2024 a las 18:23:57
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -42,7 +42,8 @@ CREATE TABLE `afiliados` (
 --
 
 INSERT INTO `afiliados` (`id`, `user_id`, `banco`, `nro_cuenta`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
-(1, 2, 'BANCO UNION', '10000011222', 1, '2024-04-08 15:10:05', '2024-04-08 15:10:05');
+(1, 2, 'BANCO UNION', '10000011222', 1, '2024-04-08 15:10:05', '2024-04-08 15:10:05'),
+(2, 5, 'BANCO UNION', '1000000111', 1, '2024-04-09 15:24:29', '2024-04-09 15:24:29');
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,21 @@ CREATE TABLE `foto_productos` (
 
 INSERT INTO `foto_productos` (`id`, `producto_id`, `foto`, `created_at`, `updated_at`) VALUES
 (6, 2, 'imagen21712595183_0.png', '2024-04-08 16:53:03', '2024-04-08 16:53:03'),
-(7, 2, 'imagen21712595183_1.png', '2024-04-08 16:53:03', '2024-04-08 16:53:03');
+(7, 2, 'imagen21712595183_1.png', '2024-04-08 16:53:03', '2024-04-08 16:53:03'),
+(8, 3, 'imagen31712596398_0.png', '2024-04-08 17:13:18', '2024-04-08 17:13:18'),
+(9, 4, 'imagen41712676421_0.jpg', '2024-04-09 15:27:01', '2024-04-09 15:27:01'),
+(10, 4, 'imagen41712676421_1.jpg', '2024-04-09 15:27:01', '2024-04-09 15:27:01'),
+(11, 5, 'imagen51712676438_0.jpg', '2024-04-09 15:27:18', '2024-04-09 15:27:18'),
+(12, 5, 'imagen51712676438_1.jpg', '2024-04-09 15:27:18', '2024-04-09 15:27:18'),
+(13, 6, 'imagen61712676455_0.jpg', '2024-04-09 15:27:35', '2024-04-09 15:27:35'),
+(14, 7, 'imagen71712676480_0.jpg', '2024-04-09 15:28:00', '2024-04-09 15:28:00'),
+(15, 8, 'imagen81712676509_0.jpg', '2024-04-09 15:28:29', '2024-04-09 15:28:29'),
+(16, 9, 'imagen91712676526_0.jpg', '2024-04-09 15:28:46', '2024-04-09 15:28:46'),
+(17, 10, 'imagen101712676566_0.jpg', '2024-04-09 15:29:26', '2024-04-09 15:29:26'),
+(18, 11, 'imagen111712676584_0.jpg', '2024-04-09 15:29:44', '2024-04-09 15:29:44'),
+(19, 12, 'imagen121712676600_0.jpg', '2024-04-09 15:30:00', '2024-04-09 15:30:00'),
+(20, 13, 'imagen131712678699_0.jpg', '2024-04-09 16:04:59', '2024-04-09 16:04:59'),
+(21, 14, 'imagen141712678733_0.jpg', '2024-04-09 16:05:33', '2024-04-09 16:05:33');
 
 -- --------------------------------------------------------
 
@@ -193,7 +208,27 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (19, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', NULL, 'PRODUCTOS', '2024-04-08', '12:46:02', '2024-04-08 16:46:02', '2024-04-08 16:46:02'),
 (20, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:52:20', '2024-04-08 16:52:20', '2024-04-08 16:52:20'),
 (21, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:52:35', '2024-04-08 16:52:35', '2024-04-08 16:52:35'),
-(22, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:53:03', '2024-04-08 16:53:03', '2024-04-08 16:53:03');
+(22, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'PRODUCTOS', '2024-04-08', '12:53:03', '2024-04-08 16:53:03', '2024-04-08 16:53:03'),
+(23, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 3<br/>user_id: 2<br/>descripcion: PRODUCTO #2<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 290.50<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 13:13:18<br/>updated_at: 2024-04-08 13:13:18<br/>', NULL, 'PRODUCTOS', '2024-04-08', '13:13:18', '2024-04-08 17:13:18', '2024-04-08 17:13:18'),
+(24, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 3<br/>user_id: 2<br/>descripcion: PRODUCTO #2<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 290.50<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 13:13:18<br/>updated_at: 2024-04-08 13:13:18<br/>', 'id: 3<br/>user_id: 2<br/>descripcion: PRODUCTO #2 AF. 1<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 290.50<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 13:13:18<br/>updated_at: 2024-04-08 13:13:25<br/>', 'PRODUCTOS', '2024-04-08', '13:13:25', '2024-04-08 17:13:25', '2024-04-08 17:13:25'),
+(25, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 3<br/>user_id: 2<br/>descripcion: PRODUCTO #2 AF. 1<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 290.50<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 13:13:18<br/>updated_at: 2024-04-08 13:13:25<br/>', 'id: 3<br/>user_id: 2<br/>descripcion: PRODUCTO #2 AF. 1<br/>categoria_id: 2<br/>producto_tamano_id: 2<br/>precio: 290.50<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 13:13:18<br/>updated_at: 2024-04-08 13:13:46<br/>', 'PRODUCTOS', '2024-04-08', '13:13:46', '2024-04-08 17:13:46', '2024-04-08 17:13:46'),
+(26, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 4<br/>user_id: 5<br/>descripcion: DESCRIPCION PROD #1 AFILIADO 2<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 190<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:27:01<br/>updated_at: 2024-04-09 11:27:01<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:27:01', '2024-04-09 15:27:01', '2024-04-09 15:27:01'),
+(27, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 5<br/>user_id: 5<br/>descripcion: PROD #2 AFI 2<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 400<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:27:18<br/>updated_at: 2024-04-09 11:27:18<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:27:18', '2024-04-09 15:27:18', '2024-04-09 15:27:18'),
+(28, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 6<br/>user_id: 5<br/>descripcion: PROD #3 AFI 2<br/>categoria_id: 2<br/>producto_tamano_id: 2<br/>precio: 50.50<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:27:35<br/>updated_at: 2024-04-09 11:27:35<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:27:35', '2024-04-09 15:27:35', '2024-04-09 15:27:35'),
+(29, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 7<br/>user_id: 5<br/>descripcion: PROD #4 AFI 2<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 50.50<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:28:00<br/>updated_at: 2024-04-09 11:28:00<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:28:00', '2024-04-09 15:28:00', '2024-04-09 15:28:00'),
+(30, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 7<br/>user_id: 5<br/>descripcion: PROD #4 AFI 2<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 50.50<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:28:00<br/>updated_at: 2024-04-09 11:28:00<br/>', 'id: 7<br/>user_id: 5<br/>descripcion: PROD #4 AFI 2<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 190.99<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:28:00<br/>updated_at: 2024-04-09 11:28:10<br/>', 'PRODUCTOS', '2024-04-09', '11:28:10', '2024-04-09 15:28:10', '2024-04-09 15:28:10'),
+(31, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 8<br/>user_id: 5<br/>descripcion: PROD # 5 AFI 2<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 50<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:28:29<br/>updated_at: 2024-04-09 11:28:29<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:28:29', '2024-04-09 15:28:29', '2024-04-09 15:28:29'),
+(32, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 9<br/>user_id: 5<br/>descripcion: PROD #6 AFILIADO 2<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 40<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:28:46<br/>updated_at: 2024-04-09 11:28:46<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:28:46', '2024-04-09 15:28:46', '2024-04-09 15:28:46'),
+(33, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 10<br/>user_id: 2<br/>descripcion: PRODUCTO #2 AFI 1<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 300<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:29:26<br/>updated_at: 2024-04-09 11:29:26<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:29:26', '2024-04-09 15:29:26', '2024-04-09 15:29:26'),
+(34, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 11<br/>user_id: 2<br/>descripcion: PRODUCTO #4 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 300.99<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:29:44<br/>updated_at: 2024-04-09 11:29:44<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:29:44', '2024-04-09 15:29:44', '2024-04-09 15:29:44'),
+(35, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 12<br/>user_id: 2<br/>descripcion: PRODUCTO #6 AFILIADO 1<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 100.99<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 11:30:00<br/>updated_at: 2024-04-09 11:30:00<br/>', NULL, 'PRODUCTOS', '2024-04-09', '11:30:00', '2024-04-09 15:30:00', '2024-04-09 15:30:00'),
+(36, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 13<br/>user_id: 2<br/>descripcion: PRODUCTO #6<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 300<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 12:04:59<br/>updated_at: 2024-04-09 12:04:59<br/>', NULL, 'PRODUCTOS', '2024-04-09', '12:04:59', '2024-04-09 16:04:59', '2024-04-09 16:04:59'),
+(37, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 13<br/>user_id: 2<br/>descripcion: PRODUCTO #6<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 300.00<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 12:04:59<br/>updated_at: 2024-04-09 12:04:59<br/>', 'id: 13<br/>user_id: 2<br/>descripcion: PRODUCTO #7<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 300.00<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 12:04:59<br/>updated_at: 2024-04-09 12:05:16<br/>', 'PRODUCTOS', '2024-04-09', '12:05:16', '2024-04-09 16:05:16', '2024-04-09 16:05:16'),
+(38, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 14<br/>user_id: 2<br/>descripcion: PRODUCTO # 8 AFI 1<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 200.99<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 12:05:33<br/>updated_at: 2024-04-09 12:05:33<br/>', NULL, 'PRODUCTOS', '2024-04-09', '12:05:33', '2024-04-09 16:05:33', '2024-04-09 16:05:33'),
+(39, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:01<br/>', 'PRODUCTOS', '2024-04-09', '12:33:01', '2024-04-09 16:33:01', '2024-04-09 16:33:01'),
+(40, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:01<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:24<br/>', 'PRODUCTOS', '2024-04-09', '12:33:25', '2024-04-09 16:33:25', '2024-04-09 16:33:25'),
+(42, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 4<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:51<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 4<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:51<br/>', 'CATEGORIAS', '2024-04-09', '12:46:23', '2024-04-09 16:46:23', '2024-04-09 16:46:23'),
+(43, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'CATEGORIAS', '2024-04-09', '12:46:28', '2024-04-09 16:46:28', '2024-04-09 16:46:28');
 
 -- --------------------------------------------------------
 
@@ -352,6 +387,7 @@ CREATE TABLE `productos` (
   `categoria_id` bigint UNSIGNED NOT NULL,
   `producto_tamano_id` bigint UNSIGNED NOT NULL,
   `precio` decimal(24,2) NOT NULL,
+  `precio_total` decimal(24,2) NOT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -361,8 +397,20 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `producto_tamano_id`, `precio`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(2, 2, 'PRODUCTO #1 AFILIADO 1', 1, 1, 400.00, '2024-04-08', '2024-04-08 16:46:02', '2024-04-08 16:46:02');
+INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `producto_tamano_id`, `precio`, `precio_total`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(2, 2, 'PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1', 1, 1, 400.00, 428.00, '2024-04-08', '2024-04-08 16:46:02', '2024-04-09 16:46:23'),
+(3, 2, 'PRODUCTO #2 AF. 1', 2, 2, 290.50, 342.79, '2024-04-08', '2024-04-08 17:13:18', '2024-04-09 16:46:28'),
+(4, 5, 'DESCRIPCION PROD #1 AFILIADO 2', 2, 1, 190.00, 214.70, '2024-04-09', '2024-04-09 15:27:01', '2024-04-09 16:46:28'),
+(5, 5, 'PROD #2 AFI 2', 1, 2, 400.00, 448.00, '2024-04-09', '2024-04-09 15:27:18', '2024-04-09 16:46:23'),
+(6, 5, 'PROD #3 AFI 2', 2, 2, 50.50, 59.59, '2024-04-09', '2024-04-09 15:27:35', '2024-04-09 16:46:29'),
+(7, 5, 'PROD #4 AFI 2', 1, 2, 190.99, 213.91, '2024-04-09', '2024-04-09 15:28:00', '2024-04-09 16:46:23'),
+(8, 5, 'PROD # 5 AFI 2', 2, 1, 50.00, 56.50, '2024-04-09', '2024-04-09 15:28:29', '2024-04-09 16:46:29'),
+(9, 5, 'PROD #6 AFILIADO 2', 1, 1, 40.00, 42.80, '2024-04-09', '2024-04-09 15:28:46', '2024-04-09 16:46:23'),
+(10, 2, 'PRODUCTO #2 AFI 1', 1, 2, 300.00, 336.00, '2024-04-09', '2024-04-09 15:29:26', '2024-04-09 16:46:23'),
+(11, 2, 'PRODUCTO #4 AFILIADO 1', 1, 2, 300.99, 337.11, '2024-04-09', '2024-04-09 15:29:44', '2024-04-09 16:46:23'),
+(12, 2, 'PRODUCTO #6 AFILIADO 1', 2, 1, 100.99, 114.12, '2024-04-09', '2024-04-09 15:30:00', '2024-04-09 16:46:29'),
+(13, 2, 'PRODUCTO #7', 2, 1, 300.00, 339.00, '2024-04-09', '2024-04-09 16:04:59', '2024-04-09 16:46:29'),
+(14, 2, 'PRODUCTO # 8 AFI 1', 2, 1, 200.99, 227.12, '2024-04-09', '2024-04-09 16:05:33', '2024-04-09 16:46:29');
 
 -- --------------------------------------------------------
 
@@ -421,7 +469,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
 (2, 'eduardo@gmail.com', '$2y$12$H210oHjJfzjgkQ0eqteu.ecgcHOdMQtJF/ibwoc4SBLBntnGQfrBS', 'EDUARDO', 'RAMIRES', 'RAMIRES', '3434', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '77777777', 'AFILIADO', NULL, 1, '2024-04-08', '2024-04-08 15:10:05', '2024-04-08 15:40:05'),
-(4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45');
+(4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45'),
+(5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'AFILIADO', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29');
 
 --
 -- Índices para tablas volcadas
@@ -544,7 +593,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `afiliados`
 --
 ALTER TABLE `afiliados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `apis`
@@ -574,13 +623,13 @@ ALTER TABLE `configuracion_pagos`
 -- AUTO_INCREMENT de la tabla `foto_productos`
 --
 ALTER TABLE `foto_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -622,7 +671,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_tamanos`
@@ -634,7 +683,7 @@ ALTER TABLE `producto_tamanos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

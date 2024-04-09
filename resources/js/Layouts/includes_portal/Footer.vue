@@ -2,6 +2,9 @@
 import { usePage } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 const { props } = usePage();
+import { useInstitucion } from "@/composables/institucion/useInstitucion";
+const { oInstitucion } = useInstitucion();
+
 var url_assets = "";
 onMounted(() => {
     url_assets = props.url_assets;
@@ -9,10 +12,10 @@ onMounted(() => {
 </script>
 <template>
     <!-- Footer -->
-    <footer class="bg3 p-t-75 p-b-32">
+    <footer class="bg3 p-t-20 p-b-32">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-lg-3 p-b-50">
+                <!-- <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">Categories</h4>
 
                     <ul>
@@ -40,9 +43,9 @@ onMounted(() => {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6 col-lg-3 p-b-50">
+                <!-- <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">Help</h4>
 
                     <ul>
@@ -118,12 +121,14 @@ onMounted(() => {
                             </button>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
 
-            <div class="p-t-40">
+            <div class="pt-5">
                 <div class="flex-c-m flex-w p-b-18">
-                    <a href="#" class="m-all-1">
+                    <h4>{{ oInstitucion.razon_social }}</h4>
+
+                    <!-- <a href="#" class="m-all-1">
                         <img
                             :src="url_assets + '/images/icons/icon-pay-01.png'"
                             alt="ICON-PAY"
@@ -156,18 +161,11 @@ onMounted(() => {
                             :src="url_assets + '/images/icons/icon-pay-05.png'"
                             alt="ICON-PAY"
                         />
-                    </a>
+                    </a> -->
                 </div>
-
                 <p class="stext-107 cl6 txt-center">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy; All rights reserved |Made with
-                    <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    &amp; distributed by
-                    <a href="https://themewagon.com" target="_blank"
-                        >ThemeWagon</a
-                    >
+                    Copyright &copy; Todos los derechos reservados
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>

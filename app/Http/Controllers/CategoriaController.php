@@ -119,6 +119,7 @@ class CategoriaController extends Controller
                 'hora' => date('H:i:s')
             ]);
 
+            ProductoController::actualizaPrecioTotalByCategoria($categoria->id);
 
             DB::commit();
             return redirect()->route("categorias.index")->with("bien", "Registro actualizado");

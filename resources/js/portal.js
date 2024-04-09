@@ -20,6 +20,10 @@ const pinia = createPinia();
 // mis archivos css
 import "../assets/css/portal.css";
 
+// import awesome-paginate
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
+
 // Default Layout
 import Portal from "@/Layouts/Portal.vue";
 
@@ -43,6 +47,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .use(pinia)
+            .use(VueAwesomePaginate)
             .mount(el);
     },
     progress: {

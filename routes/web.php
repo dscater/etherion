@@ -47,6 +47,8 @@ use Inertia\Inertia;
 
 Route::get('/', [PortalController::class, 'index'])->name("portal.inicio");
 
+// CARRITO
+Route::get('/carrito', [PortalController::class, 'carrito'])->name("portal.carrito");
 
 Route::get('/registro', function () {
     if (Auth::check()) {
@@ -71,6 +73,7 @@ Route::get("institucions/getInstitucion", [InstitucionController::class, 'getIns
 
 // PRODUCTOS PORTAL
 Route::get("productos", [ProductoController::class, 'portal'])->name("productos.portal");
+Route::get("categorias", [CategoriaController::class, 'listado'])->name("categorias.portal");
 
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
