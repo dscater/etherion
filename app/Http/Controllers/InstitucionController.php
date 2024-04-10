@@ -57,6 +57,12 @@ class InstitucionController extends Controller
         DB::beginTransaction();
         try {
             $institucion->update(array_map("mb_strtoupper", $request->except("logo")));
+
+            $institucion->host = $request->host;
+            $institucion->encriptado = $request->encriptado;
+            $institucion->email = $request->email;
+            $institucion->password = $request->password;
+
             if ($request->hasFile('logo')) {
                 $antiguo = $institucion->logo;
                 if ($antiguo && $antiguo != 'default.png') {

@@ -1,5 +1,5 @@
 :root {
-    --principal: #e48033;
+    --principal: #f96c00;
     --principal_hover: #f3832d;
     --principal_transparent: #fc9002;
     --secundario: #1867c0;
@@ -31,6 +31,10 @@
     color: white;
 }
 
+.btn-primary {
+    background-color: var(--secundario);
+    color: white;
+}
 .btn-warning:hover {
     background-color: var(--principal_hover);
 }
@@ -85,16 +89,38 @@
 /* HEADER */
 .header-v4 .wrap-header-mobile,
 .header-v4 .wrap-menu-desktop {
+    background-color: var(--secundario);
+    color: white;
+}
+
+.main-menu-m {
+    background-color: var(--principal);
+}
+.main-menu-m li {
+    border-top: solid 1px white;
+}
+.main-menu-m li:nth-child(1) {
+    border-top: none;
+}
+
+.header-v4 .wrap-menu-desktop .menu-desktop .main-menu li {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.header-v4 .wrap-menu-desktop .menu-desktop .main-menu li a {
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.header-v4 .wrap-menu-desktop .menu-desktop .main-menu .active-menu a {
     background-color: var(--principal);
     color: white;
 }
 
-.header-v4 .wrap-menu-desktop .menu-desktop .main-menu li a {
-    color: var(--transparente);
-}
-
-.header-v4 .wrap-menu-desktop .menu-desktop .main-menu .active-menu a {
-    color: white;
+.bg-img1 {
+    padding: 25px 0px;
+    box-shadow: 0px 3px 7px 0px black;
 }
 
 /* PRODUCTOS */

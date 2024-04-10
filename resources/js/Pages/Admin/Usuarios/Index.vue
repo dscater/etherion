@@ -44,7 +44,6 @@ const headers = ref([
         key: "id",
         sortable: false,
     },
-    { title: "Usuario", key: "usuario", align: "start", sortable: false },
     { title: "Nombre", key: "full_name", align: "start", sortable: false },
     { title: "C.I.", key: "full_ci", align: "start", sortable: false },
     { title: "Dirección", key: "dir", align: "start", sortable: false },
@@ -201,7 +200,6 @@ const eliminarUsuario = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>{{ item.id }}</td>
-                                    <td>{{ item.usuario }}</td>
                                     <td class="text-xs-right">
                                         {{ item.full_name }}
                                     </td>
@@ -279,12 +277,6 @@ const eliminarUsuario = (item) => {
                                                 data-label="Id"
                                             >
                                                 {{ item.id }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Usuario"
-                                            >
-                                                {{ item.usuario }}
                                             </li>
                                             <li
                                                 class="flex-item"

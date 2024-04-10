@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
 use App\Models\OrdenVenta;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,12 +29,36 @@ class OrdenVentaController extends Controller
 
     public function index()
     {
+        if (Auth::user()->tipo == 'CLIENTE') {
+            return Inertia::render("Admin/OrdenVentas/Cliente");
+        }
+        if (Auth::user()->tipo == 'AFILIADO') {
+            return Inertia::render("Admin/OrdenVentas/Afiliado");
+        }
         return Inertia::render("Admin/OrdenVentas/Index");
     }
 
     public function listado(Request $request)
     {
         $orden_ventas = OrdenVenta::select("orden_ventas.*");
+
+        if ($request->sin_pago) {
+            if ($request->id && $request->id != '') {
+                $orden_ventas = $orden_ventas->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('pago_afiliados')
+                        ->whereRaw('pago_afiliados.orden_venta_id = orden_ventas.id');
+                })->orWhere(function ($subquery) use ($request) {
+                    $subquery->whereIn('orden_ventas.id', [$request->id]);
+                });
+            } else {
+                $orden_ventas = $orden_ventas->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('pago_afiliados')
+                        ->whereRaw('pago_afiliados.orden_venta_id = orden_ventas.id');
+                });
+            }
+        }
 
         if ($request->order && $request->order == "desc") {
             $orden_ventas->orderBy("orden_ventas.id", $request->order);
@@ -51,11 +76,35 @@ class OrdenVentaController extends Controller
 
         $search = $request->search;
 
-        $orden_ventas = OrdenVenta::select("orden_ventas.*");
+        $orden_ventas = [];
+        if (Auth::user()->tipo == 'AFILIADO') {
+            $orden_ventas = OrdenVenta::select("orden_ventas.*", "orden_detalles.precio_total", "orden_detalles.precio_sc", "orden_detalles.cantidad", "productos.descripcion")
+                ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
+                ->join("productos", "productos.id", "=", "orden_detalles.producto_id");
+            $orden_ventas->where("orden_ventas.estado", "!=", "PENDIENTE");
+            $orden_ventas->where("productos.user_id", Auth::user()->id);
+            if (trim($search) != "") {
+                $orden_ventas->where(function ($query) use ($search) {
+                    $query->where('orden_ventas.codigo', 'LIKE', "%$search%")
+                        ->orWhere('productos.descripcion', 'LIKE', "%$search%");
+                });
+            }
+        } elseif (Auth::user()->tipo == 'CLIENTE') {
+            $orden_ventas = OrdenVenta::with(["user"])->select("orden_ventas.*");
+            $orden_ventas->where("user_id", Auth::user()->id);
+            $orden_ventas->where("estado", "!=", "PENDIENTE");
+            if (trim($search) != "") {
+                $orden_ventas->where("codigo", "LIKE", "%$search%");
+            }
+        } else {
+            $orden_ventas = OrdenVenta::with(["user"])->select("orden_ventas.*");
 
-        if (trim($search) != "") {
-            $orden_ventas->where("nombre", "LIKE", "%$search%");
+            if (trim($search) != "") {
+                $orden_ventas->where("codigo", "LIKE", "%$search%");
+            }
         }
+
+        $orden_ventas = $orden_ventas->orderBy("id", "desc");
 
         $orden_ventas = $orden_ventas->paginate($request->itemsPerPage);
         return response()->JSON([
@@ -91,14 +140,21 @@ class OrdenVentaController extends Controller
             $precios = $request->precios;
             $precio_total = $request->precio_total;
 
+            $total_sc = 0;
             foreach ($productos as $key => $producto) {
+                $o_producto = Producto::find($producto);
+                $precio_sc = (float)$cantidades[$key] * (float)$o_producto->precio;
+                $precio_sc = round($precio_sc, 2);
+                $total_sc = (float)$total_sc + (float)$precio_sc;
                 $nueva_orden_venta->orden_detalles()->create([
                     "producto_id" => $producto,
                     "cantidad" => $cantidades[$key],
                     "precio" => $precios[$key],
+                    "precio_sc" => number_format($precio_sc, 2, ".", ""),
                     "precio_total" => $precio_total[$key],
                 ]);
             }
+            $nueva_orden_venta->total_sc = number_format($total_sc, 2, ".", "");
 
             if ($request->hasFile('comprobante')) {
                 $file = $request->comprobante;
@@ -166,6 +222,42 @@ class OrdenVentaController extends Controller
 
     public function show(OrdenVenta $orden_venta)
     {
+        $orden_venta  = $orden_venta->load(["user", "orden_detalles.producto", "configuracion_pago"]);
+        return Inertia::render("Admin/OrdenVentas/Show", compact("orden_venta"));
+    }
+
+    public function actualiza_estado(OrdenVenta $orden_venta, Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $datos_original = HistorialAccion::getDetalleRegistro($orden_venta, "orden_ventas");
+            $orden_venta->estado = $request->estado;
+            $orden_venta->save();
+            $datos_nuevo = HistorialAccion::getDetalleRegistro($orden_venta, "orden_ventas");
+            HistorialAccion::create([
+                'user_id' => Auth::user()->id,
+                'accion' => 'MODIFICACIÓN',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->orden_venta . ' MODIFICÓ UNA ORDEN DE VENTA',
+                'datos_original' => $datos_original,
+                'datos_nuevo' => $datos_nuevo,
+                'modulo' => 'ORDEN DE VENTAS',
+                'fecha' => date('Y-m-d'),
+                'hora' => date('H:i:s')
+            ]);
+
+            DB::commit();
+            return response()->JSON([
+                "sw" => true,
+                "orden_venta" => $orden_venta,
+                "message" => "La orden se actualizó correctamente",
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->JSON([
+                "sw" => false,
+                "message" => "Ocurrió un error: " . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function update(OrdenVenta $orden_venta, Request $request)
@@ -212,12 +304,11 @@ class OrdenVentaController extends Controller
     {
         DB::beginTransaction();
         try {
-
-            $antiguo = $orden_venta->qr;
+            $antiguo = $orden_venta->comprobante;
             if ($antiguo != 'default.png') {
-                \File::delete(public_path() . '/imgs/qr/' . $antiguo);
+                \File::delete(public_path() . '/imgs/comprobantes/' . $antiguo);
             }
-
+            $orden_venta->orden_detalles()->delete();
             $datos_original = HistorialAccion::getDetalleRegistro($orden_venta, "orden_ventas");
             $orden_venta->delete();
             HistorialAccion::create([

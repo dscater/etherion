@@ -186,7 +186,7 @@ body {
     overflow: hidden !important;
 }
 .v-container {
-    background-color: var(--transparente);
+    background-color: var(--fondo_app);
     display: flex;
     justify-content: center;
     align-items: center;

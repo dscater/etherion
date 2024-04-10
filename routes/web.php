@@ -5,6 +5,7 @@ use App\Http\Controllers\AvanceObraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionPagoController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\OrdenVentaController;
+use App\Http\Controllers\PagoAfiliadoController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProductoController;
@@ -82,9 +84,7 @@ Route::get("configuracion_pagos", [ConfiguracionPagoController::class, 'listado'
 
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
-    Route::get('inicio', function () {
-        return Inertia::render('Admin/Home');
-    })->name('inicio');
+    Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
 
     // INSTITUCION
     Route::resource("institucions", InstitucionController::class)->only(
@@ -166,15 +166,44 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     // ORDEN DE VENTAS
     Route::post("registraOrden", [OrdenVentaController::class, 'registraOrden'])->name("orden_ventas.registraOrden");
+    Route::patch("orden_ventas/actualiza_estado/{orden_venta}", [OrdenVentaController::class, 'actualiza_estado'])->name("orden_ventas.actualiza_estado");
     Route::get("orden_ventas/paginado", [OrdenVentaController::class, 'paginado'])->name("orden_ventas.paginado");
     Route::get("orden_ventas/listado", [OrdenVentaController::class, 'listado'])->name("orden_ventas.listado");
     Route::resource("orden_ventas", OrdenVentaController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 
+    // PAGO DE AFILIADOS
+    Route::get("pago_afiliados/paginado", [PagoAfiliadoController::class, 'paginado'])->name("pago_afiliados.paginado");
+    Route::get("pago_afiliados/listado", [PagoAfiliadoController::class, 'listado'])->name("pago_afiliados.listado");
+    Route::resource("pago_afiliados", PagoAfiliadoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
     // REPORTES
-    Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
-    Route::get('reportes/r_usuarios', [ReporteController::class, 'r_usuarios'])->name("reportes.r_usuarios");
+    Route::get('reportes/productos', [ReporteController::class, 'productos'])->name("reportes.productos");
+    Route::get('reportes/r_productos', [ReporteController::class, 'r_productos'])->name("reportes.r_productos");
+    
+    Route::get('reportes/orden_ventas', [ReporteController::class, 'orden_ventas'])->name("reportes.orden_ventas");
+    Route::get('reportes/r_orden_ventas', [ReporteController::class, 'r_orden_ventas'])->name("reportes.r_orden_ventas");
+    
+    Route::get('reportes/ingresos_comision', [ReporteController::class, 'ingresos_comision'])->name("reportes.ingresos_comision");
+    Route::get('reportes/r_ingresos_comision', [ReporteController::class, 'r_ingresos_comision'])->name("reportes.r_ingresos_comision");
+
+    Route::get('reportes/afiliados', [ReporteController::class, 'afiliados'])->name("reportes.afiliados");
+    Route::get('reportes/r_afiliados', [ReporteController::class, 'r_afiliados'])->name("reportes.r_afiliados");
+    
+    Route::get('reportes/clientes', [ReporteController::class, 'clientes'])->name("reportes.clientes");
+    Route::get('reportes/r_clientes', [ReporteController::class, 'r_clientes'])->name("reportes.r_clientes");
+    
+    Route::get('reportes/g_orden_ventas', [ReporteController::class, 'g_orden_ventas'])->name("reportes.g_orden_ventas");
+    Route::get('reportes/r_g_orden_ventas', [ReporteController::class, 'r_g_orden_ventas'])->name("reportes.r_g_orden_ventas");
+    
+    Route::get('reportes/g_ingresos_comision', [ReporteController::class, 'g_ingresos_comision'])->name("reportes.g_ingresos_comision");
+    Route::get('reportes/r_g_ingresos_comision', [ReporteController::class, 'r_g_ingresos_comision'])->name("reportes.r_g_ingresos_comision");
+    
+    Route::get('reportes/e_orden_ventas', [ReporteController::class, 'e_orden_ventas'])->name("reportes.e_orden_ventas");
+    Route::get('reportes/r_e_orden_ventas', [ReporteController::class, 'r_e_orden_ventas'])->name("reportes.r_e_orden_ventas");
 });
 
 require __DIR__ . '/auth.php';

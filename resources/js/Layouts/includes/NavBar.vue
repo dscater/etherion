@@ -5,6 +5,7 @@ import { useMenu } from "@/composables/useMenu";
 import { useUser } from "@/composables/useUser";
 import { usePage, Link } from "@inertiajs/vue3";
 import { onMounted, ref } from "vue";
+
 const { oUser } = useUser();
 const { drawer, width, rail, mobile, toggleDrawer, cambiarUrl } = useMenu();
 const { props } = usePage();
@@ -161,7 +162,8 @@ onMounted(() => {
                         </template>
                     </v-list>
                 </v-menu> -->
-
+                <a v-if="oUser.tipo =='CLIENTE'" :href="route('portal.inicio')" class="text-decoration-none text-white mr-3 text-h4"><i class="mdi mdi-tag-multiple"></i></a>
+                <a v-if="oUser.tipo =='CLIENTE'" :href="route('portal.carrito')" class="text-decoration-none text-white mr-3 text-h4"><i class="mdi mdi-cart-plus"></i></a>
                 <v-menu :width="mobile ? '50%' : '13%'" rounded>
                     <template v-slot:activator="{ props }">
                         <v-btn icon v-bind="props">

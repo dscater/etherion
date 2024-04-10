@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Obras</title>
+    <title>estado orden ventas</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -11,9 +11,9 @@
 
         @page {
             margin-top: 1.5cm;
-            margin-bottom: 0.5cm;
-            margin-left: 0.5cm;
-            margin-right: 0.5cm;
+            margin-bottom: 0.3cm;
+            margin-left: 0.3cm;
+            margin-right: 0.3cm;
         }
 
         table {
@@ -31,11 +31,11 @@
         }
 
         table thead tr th {
-            font-size: 8pt;
+            font-size: 7pt;
         }
 
         table tbody tr td {
-            font-size: 7pt;
+            font-size: 6pt;
         }
 
 
@@ -46,7 +46,7 @@
         .logo img {
             position: absolute;
             height: 100px;
-            top: 0px;
+            top: -20px;
             left: 0px;
         }
 
@@ -88,7 +88,7 @@
         }
 
         table thead {
-            background: rgb(236, 236, 236);
+            background: rgb(236, 236, 236)
         }
 
         tr {
@@ -130,7 +130,7 @@
         }
 
         .gray {
-            background: rgb(236, 236, 236);
+            background: rgb(202, 202, 202);
         }
 
         .bg-principal {
@@ -144,53 +144,31 @@
             width: 45px;
         }
 
-        .nueva_pagina {
-            page-break-after: always;
-        }
-
-        .subtitulo {
-            font-size: 0.9em;
-        }
-
-        .txtinfo {
-            font-weight: bold;
-        }
-
-        .border-bot {
-            border-bottom: solid 0.7px black;
-        }
-
-        .table-info {
-            margin-top: 4px;
-            border-collapse: separate;
-            border-spacing: 15px 0px;
-        }
-
-        .bordeado {
-            border: solid 0.7px black;
-            height: 14px;
-        }
-
         .bold {
             font-weight: bold;
         }
 
-        .txt-md {
-            font-size: 0.8em;
+        .text-right {
+            text-align: right;
         }
 
-        .foto {
-            width: 15%;
-            padding: 0px;
-            padding-bottom: 5px;
+        .text-md {
+            font-size: 0.85em;
         }
 
-        .foto img {
-            width: 100%;
+        .pendiente {
+            background: #1867C0;
+            color: white;
         }
 
-        .bg-gray {
-            background: gray;
+        .entregado {
+            background: #029609;
+            color: white;
+        }
+
+        .devolucion {
+            background: #bb3a13;
+            color: white;
         }
     </style>
 </head>
@@ -204,43 +182,52 @@
         <h2 class="titulo">
             {{ $institucion->first()->razon_social }}
         </h2>
-        <h4 class="texto">OBRAS</h4>
+        <h4 class="texto">ESTADO DE ORDENES DE VENTA</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
-        <thead>
+        <thead class="bg-principal">
             <tr>
-                <th class="centreado" width="4%">N°</th>
-                <th>Nombre</th>
-                <th>Gerente Regional</th>
-                <th>Encargado de Obra</th>
-                <th>Fecha de Plazo de Entrega</th>
-                <th>Fecha de Plazo de Ejecución</th>
-                <th>Descripción</th>
-                <th>Categoría</th>
-                <th>Fecha de Registro</th>
+                <th width="3%">N°</th>
+                <th>CÓDIGO ORDEN</th>
+                <th>DESCRIPCIÓN DEL PRODUCTO</th>
+                <th>CATEGORÍA</th>
+                <th>TAMAÑO DEL PRODUCTO</th>
+                <th>CANTIDAD</th>
+                <th>PRECIO S/C</th>
+                <th>PRECIO TOTAL</th>
+                <th>ESTADO</th>
+                <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $cont = 1;
+                $suma_cantidad = 0;
+                $suma_precio_sc = 0;
+                $suma_precio_total = 0;
             @endphp
-            @foreach ($obras as $value)
+            @foreach ($orden_detalles as $od)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="">{{ $value->nombre }}</td>
-                    <td class="">{{ $value->gerente_regional->full_name }}</td>
-                    <td class="">{{ $value->encargado_obra->full_name }}</td>
-                    <td class="">{{ $value->fecha_pent_t }}</td>
-                    <td class="">{{ $value->fecha_peje_t }}</td>
-                    <td class="">{{ $value->descripcion }}</td>
-                    <td class="">{{ $value->categoria->nombre }}</td>
-                    <td class="">{{ $value->fecha_registro_t }}</td>
+                    <td>{{ $od->orden_venta->codigo }}</td>
+                    <td class="">{{ $od->producto->descripcion }}</td>
+                    <td class="">{{ $od->producto->categoria->nombre }}</td>
+                    <td class="">{{ $od->producto->producto_tamano->nombre }}</td>
+                    <td class="centreado">{{ $od->cantidad }}</td>
+                    <td class="centreado">{{ $od->precio_sc }}</td>
+                    <td class="centreado">{{ $od->precio_total }}</td>
+                    <td class="centreado  {{ $od->orden_venta->estado == 'ENTREGA PENDIENTE' ? 'pendiente' : ($od->orden_venta->estado == 'ENTREGADO' ? 'entregado' : ($od->orden_venta->estado == 'DEVOLUCIÓN' ? 'devolucion' : '')) }}">{{ $od->orden_venta->estado }}</td>
+                    <td class="centreado"> {{ $od->orden_venta->fecha_registro_t }}</td>
                 </tr>
+                @php
+                    $suma_cantidad = (float) $suma_cantidad + (float) $od->cantidad;
+                    $suma_precio_sc = (float) $suma_precio_sc + (float) $od->precio_sc;
+                    $suma_precio_total = (float) $suma_precio_total + (float) $od->precio_total;
+                @endphp
             @endforeach
         </tbody>
     </table>
-
 </body>
 
 </html>

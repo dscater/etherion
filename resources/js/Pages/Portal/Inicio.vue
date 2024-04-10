@@ -6,7 +6,9 @@ import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useCarritoStore } from "@/stores/carritoStore";
 import { useMenuPortalStore } from "@/stores/menuPortalStore";
 const menu_portal_store = useMenuPortalStore();
-menu_portal_store.setLoadingPage(true);
+if (menu_portal_store) {
+    menu_portal_store.setLoadingPage(true);
+}
 var url_assets = "";
 const carrito_store = useCarritoStore();
 const { props } = usePage();
@@ -248,7 +250,9 @@ onMounted(() => {
     inicializaScriptsPage();
     getProductos();
     setTimeout(() => {
-        menu_portal_store.setLoadingPage(false);
+        if (menu_portal_store) {
+            menu_portal_store.setLoadingPage(false);
+        }
     }, 300);
 });
 </script>

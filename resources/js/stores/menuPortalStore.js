@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { router } from "@inertiajs/vue3";
 
 export const useMenuPortalStore = defineStore("menu", {
     state: () => ({
@@ -23,6 +24,17 @@ export const useMenuPortalStore = defineStore("menu", {
         },
         setMenuOpen(value) {
             this.menu_open = value;
+        },
+        cambiarUrl(url, method = "get", info = { data: {}, value: "" }) {
+            this.loadingPage = true;
+            if (method == "get") {
+                router.get(url, info.data);
+            } else {
+                router.post(url, info.data);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
+            }
         },
     },
 });

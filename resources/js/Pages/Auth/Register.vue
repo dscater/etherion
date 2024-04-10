@@ -87,13 +87,13 @@ onMounted(() => {
                     <v-row>
                         <v-col cols="12" class="border">
                             <v-card-title class="">
-                                <h4 class="text-center">
+                                <h2 class="text-center text-h4">
                                     {{ oInstitucion.nombre }}
-                                </h4>
+                                </h2>
                             </v-card-title>
                             <form @submit.prevent="submit">
                                 <v-card-text class="pt-0">
-                                    <h4 class="text-center grey--text">
+                                    <h4 class="text-center grey--text text-h5">
                                         Crear Cuenta
                                     </h4>
                                     <v-row align="center" justify="center">
@@ -642,7 +642,7 @@ onMounted(() => {
 
 <style scoped>
 .v-container {
-    background-color: var(--transparente);
+    background-color: var(--fondo_app);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -14,12 +14,17 @@ class OrdenDetalle extends Model
         "producto_id",
         "cantidad",
         "precio",
+        "precio_sc",
         "precio_total",
     ];
-
 
     public function orden_venta()
     {
         return $this->belongsTo(OrdenVenta::class, 'orden_venta_id');
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
 }

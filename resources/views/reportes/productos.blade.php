@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Usuarios</title>
+    <title>productos</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -155,24 +155,19 @@
         <h2 class="titulo">
             {{ $institucion->first()->razon_social }}
         </h2>
-        <h4 class="texto">LISTA DE USUARIOS</h4>
+        <h4 class="texto">LISTA DE PRODUCTOS</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
         <thead class="bg-principal">
             <tr>
                 <th width="3%">N°</th>
-                <th width="5%">FOTO</th>
-                <th>USUARIO</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRE(S)</th>
-                <th>C.I.</th>
-                <th>DIRECCIÓN</th>
-                <th>CORREO</th>
-                <th>TELÉFONO/CELULAR</th>
-                <th>TIPO</th>
-                <th>ACCESO</th>
+                <th>DESCRIPCIÓN DEL PRODUCTO</th>
+                <th>AFILIADO</th>
+                <th>CATEGORÍA</th>
+                <th>TAMAÑO DEL PRODUCTO</th>
+                <th>PRECIO</th>
+                <th>PRECIO TOTAL</th>
                 <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
@@ -180,27 +175,16 @@
             @php
                 $cont = 1;
             @endphp
-            @foreach ($usuarios as $user)
+            @foreach ($productos as $producto)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda centreado">
-                        @if ($user->url_foto)
-                            <img src="{{ $user->url_foto }}" alt="Foto">
-                        @else
-                            S/F
-                        @endif
-                    </td>
-                    <td>{{ $user->usuario }}</td>
-                    <td class="">{{ $user->paterno }}</td>
-                    <td class="">{{ $user->materno }}</td>
-                    <td class="">{{ $user->nombre }}</td>
-                    <td class="">{{ $user->full_ci }}</td>
-                    <td class="">{{ $user->dir }}</td>
-                    <td class="">{{ $user->email }}</td>
-                    <td class="">{{ $user->fono }}</td>
-                    <td class="">{{ $user->tipo }}</td>
-                    <td class="centreado">{{ $user->acceso == 1 ? 'HABILITADO' : 'DENEGADO' }}</td>
-                    <td class="centreado">{{ $user->fecha_registro_t }}</td>
+                    <td>{{ $producto->descripcion }}</td>
+                    <td class="">{{ $producto->user->full_name }}</td>
+                    <td class="">{{ $producto->categoria->nombre }}</td>
+                    <td class="">{{ $producto->producto_tamano->nombre }}</td>
+                    <td class="">{{ $producto->precio }}</td>
+                    <td class="">{{ $producto->precio_total }}</td>
+                    <td class="centreado">{{ $producto->fecha_registro_t }}</td>
                 </tr>
             @endforeach
         </tbody>

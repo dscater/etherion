@@ -69,11 +69,6 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Precio de Venta",
-        align: "start",
-        sortable: false,
-    },
-    {
         title: "Fecha de Registro",
         align: "start",
         sortable: false,
@@ -227,7 +222,6 @@ const eliminarProducto = (item) => {
                                     <td>{{ item.categoria.nombre }}</td>
                                     <td>{{ item.producto_tamano.nombre }}</td>
                                     <td>{{ item.precio }}</td>
-                                    <td>{{ item.precio_total }}</td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
@@ -293,12 +287,6 @@ const eliminarProducto = (item) => {
                                                 data-label="Precio:"
                                             >
                                                 {{ item.precio }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Precio de Venta:"
-                                            >
-                                                {{ item.precio_total }}
                                             </li>
                                             <li
                                                 class="flex-item"

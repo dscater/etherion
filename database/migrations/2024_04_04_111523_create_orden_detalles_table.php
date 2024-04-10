@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("producto_id");
             $table->double("cantidad", 8, 2);
             $table->decimal("precio", 24, 2);
+            $table->decimal("precio_sc", 24, 2);
             $table->decimal("precio_total", 24, 2);
             $table->timestamps();
 

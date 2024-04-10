@@ -116,7 +116,8 @@ onMounted(() => {
     <!-- Header -->
     <header class="header-v4">
         <!-- Header desktop -->
-        <div class="container-menu-desktop">
+        <div class="container-menu-desktop"
+        >
             <!-- Topbar -->
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
@@ -135,7 +136,28 @@ onMounted(() => {
                             :href="url_principal + '/admin/inicio'"
                             class="flex-c-m trans-04 p-lr-25"
                         >
-                            <i class="fa fa-user"></i>&nbsp; {{ user.full_name }}
+                            <i class="fa fa-user"></i>&nbsp;
+                            {{ user.full_name }}
+                        </a>
+                        <a
+                            v-if="user && user.tipo == 'CLIENTE'"
+                            :href="url_principal + '/admin/orden_ventas'"
+                            class="flex-c-m trans-04 p-lr-25"
+                        >
+                            <i class="fa fa-list"></i>&nbsp; Ordenes de venta
+                        </a>
+                        <a
+                            href="#"
+                            v-if="user"
+                            class="flex-c-m trans-04 p-lr-25"
+                            @click.prevent="
+                                menu_portal_store.cambiarUrl(
+                                    route('logout'),
+                                    'post'
+                                )
+                            "
+                        >
+                            <i class="fa fa-sign-out"></i>&nbsp; Salir
                         </a>
                     </div>
                 </div>
@@ -181,7 +203,7 @@ onMounted(() => {
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         <div
-                            class="icon-header-item cl2 hov-cl2 trans-04 p-l-22 p-r-11 icon-header-noti"
+                            class="icon-header-item cl2 hov-cl2 trans-04 p-l-22 p-r-11 icon-header-noti text-white"
                             @click="abrirCarrito"
                             :data-notify="carrito_store.productos.length"
                         >
@@ -193,7 +215,10 @@ onMounted(() => {
         </div>
 
         <!-- Header Mobile -->
-        <div class="wrap-header-mobile">
+        <div
+            class="wrap-header-mobile"
+            style="background-image: url('imgs/fondo_inicio3.jpg')"
+        >
             <!-- Logo moblie -->
             <div class="logo-mobile">
                 <Link
@@ -231,7 +256,9 @@ onMounted(() => {
         </div>
 
         <!-- Menu Mobile -->
-        <div class="menu-mobile">
+        <div
+            class="menu-mobile"
+        >
             <ul class="topbar-mobile">
                 <!-- <li>
                     <div class="left-top-bar"></div>
@@ -240,10 +267,39 @@ onMounted(() => {
                 <li>
                     <div class="right-top-bar flex-w h-full">
                         <a
+                            v-if="!user"
                             :href="url_principal + '/login'"
                             class="flex-c-m p-lr-10 trans-04"
                         >
                             <i class="fa fa-sign-in"></i>&nbsp;Iniciar sesión
+                        </a>
+                        <a
+                            v-if="user"
+                            :href="url_principal + '/admin/inicio'"
+                            class="flex-c-m trans-04 p-lr-10"
+                        >
+                            <i class="fa fa-user"></i>&nbsp;
+                            {{ user.full_name }}
+                        </a>
+                        <a
+                            v-if="user && user.tipo == 'CLIENTE'"
+                            :href="url_principal + '/admin/orden_ventas'"
+                            class="flex-c-m trans-04 p-lr-10"
+                        >
+                            <i class="fa fa-list"></i>&nbsp;
+                        </a>
+                        <a
+                            href="#"
+                            v-if="user"
+                            class="flex-c-m trans-04 p-lr-10"
+                            @click.prevent="
+                                menu_portal_store.cambiarUrl(
+                                    route('logout'),
+                                    'post'
+                                )
+                            "
+                        >
+                            <i class="fa fa-sign-out"></i>&nbsp;
                         </a>
                     </div>
                 </li>
@@ -255,11 +311,17 @@ onMounted(() => {
                 </li>
             </ul>
         </div>
-
-        <h1 class="text-center font-weight-bold ltext-102 cl2 mt-5">
-            {{ oInstitucion.razon_social }}
-        </h1>
     </header>
+
+    <!-- Title page -->
+    <section
+        class="bg-img1 txt-center p-lr-15 p-tb-92"
+        style="background-image: url('imgs/fondo_inicio3.jpg')"
+    >
+        <h2 class="ltext-105 cl0 txt-center">
+            {{ oInstitucion.razon_social }}
+        </h2>
+    </section>
 
     <!-- Cart -->
     <div

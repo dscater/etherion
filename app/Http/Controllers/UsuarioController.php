@@ -49,7 +49,7 @@ class UsuarioController extends Controller
 
     public function listado()
     {
-        $usuarios = User::where("id", "!=", 1)->get();
+        $usuarios = User::where("id", "!=", 1)->whereIn("tipo", ["ADMINISTRADOR", "OPERADOR"])->get();
         return response()->JSON([
             "usuarios" => $usuarios
         ]);
@@ -76,7 +76,7 @@ class UsuarioController extends Controller
     public function paginado(Request $request)
     {
         $search = $request->search;
-        $usuarios = User::where("id", "!=", 1);
+        $usuarios = User::where("id", "!=", 1)->whereIn("tipo", ["ADMINISTRADOR", "OPERADOR"]);
 
         if (trim($search) != "") {
             $usuarios->where("nombre", "LIKE", "%$search%");
@@ -100,16 +100,17 @@ class UsuarioController extends Controller
         }
         $request->validate($this->validacion, $this->mensajes);
 
-        $cont = 0;
-        do {
-            $nombre_usuario = User::getNombreUsuario($request->nombre, $request->paterno);
-            if ($cont > 0) {
-                $nombre_usuario = $nombre_usuario . $cont;
-            }
-            $request['usuario'] = $nombre_usuario;
-            $cont++;
-        } while (User::where('usuario', $nombre_usuario)->get()->first());
+        // $cont = 0;
+        // do {
+        //     $nombre_usuario = User::getNombreUsuario($request->nombre, $request->paterno);
+        //     if ($cont > 0) {
+        //         $nombre_usuario = $nombre_usuario . $cont;
+        //     }
+        //     $request['usuario'] = $nombre_usuario;
+        //     $cont++;
+        // } while (User::where('usuario', $nombre_usuario)->get()->first());
 
+        $request['usuario'] = $request->email;
         $request['password'] = 'NoNulo';
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();

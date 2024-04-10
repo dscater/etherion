@@ -141,8 +141,9 @@ const registrarOrdenVenta = () => {
                         icon: "error",
                         title: "Error",
                         html: error.response.data.message,
-                        showConfirmButton: false,
-                        timer: 2000,
+                        showConfirmButton: true,
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: `Aceptar`,
                     });
                 }
             }
@@ -279,6 +280,7 @@ onMounted(() => {
                                     <td class="column-1">
                                         <div class="how-itemcart1">
                                             <button
+                                                type="button"
                                                 class="quitar"
                                                 @click="quitar(index)"
                                             >
@@ -433,7 +435,11 @@ onMounted(() => {
                         <div class="bor12"></div>
                         <button
                             type="button"
-                            v-if="user && user.tipo == 'CLIENTE' && carrito_store.productos > 0"
+                            v-if="
+                                user &&
+                                user.tipo == 'CLIENTE' &&
+                                carrito_store.productos.length > 0
+                            "
                             class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
                             @click="registrarOrdenVenta"
                         >

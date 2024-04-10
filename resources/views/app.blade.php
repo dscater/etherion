@@ -12,11 +12,11 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <style>
-        .v-container.login {
+        /* .v-container.login {
             background-image: url('{{ asset('imgs/fondo.webp') }}') !important;
             background-size: cover;
             padding: 0px;
-        }
+        } */
     </style>
 
     <script>

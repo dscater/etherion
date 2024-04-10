@@ -266,6 +266,102 @@ function limpiaRefs() {
                                     </v-card-text>
                                 </v-card>
                             </v-col>
+                            <v-col cols="12">
+                                <v-card>
+                                    <v-card-text>
+                                        <v-row>
+                                            <v-col
+                                                cols="12"
+                                                class="d-flex align-center"
+                                            >
+                                                <v-row>
+                                                    <v-col cols="12">
+                                                        <h4
+                                                            class="text-center text-h6"
+                                                        >
+                                                            ENVÍO DE CORREOS
+                                                        </h4>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Host
+                                                        </div>
+                                                        {{ institucion.host }}
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Puerto
+                                                        </div>
+                                                        {{ institucion.puerto }}
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Encriptación
+                                                        </div>
+                                                        {{
+                                                            institucion.encriptado
+                                                        }}
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Email de envío
+                                                        </div>
+                                                        {{ institucion.email }}
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Nombre de envío
+                                                        </div>
+                                                        {{ institucion.nombre }}
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="6"
+                                                        md="3"
+                                                        xl="3"
+                                                    >
+                                                        <div
+                                                            class="text-caption font-weight-bold"
+                                                        >
+                                                            Contraseña de envío
+                                                        </div>
+                                                        {{ institucion.password }}
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                </v-card>
+                            </v-col>
                         </v-row>
                     </v-window-item>
                     <v-window-item :key="1">
@@ -671,6 +767,233 @@ function limpiaRefs() {
                                                             "
                                                             ref="logo"
                                                         ></v-file-input>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="12">
+                                                        <h4 class="text-subtitle-2 font-weight-bold">Envío de correos</h4>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.host
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.host
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.host
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.host
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Host*"
+                                                            v-model="
+                                                                form.host
+                                                            "
+                                                            required
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.puerto
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.puerto
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.puerto
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.puerto
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Puerto*"
+                                                            v-model="
+                                                                form.puerto
+                                                            "
+                                                            required
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.encriptado
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.encriptado
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.encriptado
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.encriptado
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Encriptación*"
+                                                            v-model="
+                                                                form.encriptado
+                                                            "
+                                                            required
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.email
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.email
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.email
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.email
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Email de envío*"
+                                                            v-model="
+                                                                form.email
+                                                            "
+                                                            required
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.nombre
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.nombre
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.nombre
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.nombre
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Nombre de envío*"
+                                                            v-model="
+                                                                form.nombre
+                                                            "
+                                                            required
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        sm="6"
+                                                        md="6"
+                                                        xl="4"
+                                                    >
+                                                        <v-text-field
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.password
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.password
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.password
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.password
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Contraseña de acceso*"
+                                                            v-model="
+                                                                form.password
+                                                            "
+                                                            required
+                                                        ></v-text-field>
                                                     </v-col>
                                                 </v-row>
                                             </form>

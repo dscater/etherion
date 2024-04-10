@@ -14,6 +14,14 @@ export const useInstitucionStore = defineStore("institucion", {
             web: "",
             actividad: "ACTIVIDAD",
             logo: "logo.jpg",
+            // envio correos
+            host: "smtp.gmail.com",
+            puerto: "587",
+            encriptado: "tls",
+            email: "etherion@gmail.com",
+            nombre: "ETHERION",
+            password: "fijiqweejlurgghb",
+            driver: "smtp",
             // appends
             iniciales_nombre: "",
             url_logo: "",

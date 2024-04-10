@@ -21,6 +21,14 @@ class Institucion extends Model
         "web",
         "actividad",
         "logo",
+
+        "host",
+        "puerto",
+        "encriptado",
+        "email",
+        "nombre",
+        "password",
+        "driver",
     ];
 
     protected $appends = [

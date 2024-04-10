@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-04-2024 a las 00:16:35
+-- Tiempo de generación: 10-04-2024 a las 23:15:11
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -109,7 +109,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `user_id`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, '2024-04-08 15:45:24', '2024-04-08 15:45:24');
+(1, 4, 1, '2024-04-08 15:45:24', '2024-04-08 15:45:24'),
+(2, 7, 1, '2024-04-10 21:47:10', '2024-04-10 21:47:10');
 
 -- --------------------------------------------------------
 
@@ -245,7 +246,24 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (50, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: <br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:21<br/>', NULL, 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:21', '2024-04-09 22:47:21', '2024-04-09 22:47:21'),
 (51, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:21<br/>', 'id: 2<br/>banco: BANCO #2S<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:27<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:27', '2024-04-09 22:47:27', '2024-04-09 22:47:27'),
 (52, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2S<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:27<br/>', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:31<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:31', '2024-04-09 22:47:31', '2024-04-09 22:47:31'),
-(55, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP91F0.TMP<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: PENDIENTE<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-09 20:10:13<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-09', '20:10:13', '2024-04-10 00:10:13', '2024-04-10 00:10:13');
+(55, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP91F0.TMP<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: PENDIENTE<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-09 20:10:13<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-09', '20:10:13', '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
+(56, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: 1712707813_4.pdf<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-09 20:10:13<br/>', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: 1712707813_4.pdf<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: ENTREGA PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-10 10:53:21<br/>', 'ORDEN DE VENTAS', '2024-04-10', '10:53:21', '2024-04-10 14:53:21', '2024-04-10 14:53:21'),
+(57, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: 1712707813_4.pdf<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: ENTREGA PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-10 10:53:21<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '10:57:12', '2024-04-10 14:57:12', '2024-04-10 14:57:12'),
+(58, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHPFB3A.TMP<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 895.90<br/>total: 895.90<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:05:14<br/>updated_at: 2024-04-10 11:05:14<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '11:05:14', '2024-04-10 15:05:14', '2024-04-10 15:05:14'),
+(59, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712761514_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 895.90<br/>total: 895.90<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:05:14<br/>updated_at: 2024-04-10 11:05:14<br/>', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712761514_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 895.90<br/>total: 895.90<br/>estado: ENTREGA PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:05:14<br/>updated_at: 2024-04-10 11:27:53<br/>', 'ORDEN DE VENTAS', '2024-04-10', '11:27:53', '2024-04-10 15:27:53', '2024-04-10 15:27:53'),
+(60, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712761514_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 895.90<br/>total: 895.90<br/>estado: ENTREGA PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:05:14<br/>updated_at: 2024-04-10 11:27:53<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '11:47:02', '2024-04-10 15:47:02', '2024-04-10 15:47:02'),
+(64, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP3C47.TMP<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 397.74<br/>total: 397.74<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:50:18<br/>updated_at: 2024-04-10 11:50:18<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '11:50:18', '2024-04-10 15:50:18', '2024-04-10 15:50:18'),
+(65, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712764218_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 351.98<br/>total: 397.74<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:50:18<br/>updated_at: 2024-04-10 11:50:18<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '11:50:49', '2024-04-10 15:50:49', '2024-04-10 15:50:49'),
+(66, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP5049.TMP<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 824.44<br/>total: 824.44<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:51:29<br/>updated_at: 2024-04-10 11:51:29<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '11:51:29', '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
+(67, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ORDEN DE VENTA', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 67676767<br/>comprobante: 1712764289_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 732.97<br/>total: 824.44<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:51:29<br/>updated_at: 2024-04-10 11:51:29<br/>', 'id: 1<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 67676767<br/>comprobante: 1712764289_1.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 732.97<br/>total: 824.44<br/>estado: ENTREGA PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 11:51:29<br/>updated_at: 2024-04-10 11:53:14<br/>', 'ORDEN DE VENTAS', '2024-04-10', '11:53:14', '2024-04-10 15:53:14', '2024-04-10 15:53:14'),
+(68, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', NULL, 'PAGO A AFILIADOS', '2024-04-10', '12:20:54', '2024-04-10 16:20:54', '2024-04-10 16:20:54'),
+(69, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 6<br/>usuario: JUAN@GMAIL.COM<br/>password: $2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: <br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: OPERADOR<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-04-10 00:00:00<br/>created_at: 2024-04-10 12:46:53<br/>updated_at: 2024-04-10 12:46:53<br/>', NULL, 'USUARIOS', '2024-04-10', '12:46:53', '2024-04-10 16:46:53', '2024-04-10 16:46:53'),
+(70, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 6<br/>usuario: JUAN@GMAIL.COM<br/>password: $2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: <br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: OPERADOR<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-04-10 00:00:00<br/>created_at: 2024-04-10 12:46:53<br/>updated_at: 2024-04-10 12:46:53<br/>', 'id: 6<br/>usuario: JUAN@GMAIL.COM<br/>password: $2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: <br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: OPERADOR<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-04-10 00:00:00<br/>created_at: 2024-04-10 12:46:53<br/>updated_at: 2024-04-10 12:46:53<br/>', 'USUARIOS', '2024-04-10', '12:47:28', '2024-04-10 16:47:28', '2024-04-10 16:47:28'),
+(71, 7, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 2<br/>codigo: ORD.2<br/>nro: 2<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP9A2D.TMP<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 674.22<br/>total: 674.22<br/>estado: PENDIENTE<br/>user_id: 7<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 17:48:58<br/>updated_at: 2024-04-10 17:48:58<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-10', '17:48:58', '2024-04-10 21:48:58', '2024-04-10 21:48:58'),
+(72, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ORDEN DE VENTA', 'id: 2<br/>codigo: ORD.2<br/>nro: 2<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712785738_2.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 601.98<br/>total: 674.22<br/>estado: PENDIENTE<br/>user_id: 7<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 17:48:58<br/>updated_at: 2024-04-10 17:48:58<br/>', 'id: 2<br/>codigo: ORD.2<br/>nro: 2<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712785738_2.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 601.98<br/>total: 674.22<br/>estado: ENTREGA PENDIENTE<br/>user_id: 7<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 17:48:58<br/>updated_at: 2024-04-10 17:55:32<br/>', 'ORDEN DE VENTAS', '2024-04-10', '17:55:32', '2024-04-10 21:55:32', '2024-04-10 21:55:32'),
+(73, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:27', '2024-04-10 22:08:27', '2024-04-10 22:08:27'),
+(74, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: DEVOLUCIÓN<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:31<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:31', '2024-04-10 22:08:31', '2024-04-10 22:08:31'),
+(75, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: DEVOLUCIÓN<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:31<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:46<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:46', '2024-04-10 22:08:46', '2024-04-10 22:08:46');
 
 -- --------------------------------------------------------
 
@@ -282,7 +300,7 @@ CREATE TABLE `institucions` (
 --
 
 INSERT INTO `institucions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `nit`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `host`, `puerto`, `encriptado`, `email`, `nombre`, `password`, `driver`, `created_at`, `updated_at`) VALUES
-(1, 'ETHERION', 'ET', 'ETHERION S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'ETHERION@GMAIL.COM', 'ETHERION.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'smtp', NULL, '2024-04-08 15:46:09');
+(1, 'ETHERION', 'ET', 'ETHERION S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'ETHERION@GMAIL.COM', 'ETHERION.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'SMTP', NULL, '2024-04-10 16:42:22');
 
 -- --------------------------------------------------------
 
@@ -329,6 +347,7 @@ CREATE TABLE `orden_detalles` (
   `producto_id` bigint UNSIGNED NOT NULL,
   `cantidad` double(8,2) NOT NULL,
   `precio` decimal(24,2) NOT NULL,
+  `precio_sc` decimal(24,2) NOT NULL,
   `precio_total` decimal(24,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -338,11 +357,11 @@ CREATE TABLE `orden_detalles` (
 -- Volcado de datos para la tabla `orden_detalles`
 --
 
-INSERT INTO `orden_detalles` (`id`, `orden_venta_id`, `producto_id`, `cantidad`, `precio`, `precio_total`, `created_at`, `updated_at`) VALUES
-(3, 4, 13, 3.00, 339.00, 1017.00, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
-(4, 4, 14, 1.00, 227.12, 227.12, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
-(5, 4, 10, 2.00, 336.00, 672.00, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
-(6, 4, 9, 1.00, 42.80, 42.80, '2024-04-10 00:10:13', '2024-04-10 00:10:13');
+INSERT INTO `orden_detalles` (`id`, `orden_venta_id`, `producto_id`, `cantidad`, `precio`, `precio_sc`, `precio_total`, `created_at`, `updated_at`) VALUES
+(4, 1, 14, 1.00, 227.12, 200.99, 227.12, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
+(5, 1, 8, 3.00, 56.50, 150.00, 169.50, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
+(6, 1, 7, 2.00, 213.91, 381.98, 427.82, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
+(7, 2, 11, 2.00, 337.11, 601.98, 674.22, '2024-04-10 21:48:58', '2024-04-10 21:48:58');
 
 -- --------------------------------------------------------
 
@@ -373,7 +392,8 @@ CREATE TABLE `orden_ventas` (
 --
 
 INSERT INTO `orden_ventas` (`id`, `codigo`, `nro`, `configuracion_pago_id`, `celular`, `comprobante`, `lat`, `lng`, `total_sc`, `total`, `estado`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(4, 'ORD.1', 1, 1, '777777', '1712707813_4.pdf', '-16.496684380292038', '-68.13277766234039', 1958.92, 1958.92, 'PENDIENTE', 4, '2024-04-09', '2024-04-10 00:10:13', '2024-04-10 00:10:13');
+(1, 'ORD.1', 1, 1, '67676767', '1712764289_1.pdf', '-16.496059', '-68.133345', 732.97, 824.44, 'ENTREGADO', 4, '2024-04-10', '2024-04-10 15:51:29', '2024-04-10 22:08:46'),
+(2, 'ORD.2', 2, 2, '67676767', '1712785738_2.pdf', '-16.496059', '-68.133345', 601.98, 674.22, 'ENTREGA PENDIENTE', 7, '2024-04-10', '2024-04-10 21:48:58', '2024-04-10 21:55:32');
 
 -- --------------------------------------------------------
 
@@ -390,6 +410,13 @@ CREATE TABLE `pago_afiliados` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pago_afiliados`
+--
+
+INSERT INTO `pago_afiliados` (`id`, `orden_venta_id`, `descripcion`, `estado`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 1, 'DESC. PAGO #1 AFI 1', 'ENTREGADO', '2024-04-10', '2024-04-10 16:20:54', '2024-04-10 22:08:46');
 
 -- --------------------------------------------------------
 
@@ -506,7 +533,9 @@ INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
 (2, 'eduardo@gmail.com', '$2y$12$H210oHjJfzjgkQ0eqteu.ecgcHOdMQtJF/ibwoc4SBLBntnGQfrBS', 'EDUARDO', 'RAMIRES', 'RAMIRES', '3434', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '77777777', 'AFILIADO', NULL, 1, '2024-04-08', '2024-04-08 15:10:05', '2024-04-08 15:40:05'),
 (4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45'),
-(5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'AFILIADO', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29');
+(5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'AFILIADO', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29'),
+(6, 'JUAN@GMAIL.COM', '$2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG', 'JUAN', 'PERES', '', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'OPERADOR', NULL, 1, '2024-04-10', '2024-04-10 16:46:53', '2024-04-10 16:46:53'),
+(7, 'carlos@gmail.com', '$2y$12$r0vh/Z.eQbxx/Mb9rB5uCefItMNYgy8B0p/17uDfWMM3yJckNHffC', 'CARLOS', 'GONZALES', '', '898789', 'CB', 'LOS OLIVOS', 'carlos@gmail.com', '7878787878', 'CLIENTE', NULL, 1, '2024-04-10', '2024-04-10 21:47:10', '2024-04-10 21:47:10');
 
 --
 -- Índices para tablas volcadas
@@ -648,7 +677,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion_pagos`
@@ -666,7 +695,7 @@ ALTER TABLE `foto_productos`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -684,19 +713,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `orden_detalles`
 --
 ALTER TABLE `orden_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_ventas`
 --
 ALTER TABLE `orden_ventas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pago_afiliados`
 --
 ALTER TABLE `pago_afiliados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -720,7 +749,7 @@ ALTER TABLE `producto_tamanos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

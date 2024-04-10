@@ -20,8 +20,35 @@ class OrdenVenta extends Model
         "total_sc",
         "total",
         "estado",
+        "user_id",
         "fecha_registro",
     ];
+
+    protected $appends = ["fecha_registro_t", "url_comprobante", "tipo"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function getUrlComprobanteAttribute()
+    {
+        return asset("imgs/comprobantes/" . $this->comprobante);
+    }
+
+    public function getTipoAttribute()
+    {
+        $array_str =  explode(".", $this->comprobante);
+        $ext  = $array_str[count($array_str) - 1];
+
+        $imgs = ["jpg", "jpeg", "png", "gif", "webp"];
+
+        if (in_array($ext, $imgs)) {
+            return "img";
+        }
+
+        return "file";
+    }
 
     public function configuracion_pago()
     {

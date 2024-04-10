@@ -35,12 +35,7 @@ watch(
 
 const { flash } = usePage().props;
 
-const listTipos = [
-    "GERENTE GENERAL",
-    "GERENTE REGIONAL",
-    "ADMINISTRADOR DE PERSONAL",
-    "ENCARGADO DE OBRA",
-];
+const listTipos = ["ADMINISTRADOR", "OPERADOR"];
 const listExpedido = [
     { value: "LP", label: "La Paz" },
     { value: "CB", label: "Cochabamba" },
@@ -257,19 +252,19 @@ const cerrarDialog = () => {
                                 <v-col cols="12" sm="6" md="4">
                                     <v-text-field
                                         :hide-details="
-                                            form.errors?.correo ? false : true
+                                            form.errors?.email ? false : true
                                         "
                                         :error="
-                                            form.errors?.correo ? true : false
+                                            form.errors?.email ? true : false
                                         "
                                         :error-messages="
-                                            form.errors?.correo
-                                                ? form.errors?.correo
+                                            form.errors?.email
+                                                ? form.errors?.email
                                                 : ''
                                         "
                                         density="compact"
                                         variant="outlined"
-                                        label="Correo"
+                                        label="Correo*"
                                         v-model="form.email"
                                         required
                                     ></v-text-field>
