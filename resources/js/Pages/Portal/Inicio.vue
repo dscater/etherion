@@ -4,6 +4,9 @@ import { onMounted, ref, watch } from "vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useCarritoStore } from "@/stores/carritoStore";
+import { useMenuPortalStore } from "@/stores/menuPortalStore";
+const menu_portal_store = useMenuPortalStore();
+menu_portal_store.setLoadingPage(true);
 var url_assets = "";
 const carrito_store = useCarritoStore();
 const { props } = usePage();
@@ -204,35 +207,48 @@ const cargaListas = async () => {
     listCategorias.value = await getCategoriasPortal();
 };
 
+const agregarProducto = () => {
+    if ((cantidad.value + "").trim() != "") {
+        let precio_carrito =
+            parseFloat(cantidad.value) *
+            parseFloat(oProducto.value.precio_total);
+        carrito_store.addProducto({
+            orden_venta_id: 0,
+            producto_id: 0,
+            cantidad: cantidad.value,
+            precio: oProducto.value.precio_total,
+            precio_total: parseFloat(precio_carrito).toFixed(2),
+            producto: oProducto.value,
+        });
+
+        Swal.fire({
+            icon: "success",
+            title: "Correcto",
+            text: `¡Producto agregado!`,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: `Aceptar`,
+        });
+
+        cierraModal();
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: `Debes ingresar la cantidad`,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: `Aceptar`,
+        });
+    }
+};
+
 onMounted(() => {
-    carrito_store.addProducto({
-        id: 0,
-        orden_venta_id: 0,
-        producto_id: 1,
-        cantidad: 2,
-        precio: 20.3,
-        comision_cat: 0,
-        comision_tam: 0,
-        precio_total: 20.3,
-    });
-    carrito_store.addProducto({
-        id: 0,
-        orden_venta_id: 0,
-        producto_id: 1,
-        cantidad: 2,
-        precio: 20.3,
-        comision_cat: 0,
-        comision_tam: 0,
-        precio_total: 20.3,
-    });
-    carrito_store.calculaTotalFinal();
-    console.log(carrito_store.total_final);
+    carrito_store.inicializaCarrito();
     cargaListas();
     url_assets = props.url_assets;
     inicializaScriptsPage();
     getProductos();
     setTimeout(() => {
-        setLoading(false);
+        menu_portal_store.setLoadingPage(false);
     }, 300);
 });
 </script>
@@ -627,7 +643,8 @@ onMounted(() => {
                                         </div>
 
                                         <button
-                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+                                            @click="agregarProducto"
                                         >
                                             Agregar al carrito
                                         </button>

@@ -39,6 +39,11 @@ class UserController extends Controller
             "producto_tamanos.edit",
             "producto_tamanos.destroy",
 
+            "configuracion_pagos.index",
+            "configuracion_pagos.create",
+            "configuracion_pagos.edit",
+            "configuracion_pagos.destroy",
+
             "productos.index",
             "productos.destroy",
 

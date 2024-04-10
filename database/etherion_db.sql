@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-04-2024 a las 18:23:57
+-- Tiempo de generación: 10-04-2024 a las 00:16:35
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -121,11 +121,19 @@ CREATE TABLE `configuracion_pagos` (
   `id` bigint UNSIGNED NOT NULL,
   `banco` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nro_cuenta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qr` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `configuracion_pagos`
+--
+
+INSERT INTO `configuracion_pagos` (`id`, `banco`, `nro_cuenta`, `qr`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'BANCO #1', '10000001111', '1712702813_1.png', '2024-04-09', '2024-04-09 22:46:53', '2024-04-09 22:46:53'),
+(2, 'BANCO #2', '22222222', '1712702841_2.png', '2024-04-09', '2024-04-09 22:47:21', '2024-04-09 22:47:31');
 
 -- --------------------------------------------------------
 
@@ -228,7 +236,16 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (39, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-08 12:46:02<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:01<br/>', 'PRODUCTOS', '2024-04-09', '12:33:01', '2024-04-09 16:33:01', '2024-04-09 16:33:01'),
 (40, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:01<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:33:24<br/>', 'PRODUCTOS', '2024-04-09', '12:33:25', '2024-04-09 16:33:25', '2024-04-09 16:33:25'),
 (42, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 4<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:51<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. #1<br/>p_comision: 4<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:20<br/>updated_at: 2024-04-05 12:01:51<br/>', 'CATEGORIAS', '2024-04-09', '12:46:23', '2024-04-09 16:46:23', '2024-04-09 16:46:23'),
-(43, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'CATEGORIAS', '2024-04-09', '12:46:28', '2024-04-09 16:46:28', '2024-04-09 16:46:28');
+(43, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>p_comision: 10<br/>fecha_registro: 2024-04-05<br/>created_at: 2024-04-05 12:01:45<br/>updated_at: 2024-04-05 12:01:45<br/>', 'CATEGORIAS', '2024-04-09', '12:46:28', '2024-04-09 16:46:28', '2024-04-09 16:46:28'),
+(44, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CONFIGURACIÓN DE PAGO', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: <br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:45:22<br/>', NULL, 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:45:22', '2024-04-09 22:45:22', '2024-04-09 22:45:22'),
+(46, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: 1712702722_1.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:45:22<br/>', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: 1712702761_1.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:46:01<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:46:01', '2024-04-09 22:46:01', '2024-04-09 22:46:01'),
+(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: 1712702761_1.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:46:01<br/>', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: 1712702767_1.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:46:07<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:46:07', '2024-04-09 22:46:07', '2024-04-09 22:46:07'),
+(48, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CONFIGURACIÓN DE PAGO', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 100000011<br/>qr: 1712702767_1.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:45:22<br/>updated_at: 2024-04-09 18:46:07<br/>', NULL, 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:46:33', '2024-04-09 22:46:33', '2024-04-09 22:46:33'),
+(49, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CONFIGURACIÓN DE PAGO', 'id: 1<br/>banco: BANCO #1<br/>nro_cuenta: 10000001111<br/>qr: <br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:46:53<br/>updated_at: 2024-04-09 18:46:53<br/>', NULL, 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:46:53', '2024-04-09 22:46:53', '2024-04-09 22:46:53'),
+(50, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: <br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:21<br/>', NULL, 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:21', '2024-04-09 22:47:21', '2024-04-09 22:47:21'),
+(51, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:21<br/>', 'id: 2<br/>banco: BANCO #2S<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:27<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:27', '2024-04-09 22:47:27', '2024-04-09 22:47:27'),
+(52, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CONFIGURACIÓN DE PAGO', 'id: 2<br/>banco: BANCO #2S<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:27<br/>', 'id: 2<br/>banco: BANCO #2<br/>nro_cuenta: 22222222<br/>qr: 1712702841_2.png<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 18:47:21<br/>updated_at: 2024-04-09 18:47:31<br/>', 'CONFIGURACIÓN DE PAGOS', '2024-04-09', '18:47:31', '2024-04-09 22:47:31', '2024-04-09 22:47:31'),
+(55, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.1<br/>nro: 1<br/>configuracion_pago_id: 1<br/>celular: 777777<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP91F0.TMP<br/>lat: -16.496684380292038<br/>lng: -68.13277766234039<br/>total_sc: 1958.92<br/>total: 1958.92<br/>estado: PENDIENTE<br/>fecha_registro: 2024-04-09<br/>created_at: 2024-04-09 20:10:13<br/>updated_at: 2024-04-09 20:10:13<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-09', '20:10:13', '2024-04-10 00:10:13', '2024-04-10 00:10:13');
 
 -- --------------------------------------------------------
 
@@ -312,12 +329,20 @@ CREATE TABLE `orden_detalles` (
   `producto_id` bigint UNSIGNED NOT NULL,
   `cantidad` double(8,2) NOT NULL,
   `precio` decimal(24,2) NOT NULL,
-  `comision_cat` double(24,2) NOT NULL,
-  `comision_tam` double(24,2) NOT NULL,
   `precio_total` decimal(24,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `orden_detalles`
+--
+
+INSERT INTO `orden_detalles` (`id`, `orden_venta_id`, `producto_id`, `cantidad`, `precio`, `precio_total`, `created_at`, `updated_at`) VALUES
+(3, 4, 13, 3.00, 339.00, 1017.00, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
+(4, 4, 14, 1.00, 227.12, 227.12, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
+(5, 4, 10, 2.00, 336.00, 672.00, '2024-04-10 00:10:13', '2024-04-10 00:10:13'),
+(6, 4, 9, 1.00, 42.80, 42.80, '2024-04-10 00:10:13', '2024-04-10 00:10:13');
 
 -- --------------------------------------------------------
 
@@ -328,16 +353,27 @@ CREATE TABLE `orden_detalles` (
 CREATE TABLE `orden_ventas` (
   `id` bigint UNSIGNED NOT NULL,
   `codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nro` bigint NOT NULL,
+  `configuracion_pago_id` bigint UNSIGNED NOT NULL,
   `celular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `comprobante` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_sc` decimal(24,2) NOT NULL,
   `total` decimal(24,2) NOT NULL,
+  `estado` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `orden_ventas`
+--
+
+INSERT INTO `orden_ventas` (`id`, `codigo`, `nro`, `configuracion_pago_id`, `celular`, `comprobante`, `lat`, `lng`, `total_sc`, `total`, `estado`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(4, 'ORD.1', 1, 1, '777777', '1712707813_4.pdf', '-16.496684380292038', '-68.13277766234039', 1958.92, 1958.92, 'PENDIENTE', 4, '2024-04-09', '2024-04-10 00:10:13', '2024-04-10 00:10:13');
 
 -- --------------------------------------------------------
 
@@ -546,7 +582,8 @@ ALTER TABLE `orden_detalles`
 --
 ALTER TABLE `orden_ventas`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `orden_ventas_codigo_unique` (`codigo`);
+  ADD UNIQUE KEY `orden_ventas_codigo_unique` (`codigo`),
+  ADD KEY `configuracion_pago_id` (`configuracion_pago_id`);
 
 --
 -- Indices de la tabla `pago_afiliados`
@@ -617,7 +654,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `configuracion_pagos`
 --
 ALTER TABLE `configuracion_pagos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `foto_productos`
@@ -629,7 +666,7 @@ ALTER TABLE `foto_productos`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -647,13 +684,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `orden_detalles`
 --
 ALTER TABLE `orden_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_ventas`
 --
 ALTER TABLE `orden_ventas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pago_afiliados`
@@ -713,6 +750,12 @@ ALTER TABLE `foto_productos`
 ALTER TABLE `orden_detalles`
   ADD CONSTRAINT `orden_detalles_orden_venta_id_foreign` FOREIGN KEY (`orden_venta_id`) REFERENCES `orden_ventas` (`id`),
   ADD CONSTRAINT `orden_detalles_producto_id_foreign` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `orden_ventas`
+--
+ALTER TABLE `orden_ventas`
+  ADD CONSTRAINT `orden_ventas_ibfk_1` FOREIGN KEY (`configuracion_pago_id`) REFERENCES `configuracion_pagos` (`id`);
 
 --
 -- Filtros para la tabla `pago_afiliados`

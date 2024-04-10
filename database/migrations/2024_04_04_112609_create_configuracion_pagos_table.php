@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("banco", 255);
             $table->string("nro_cuenta", 255);
-            $table->string("qr", 255);
+            $table->string("qr", 255)->nullable();
             $table->date("fecha_registro");
             $table->timestamps();
         });

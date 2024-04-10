@@ -2,8 +2,13 @@
 import { usePage, Link } from "@inertiajs/vue3";
 import { onMounted, ref } from "vue";
 import { useInstitucion } from "@/composables/institucion/useInstitucion";
+import { useCarritoStore } from "@/stores/carritoStore";
+import { useMenuPortalStore } from "@/stores/menuPortalStore";
+const carrito_store = useCarritoStore();
+const menu_portal_store = useMenuPortalStore();
 const { oInstitucion } = useInstitucion();
 const { props } = usePage();
+const user = props.auth.user;
 var url_assets = "";
 var url_principal = "";
 
@@ -68,16 +73,15 @@ const inicializaScriptsPage = () => {
             });
         }
     });
+};
 
-    /*==================================================================
-    [ Cart ]*/
-    $(".js-show-cart").on("click", function () {
-        $(".js-panel-cart").addClass("show-header-cart");
-    });
+const muestra_carrito = ref(false);
+const abrirCarrito = () => {
+    muestra_carrito.value = true;
+};
 
-    $(".js-hide-cart").on("click", function () {
-        $(".js-panel-cart").removeClass("show-header-cart");
-    });
+const cierraCarrito = () => {
+    muestra_carrito.value = false;
 };
 
 const listMenu = ref([
@@ -92,6 +96,15 @@ const listMenu = ref([
         ruta: "portal.carrito",
     },
 ]);
+
+const cambiarRuta = (ruta) => {
+    menu_portal_store.setLoadingPage(true);
+    menu_portal_store.setRutaActual(ruta);
+};
+
+const quitar = (index) => {
+    carrito_store.deleteProducto(index);
+};
 
 onMounted(() => {
     url_assets = props.url_assets;
@@ -111,10 +124,18 @@ onMounted(() => {
 
                     <div class="right-top-bar flex-w h-full">
                         <a
+                            v-if="!user"
                             :href="url_principal + '/login'"
                             class="flex-c-m trans-04 p-lr-25"
                         >
                             <i class="fa fa-sign-in"></i>&nbsp; Iniciar Sesión
+                        </a>
+                        <a
+                            v-if="user"
+                            :href="url_principal + '/admin/inicio'"
+                            class="flex-c-m trans-04 p-lr-25"
+                        >
+                            <i class="fa fa-user"></i>&nbsp; {{ user.full_name }}
                         </a>
                     </div>
                 </div>
@@ -140,8 +161,19 @@ onMounted(() => {
                     <div class="menu-desktop">
                         <!-- active-menu -->
                         <ul class="main-menu">
-                            <li v-for="item in listMenu">
-                                <Link :href="item.url">{{ item.label }}</Link>
+                            <li
+                                v-for="item in listMenu"
+                                :class="[
+                                    menu_portal_store.ruta_actual == item.ruta
+                                        ? 'active-menu'
+                                        : '',
+                                ]"
+                            >
+                                <Link
+                                    :href="item.url"
+                                    @click="cambiarRuta(item.ruta)"
+                                    >{{ item.label }}</Link
+                                >
                             </li>
                         </ul>
                     </div>
@@ -149,8 +181,9 @@ onMounted(() => {
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         <div
-                            class="icon-header-item cl2 hov-cl2 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                            data-notify="2"
+                            class="icon-header-item cl2 hov-cl2 trans-04 p-l-22 p-r-11 icon-header-noti"
+                            @click="abrirCarrito"
+                            :data-notify="carrito_store.productos.length"
                         >
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
@@ -163,7 +196,10 @@ onMounted(() => {
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <Link :href="route('portal.inicio')">
+                <Link
+                    :href="route('portal.inicio')"
+                    @click="cambiarRuta(item.ruta)"
+                >
                     <img
                         v-if="oInstitucion"
                         :src="oInstitucion.url_logo"
@@ -178,8 +214,9 @@ onMounted(() => {
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
                 <div
-                    class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2"
+                    class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+                    @click="abrirCarrito"
+                    :data-notify="carrito_store.productos.length"
                 >
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
@@ -219,32 +256,45 @@ onMounted(() => {
             </ul>
         </div>
 
-        <h1 class="text-sm text-center font-weight-bold ltext-101 mt-1">
+        <h1 class="text-center font-weight-bold ltext-102 cl2 mt-5">
             {{ oInstitucion.razon_social }}
         </h1>
     </header>
 
     <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
-        <div class="s-full js-hide-cart"></div>
+    <div
+        class="wrap-header-cart"
+        :class="[muestra_carrito ? 'show-header-cart' : '']"
+    >
+        <div class="s-full" @click="cierraCarrito"></div>
 
         <div class="header-cart flex-col-l p-l-65 p-r-25">
             <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2"> Your Cart </span>
+                <span class="mtext-103 cl2"> Tú carrito </span>
 
                 <div
-                    class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart"
+                    class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04"
+                    @click="cierraCarrito"
                 >
                     <i class="zmdi zmdi-close"></i>
                 </div>
             </div>
 
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-content flex-w">
+                <ul
+                    class="header-cart-wrapitem w-full"
+                    v-if="carrito_store.productos.length > 0"
+                >
+                    <li
+                        class="header-cart-item flex-w flex-t align-items-center"
+                        v-for="(item, index) in carrito_store.productos"
+                    >
+                        <button class="quitar" @click="quitar(index)">
+                            <i class="fa fa-times"></i>
+                        </button>
                         <div class="header-cart-item-img">
                             <img
-                                :src="url_assets + '/images/item-cart-01.jpg'"
+                                :src="item.producto.foto_productos[0].url_foto"
                                 alt="IMG"
                             />
                         </div>
@@ -254,79 +304,42 @@ onMounted(() => {
                                 href="#"
                                 class="header-cart-item-name m-b-18 hov-cl1 trans-04"
                             >
-                                White Shirt Pleat
+                                {{ item.producto.descripcion }}
                             </a>
 
                             <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img
-                                :src="url_assets + '/images/item-cart-02.jpg'"
-                                alt="IMG"
-                            />
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a
-                                href="#"
-                                class="header-cart-item-name m-b-18 hov-cl1 trans-04"
-                            >
-                                Converse All Star
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img
-                                :src="url_assets + '/images/item-cart-03.jpg'"
-                                alt="IMG"
-                            />
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a
-                                href="#"
-                                class="header-cart-item-name m-b-18 hov-cl1 trans-04"
-                            >
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
+                                {{ item.cantidad }} x ${{
+                                    item.producto.precio_total
+                                }}
                             </span>
                         </div>
                     </li>
                 </ul>
 
-                <div class="w-full">
+                <div class="w-full" v-if="carrito_store.productos.length > 0">
                     <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
+                        Total: ${{ carrito_store.total_final }}
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a
-                            href="shoping-cart.html"
+                        <Link
+                            :href="route('portal.carrito')"
+                            @click="
+                                cambiarRuta('portal.carrito');
+                                cierraCarrito();
+                            "
                             class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10"
                         >
-                            View Cart
-                        </a>
+                            Ver carrito
+                        </Link>
+                    </div>
+                </div>
 
-                        <a
-                            href="shoping-cart.html"
-                            class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10"
-                        >
-                            Check Out
-                        </a>
+                <div class="row" v-else>
+                    <div class="col-12">
+                        <h4 class="text-center text-md">
+                            Aún no agregaste nada al carrito
+                        </h4>
                     </div>
                 </div>
             </div>

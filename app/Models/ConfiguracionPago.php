@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class ConfiguracionPago extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "banco",
+        "nro_cuenta",
+        "qr",
+        "fecha_registro",
+    ];
+
+    protected $appends = ["fecha_registro_t", "url_qr"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function getUrlQrAttribute()
+    {
+        return asset("imgs/qr/" . $this->qr);
+    }
 }

@@ -201,6 +201,24 @@ const scrollActive = () => {
                     >Tamaño de Productos</v-tooltip
                 >
             </v-list-item>
+            <v-list-item
+                :class="[
+                    route_current == 'configuracion_pagos.index' ? 'active' : '',
+                ]"
+                v-if="oUser.permisos.includes('configuracion_pagos.index')"
+                prepend-icon="mdi-credit-card-edit"
+                @click="cambiarUrl(route('configuracion_pagos.index'))"
+                link
+            >
+                <v-list-item-title>Configuración de Pagos</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Configuración de Pagos</v-tooltip
+                >
+            </v-list-item>
 
             <v-list-item
                 :class="[route_current == 'clientes.index' ? 'active' : '']"

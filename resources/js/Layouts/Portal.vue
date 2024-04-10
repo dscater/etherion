@@ -5,6 +5,10 @@ import { usePage } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 import Header from "./includes_portal/Header.vue";
 import Footer from "./includes_portal/Footer.vue";
+import { useMenuPortalStore } from "@/stores/menuPortalStore";
+const menu_portal_store = useMenuPortalStore();
+menu_portal_store.setLoadingPage(true);
+
 var url_assets = "";
 
 const { props } = usePage();
@@ -122,6 +126,9 @@ onMounted(() => {
 </script>
 <template>
     <div class="animsitio">
+        <div class="loadingPage" v-show="menu_portal_store.loadingPage">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
         <Header></Header>
 
         <slot></slot>

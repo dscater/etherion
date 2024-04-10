@@ -4,12 +4,14 @@ use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\AvanceObraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ConfiguracionPagoController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
+use App\Http\Controllers\OrdenVentaController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProductoController;
@@ -71,9 +73,12 @@ Route::post("clientes/registro", [ClienteController::class, 'registro'])->name("
 
 Route::get("institucions/getInstitucion", [InstitucionController::class, 'getInstitucion'])->name("institucions.getInstitucion");
 
-// PRODUCTOS PORTAL
+// LISTAS PORTAL
 Route::get("productos", [ProductoController::class, 'portal'])->name("productos.portal");
 Route::get("categorias", [CategoriaController::class, 'listado'])->name("categorias.portal");
+Route::get("configuracion_pagos", [ConfiguracionPagoController::class, 'listado'])->name("configuracion_pagos.portal");
+
+// POST PORTAL
 
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
@@ -136,10 +141,17 @@ Route::middleware('auth')->prefix("admin")->group(function () {
         ["index", "store", "update", "show", "destroy"]
     );
 
-    // CATEGORIAS
+    // PRODUCTO TAMAÑOS
     Route::get("producto_tamanos/paginado", [ProductoTamanoController::class, 'paginado'])->name("producto_tamanos.paginado");
     Route::get("producto_tamanos/listado", [ProductoTamanoController::class, 'listado'])->name("producto_tamanos.listado");
     Route::resource("producto_tamanos", ProductoTamanoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // CONFIGURACION PAGOS
+    Route::get("configuracion_pagos/paginado", [ConfiguracionPagoController::class, 'paginado'])->name("configuracion_pagos.paginado");
+    Route::get("configuracion_pagos/listado", [ConfiguracionPagoController::class, 'listado'])->name("configuracion_pagos.listado");
+    Route::resource("configuracion_pagos", ConfiguracionPagoController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 
@@ -149,6 +161,14 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
     Route::get("productos/geolocalizacion", [ProductoController::class, 'geolocalizacion'])->name("productos.geolocalizacion");
     Route::resource("productos", ProductoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // ORDEN DE VENTAS
+    Route::post("registraOrden", [OrdenVentaController::class, 'registraOrden'])->name("orden_ventas.registraOrden");
+    Route::get("orden_ventas/paginado", [OrdenVentaController::class, 'paginado'])->name("orden_ventas.paginado");
+    Route::get("orden_ventas/listado", [OrdenVentaController::class, 'listado'])->name("orden_ventas.listado");
+    Route::resource("orden_ventas", OrdenVentaController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 
