@@ -370,7 +370,7 @@ onMounted(() => {
                             </a>
 
                             <span class="header-cart-item-info">
-                                {{ item.cantidad }} x ${{
+                                {{ item.cantidad }} x Bs. {{
                                     item.producto.precio_total
                                 }}
                             </span>
@@ -380,7 +380,7 @@ onMounted(() => {
 
                 <div class="w-full" v-if="carrito_store.productos.length > 0">
                     <div class="header-cart-total w-full p-tb-40">
-                        Total: ${{ carrito_store.total_final }}
+                        Total: Bs. {{ carrito_store.total_final }}
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">

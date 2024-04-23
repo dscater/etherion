@@ -64,7 +64,7 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Precio",
+        title: "Precio Bs.",
         align: "start",
         sortable: false,
     },
@@ -284,7 +284,7 @@ const eliminarProducto = (item) => {
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Precio:"
+                                                data-label="Precio Bs.:"
                                             >
                                                 {{ item.precio }}
                                             </li>

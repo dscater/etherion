@@ -485,7 +485,7 @@ onMounted(() => {
                                 </span>
 
                                 <span class="stext-105 cl3">
-                                    ${{ item.precio_total }}
+                                    Bs. {{ item.precio_total }}
                                 </span>
                             </div>
                         </div>
@@ -600,7 +600,7 @@ onMounted(() => {
                             </h4> -->
 
                             <span class="mtext-106 cl2">
-                                ${{ oProducto?.precio_total }}
+                                Bs. {{ oProducto?.precio_total }}
                             </span>
 
                             <p class="stext-102 cl3 p-t-23">

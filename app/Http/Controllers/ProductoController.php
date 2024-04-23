@@ -7,6 +7,7 @@ use App\Models\FotoProducto;
 use App\Models\HistorialAccion;
 use App\Models\Producto;
 use App\Models\Presupuesto;
+use App\Models\ProductoTamano;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -137,6 +138,10 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             // crear el Producto
+            $categoria = Categoria::find($request->categoria_id);
+            $producto_tamano = ProductoTamano::find($request->producto_tamano_id);
+            $request["precio_total"] = (float)$request["precio"] * (1 + (($categoria->p_comision + $producto_tamano->p_comision) / 100));
+
             $nuevo_producto = Producto::create(array_map('mb_strtoupper', $request->except("eliminados", "foto_productos", "categoria", "producto_tamano", "user")));
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_producto, "productos");
             HistorialAccion::create([
@@ -181,6 +186,11 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
+
+            $categoria = Categoria::find($request->categoria_id);
+            $producto_tamano = ProductoTamano::find($request->producto_tamano_id);
+            $request["precio_total"] = (float)$request["precio"] * (1 + (($categoria->p_comision + $producto_tamano->p_comision) / 100));
+
             $producto->update(array_map('mb_strtoupper', $request->except("eliminados", "foto_productos", "categoria", "producto_tamano", "user")));
 
             $datos_nuevo = HistorialAccion::getDetalleRegistro($producto, "productos");

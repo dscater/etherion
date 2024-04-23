@@ -56,7 +56,7 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Total Orden",
+        title: "Total Orden Bs.",
         align: "start",
         sortable: false,
     },
@@ -220,7 +220,7 @@ const verOrdenVenta = (item) => {
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Total:"
+                                                data-label="Total Bs.:"
                                             >
                                                 {{ item.total }}
                                             </li>

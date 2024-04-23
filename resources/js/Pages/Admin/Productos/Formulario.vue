@@ -253,7 +253,7 @@ onMounted(() => {
                                         variant="outlined"
                                         type="number"
                                         step="0.01"
-                                        label="Precio de Venta*"
+                                        label="Precio de Venta (Bs.)*"
                                         v-model="form.precio"
                                         required
                                     ></v-text-field>

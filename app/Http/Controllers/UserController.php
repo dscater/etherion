@@ -197,7 +197,9 @@ class UserController extends Controller
                     ->get();
             }
             if (Auth::user()->tipo == 'CLIENTE') {
-                $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)->get();
+                $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)
+                    ->where("estado", "!=", "PENDIENTE")
+                    ->get();
             }
             $array_infos[] = [
                 'label' => 'Ordenes de Ventas',

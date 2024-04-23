@@ -300,7 +300,7 @@ onMounted(() => {
                                         {{ item.producto.descripcion }}
                                     </td>
                                     <td class="column-3">
-                                        $ {{ item.producto.precio_total }}
+                                        Bs. {{ item.producto.precio_total }}
                                     </td>
                                     <td class="column-4">
                                         <div
@@ -339,7 +339,7 @@ onMounted(() => {
                                         </div>
                                     </td>
                                     <td class="column-5">
-                                        $ {{ item.precio_total }}
+                                        Bs. {{ item.precio_total }}
                                     </td>
                                 </tr>
                                 <tr v-else>
@@ -428,7 +428,7 @@ onMounted(() => {
 
                             <div class="size-209 p-t-1">
                                 <span class="ltext-102 cl2">
-                                    ${{ carrito_store.total_final }}
+                                    Bs. {{ carrito_store.total_final }}
                                 </span>
                             </div>
                         </div>
