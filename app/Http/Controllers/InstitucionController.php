@@ -17,6 +17,7 @@ class InstitucionController extends Controller
         "nit" => "required|min:2",
         "actividad" => "required|min:2",
         "dir" => "required|min:2",
+        "terminos_condiciones" => "required|min:2",
     ];
 
     public $messages = [
@@ -56,7 +57,10 @@ class InstitucionController extends Controller
         $request->validate($this->validacion, $this->messages);
         DB::beginTransaction();
         try {
+
+
             $institucion->update(array_map("mb_strtoupper", $request->except("logo")));
+            $institucion->terminos_condiciones = nl2br(mb_strtoupper($request["terminos_condiciones"]));
 
             $institucion->host = $request->host;
             $institucion->encriptado = $request->encriptado;

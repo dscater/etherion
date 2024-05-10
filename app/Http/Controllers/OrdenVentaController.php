@@ -81,7 +81,7 @@ class OrdenVentaController extends Controller
             $orden_ventas = OrdenVenta::select("orden_ventas.*", "orden_detalles.precio_total", "orden_detalles.precio_sc", "orden_detalles.cantidad", "productos.descripcion")
                 ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
                 ->join("productos", "productos.id", "=", "orden_detalles.producto_id");
-            $orden_ventas->where("orden_ventas.estado", "!=", "PENDIENTE");
+            // $orden_ventas->where("orden_ventas.estado", "!=", "PENDIENTE");
             $orden_ventas->where("productos.user_id", Auth::user()->id);
             if (trim($search) != "") {
                 $orden_ventas->where(function ($query) use ($search) {
@@ -92,7 +92,7 @@ class OrdenVentaController extends Controller
         } elseif (Auth::user()->tipo == 'CLIENTE') {
             $orden_ventas = OrdenVenta::with(["user"])->select("orden_ventas.*");
             $orden_ventas->where("user_id", Auth::user()->id);
-            $orden_ventas->where("estado", "!=", "PENDIENTE");
+            // $orden_ventas->where("estado", "!=", "PENDIENTE");
             if (trim($search) != "") {
                 $orden_ventas->where("codigo", "LIKE", "%$search%");
             }

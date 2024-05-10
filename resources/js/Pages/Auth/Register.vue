@@ -79,7 +79,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Login" />
+    <Head title="Registro" />
     <v-container class="ma-0 login">
         <v-row align="center" justify="center">
             <v-col cols="12" sm="10" md="9" xl="8">
@@ -599,7 +599,12 @@ onMounted(() => {
                                                 <template v-slot:label>
                                                     Aceptar&nbsp;
                                                     <a
-                                                        href=""
+                                                        :href="
+                                                            route(
+                                                                'terminos_condiciones'
+                                                            )
+                                                        "
+                                                        target="_blank"
                                                         class="text-orange-darken-3"
                                                         >Terminos y
                                                         Condiciones</a
@@ -609,7 +614,13 @@ onMounted(() => {
                                         </v-col>
                                     </v-row>
                                     <v-row align="center" justify="center">
-                                        <v-col cols="12" sm="12" md="6" xl="4" class="mx-auto">
+                                        <v-col
+                                            cols="12"
+                                            sm="12"
+                                            md="6"
+                                            xl="4"
+                                            class="mx-auto"
+                                        >
                                             <v-btn
                                                 class="mt-2"
                                                 elevation="4"

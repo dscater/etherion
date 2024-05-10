@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-04-2024 a las 23:15:11
+-- Tiempo de generación: 10-05-2024 a las 15:09:53
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -110,7 +110,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `user_id`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
 (1, 4, 1, '2024-04-08 15:45:24', '2024-04-08 15:45:24'),
-(2, 7, 1, '2024-04-10 21:47:10', '2024-04-10 21:47:10');
+(2, 7, 1, '2024-04-10 21:47:10', '2024-04-10 21:47:10'),
+(3, 9, 1, '2024-05-10 15:06:45', '2024-05-10 15:06:45');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,8 @@ INSERT INTO `foto_productos` (`id`, `producto_id`, `foto`, `created_at`, `update
 (18, 11, 'imagen111712676584_0.jpg', '2024-04-09 15:29:44', '2024-04-09 15:29:44'),
 (19, 12, 'imagen121712676600_0.jpg', '2024-04-09 15:30:00', '2024-04-09 15:30:00'),
 (20, 13, 'imagen131712678699_0.jpg', '2024-04-09 16:04:59', '2024-04-09 16:04:59'),
-(21, 14, 'imagen141712678733_0.jpg', '2024-04-09 16:05:33', '2024-04-09 16:05:33');
+(21, 14, 'imagen141712678733_0.jpg', '2024-04-09 16:05:33', '2024-04-09 16:05:33'),
+(22, 15, 'imagen151713888835_0.png', '2024-04-23 16:13:55', '2024-04-23 16:13:55');
 
 -- --------------------------------------------------------
 
@@ -263,7 +265,11 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (72, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ORDEN DE VENTA', 'id: 2<br/>codigo: ORD.2<br/>nro: 2<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712785738_2.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 601.98<br/>total: 674.22<br/>estado: PENDIENTE<br/>user_id: 7<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 17:48:58<br/>updated_at: 2024-04-10 17:48:58<br/>', 'id: 2<br/>codigo: ORD.2<br/>nro: 2<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: 1712785738_2.pdf<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 601.98<br/>total: 674.22<br/>estado: ENTREGA PENDIENTE<br/>user_id: 7<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 17:48:58<br/>updated_at: 2024-04-10 17:55:32<br/>', 'ORDEN DE VENTAS', '2024-04-10', '17:55:32', '2024-04-10 21:55:32', '2024-04-10 21:55:32'),
 (73, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:27', '2024-04-10 22:08:27', '2024-04-10 22:08:27'),
 (74, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 12:20:54<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: DEVOLUCIÓN<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:31<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:31', '2024-04-10 22:08:31', '2024-04-10 22:08:31'),
-(75, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: DEVOLUCIÓN<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:31<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:46<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:46', '2024-04-10 22:08:46', '2024-04-10 22:08:46');
+(75, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PAGO DE AFILIADO', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: DEVOLUCIÓN<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:31<br/>', 'id: 1<br/>orden_venta_id: 1<br/>descripcion: DESC. PAGO #1 AFI 1<br/>estado: ENTREGADO<br/>fecha_registro: 2024-04-10<br/>created_at: 2024-04-10 12:20:54<br/>updated_at: 2024-04-10 18:08:46<br/>', 'PAGO A AFILIADOS', '2024-04-10', '18:08:46', '2024-04-10 22:08:46', '2024-04-10 22:08:46'),
+(76, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 3<br/>codigo: ORD.3<br/>nro: 3<br/>configuracion_pago_id: 2<br/>celular: 77777777<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP775A.TMP<br/>lat: -16.497347554634256<br/>lng: -68.13310731226626<br/>total_sc: 42.80<br/>total: 42.80<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:07:08<br/>updated_at: 2024-04-23 12:07:08<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-23', '12:07:09', '2024-04-23 16:07:09', '2024-04-23 16:07:09'),
+(77, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600<br/>precio_total: 1792<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:13:55<br/>', NULL, 'PRODUCTOS', '2024-04-23', '12:13:55', '2024-04-23 16:13:55', '2024-04-23 16:13:55'),
+(78, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600.00<br/>precio_total: 1792.00<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:13:55<br/>', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600.00<br/>precio_total: 1792<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:15:44<br/>', 'PRODUCTOS', '2024-04-23', '12:15:44', '2024-04-23 16:15:44', '2024-04-23 16:15:44'),
+(79, 9, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.4<br/>nro: 4<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP205A.TMP<br/>lat: -16.497128949388202<br/>lng: -68.13200375446388<br/>total_sc: 2875.12<br/>total: 2875.12<br/>estado: PENDIENTE<br/>user_id: 9<br/>fecha_registro: 2024-05-10<br/>created_at: 2024-05-10 11:07:51<br/>updated_at: 2024-05-10 11:07:51<br/>', NULL, 'ORDEN DE VENTAS', '2024-05-10', '11:07:51', '2024-05-10 15:07:51', '2024-05-10 15:07:51');
 
 -- --------------------------------------------------------
 
@@ -291,6 +297,7 @@ CREATE TABLE `institucions` (
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `driver` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `terminos_condiciones` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -299,8 +306,8 @@ CREATE TABLE `institucions` (
 -- Volcado de datos para la tabla `institucions`
 --
 
-INSERT INTO `institucions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `nit`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `host`, `puerto`, `encriptado`, `email`, `nombre`, `password`, `driver`, `created_at`, `updated_at`) VALUES
-(1, 'ETHERION', 'ET', 'ETHERION S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'ETHERION@GMAIL.COM', 'ETHERION.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'SMTP', NULL, '2024-04-10 16:42:22');
+INSERT INTO `institucions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `nit`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `host`, `puerto`, `encriptado`, `email`, `nombre`, `password`, `driver`, `terminos_condiciones`, `created_at`, `updated_at`) VALUES
+(1, 'ETHERION', 'ET', 'ETHERION S.A.', '11111111', 'LA PAZ', 'LOS OLIVOS', '7777777', 'ETHERION@GMAIL.COM', 'ETHERION.COM', 'ACTIVIDAD', '1710002413_1.jpg', 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'ETHERION', '10-Co20re30oS', 'SMTP', 'WHAT IS LOREM IPSUM?<br />\nLOREM IPSUM IS SIMPLY DUMMY TEXT OF THE PRINTING AND TYPESETTING INDUSTRY. LOREM IPSUM HAS BEEN THE INDUSTRY\'S STANDARD DUMMY TEXT EVER SINCE THE 1500S, WHEN AN UNKNOWN PRINTER TOOK A GALLEY OF TYPE AND SCRAMBLED IT TO MAKE A TYPE SPECIMEN BOOK. IT HAS SURVIVED NOT ONLY FIVE CENTURIES, BUT ALSO THE LEAP INTO ELECTRONIC TYPESETTING, REMAINING ESSENTIALLY UNCHANGED. IT WAS POPULARISED IN THE 1960S WITH THE RELEASE OF LETRASET SHEETS CONTAINING LOREM IPSUM PASSAGES, AND MORE RECENTLY WITH DESKTOP PUBLISHING SOFTWARE LIKE ALDUS PAGEMAKER INCLUDING VERSIONS OF LOREM IPSUM.<br />\n<br />\nWHY DO WE USE IT?<br />\nIT IS A LONG ESTABLISHED FACT THAT A READER WILL BE DISTRACTED BY THE READABLE CONTENT OF A PAGE WHEN LOOKING AT ITS LAYOUT. THE POINT OF USING LOREM IPSUM IS THAT IT HAS A MORE-OR-LESS NORMAL DISTRIBUTION OF LETTERS, AS OPPOSED TO USING \'CONTENT HERE, CONTENT HERE\', MAKING IT LOOK LIKE READABLE ENGLISH. MANY DESKTOP PUBLISHING PACKAGES AND WEB PAGE EDITORS NOW USE LOREM IPSUM AS THEIR DEFAULT MODEL TEXT, AND A SEARCH FOR \'LOREM IPSUM\' WILL UNCOVER MANY WEB SITES STILL IN THEIR INFANCY. VARIOUS VERSIONS HAVE EVOLVED OVER THE YEARS, SOMETIMES BY ACCIDENT, SOMETIMES ON PURPOSE (INJECTED HUMOUR AND THE LIKE).<br />\n<br />\nWHERE DOES IT COME FROM?<br />\nCONTRARY TO POPULAR BELIEF, LOREM IPSUM IS NOT SIMPLY RANDOM TEXT. IT HAS ROOTS IN A PIECE OF CLASSICAL LATIN LITERATURE FROM 45 BC, MAKING IT OVER 2000 YEARS OLD. RICHARD MCCLINTOCK, A LATIN PROFESSOR AT HAMPDEN-SYDNEY COLLEGE IN VIRGINIA, LOOKED UP ONE OF THE MORE OBSCURE LATIN WORDS, CONSECTETUR, FROM A LOREM IPSUM PASSAGE, AND GOING THROUGH THE CITES OF THE WORD IN CLASSICAL LITERATURE, DISCOVERED THE UNDOUBTABLE SOURCE. LOREM IPSUM COMES FROM SECTIONS 1.10.32 AND 1.10.33 OF \"DE FINIBUS BONORUM ET MALORUM\" (THE EXTREMES OF GOOD AND EVIL) BY CICERO, WRITTEN IN 45 BC. THIS BOOK IS A TREATISE ON THE THEORY OF ETHICS, VERY POPULAR DURING THE RENAISSANCE. THE FIRST LINE OF LOREM IPSUM, \"LOREM IPSUM DOLOR SIT AMET..\", COMES FROM A LINE IN SECTION 1.10.32.<br />\n<br />\nTHE STANDARD CHUNK OF LOREM IPSUM USED SINCE THE 1500S IS REPRODUCED BELOW FOR THOSE INTERESTED. SECTIONS 1.10.32 AND 1.10.33 FROM \"DE FINIBUS BONORUM ET MALORUM\" BY CICERO ARE ALSO REPRODUCED IN THEIR EXACT ORIGINAL FORM, ACCOMPANIED BY ENGLISH VERSIONS FROM THE 1914 TRANSLATION BY H. RACKHAM.', NULL, '2024-05-10 14:58:44');
 
 -- --------------------------------------------------------
 
@@ -361,7 +368,11 @@ INSERT INTO `orden_detalles` (`id`, `orden_venta_id`, `producto_id`, `cantidad`,
 (4, 1, 14, 1.00, 227.12, 200.99, 227.12, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
 (5, 1, 8, 3.00, 56.50, 150.00, 169.50, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
 (6, 1, 7, 2.00, 213.91, 381.98, 427.82, '2024-04-10 15:51:29', '2024-04-10 15:51:29'),
-(7, 2, 11, 2.00, 337.11, 601.98, 674.22, '2024-04-10 21:48:58', '2024-04-10 21:48:58');
+(7, 2, 11, 2.00, 337.11, 601.98, 674.22, '2024-04-10 21:48:58', '2024-04-10 21:48:58'),
+(8, 3, 9, 1.00, 42.80, 40.00, 42.80, '2024-04-23 16:07:09', '2024-04-23 16:07:09'),
+(9, 4, 15, 1.00, 1792.00, 1600.00, 1792.00, '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
+(10, 4, 14, 1.00, 227.12, 200.99, 227.12, '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
+(11, 4, 2, 2.00, 428.00, 800.00, 856.00, '2024-05-10 15:07:51', '2024-05-10 15:07:51');
 
 -- --------------------------------------------------------
 
@@ -393,7 +404,9 @@ CREATE TABLE `orden_ventas` (
 
 INSERT INTO `orden_ventas` (`id`, `codigo`, `nro`, `configuracion_pago_id`, `celular`, `comprobante`, `lat`, `lng`, `total_sc`, `total`, `estado`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'ORD.1', 1, 1, '67676767', '1712764289_1.pdf', '-16.496059', '-68.133345', 732.97, 824.44, 'ENTREGADO', 4, '2024-04-10', '2024-04-10 15:51:29', '2024-04-10 22:08:46'),
-(2, 'ORD.2', 2, 2, '67676767', '1712785738_2.pdf', '-16.496059', '-68.133345', 601.98, 674.22, 'ENTREGA PENDIENTE', 7, '2024-04-10', '2024-04-10 21:48:58', '2024-04-10 21:55:32');
+(2, 'ORD.2', 2, 2, '67676767', '1712785738_2.pdf', '-16.496059', '-68.133345', 601.98, 674.22, 'ENTREGA PENDIENTE', 7, '2024-04-10', '2024-04-10 21:48:58', '2024-04-10 21:55:32'),
+(3, 'ORD.3', 3, 2, '77777777', '1713888429_3.pdf', '-16.497347554634256', '-68.13310731226626', 40.00, 42.80, 'PENDIENTE', 4, '2024-04-23', '2024-04-23 16:07:08', '2024-04-23 16:07:09'),
+(4, 'ORD.4', 4, 2, '67676767', '1715353671_4.pdf', '-16.497128949388202', '-68.13200375446388', 2600.99, 2875.12, 'PENDIENTE', 9, '2024-05-10', '2024-05-10 15:07:51', '2024-05-10 15:07:51');
 
 -- --------------------------------------------------------
 
@@ -473,7 +486,8 @@ INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `produc
 (11, 2, 'PRODUCTO #4 AFILIADO 1', 1, 2, 300.99, 337.11, '2024-04-09', '2024-04-09 15:29:44', '2024-04-09 16:46:23'),
 (12, 2, 'PRODUCTO #6 AFILIADO 1', 2, 1, 100.99, 114.12, '2024-04-09', '2024-04-09 15:30:00', '2024-04-09 16:46:29'),
 (13, 2, 'PRODUCTO #7', 2, 1, 300.00, 339.00, '2024-04-09', '2024-04-09 16:04:59', '2024-04-09 16:46:29'),
-(14, 2, 'PRODUCTO # 8 AFI 1', 2, 1, 200.99, 227.12, '2024-04-09', '2024-04-09 16:05:33', '2024-04-09 16:46:29');
+(14, 2, 'PRODUCTO # 8 AFI 1', 2, 1, 200.99, 227.12, '2024-04-09', '2024-04-09 16:05:33', '2024-04-09 16:46:29'),
+(15, 2, 'COMPUTADORA I5', 1, 2, 1600.00, 1792.00, '2024-04-23', '2024-04-23 16:13:55', '2024-04-23 16:15:44');
 
 -- --------------------------------------------------------
 
@@ -535,7 +549,8 @@ INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`
 (4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45'),
 (5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'AFILIADO', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29'),
 (6, 'JUAN@GMAIL.COM', '$2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG', 'JUAN', 'PERES', '', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'OPERADOR', NULL, 1, '2024-04-10', '2024-04-10 16:46:53', '2024-04-10 16:46:53'),
-(7, 'carlos@gmail.com', '$2y$12$r0vh/Z.eQbxx/Mb9rB5uCefItMNYgy8B0p/17uDfWMM3yJckNHffC', 'CARLOS', 'GONZALES', '', '898789', 'CB', 'LOS OLIVOS', 'carlos@gmail.com', '7878787878', 'CLIENTE', NULL, 1, '2024-04-10', '2024-04-10 21:47:10', '2024-04-10 21:47:10');
+(7, 'carlos@gmail.com', '$2y$12$r0vh/Z.eQbxx/Mb9rB5uCefItMNYgy8B0p/17uDfWMM3yJckNHffC', 'CARLOS', 'GONZALES', '', '898789', 'CB', 'LOS OLIVOS', 'carlos@gmail.com', '7878787878', 'CLIENTE', NULL, 1, '2024-04-10', '2024-04-10 21:47:10', '2024-04-10 21:47:10'),
+(9, 'juanm@gmail.com', '$2y$12$HzeTRSYNTQ6B3CsHfP0qyuyegufqCuGSvXs94V9fLe2wWVF2JIL3K', 'JUAN', 'MARTINEZ', 'MAMANI', '232323', 'LP', 'LOS OLIVOS', 'juanm@gmail.com', '7676767667', 'CLIENTE', NULL, 1, '2024-05-10', '2024-05-10 15:06:44', '2024-05-10 15:06:45');
 
 --
 -- Índices para tablas volcadas
@@ -677,7 +692,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion_pagos`
@@ -689,13 +704,13 @@ ALTER TABLE `configuracion_pagos`
 -- AUTO_INCREMENT de la tabla `foto_productos`
 --
 ALTER TABLE `foto_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -713,13 +728,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `orden_detalles`
 --
 ALTER TABLE `orden_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_ventas`
 --
 ALTER TABLE `orden_ventas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pago_afiliados`
@@ -737,7 +752,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_tamanos`
@@ -749,7 +764,7 @@ ALTER TABLE `producto_tamanos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

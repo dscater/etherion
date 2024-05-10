@@ -17,7 +17,7 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request)
     {
-        if ($request->route()->getPrefix() == 'admin' || $request->is(['login', 'registro'])) {
+        if ($request->route()->getPrefix() == 'admin' || $request->is(['login', 'registro', 'terminos_condiciones'])) {
             return 'app';
         }
         return 'portal';

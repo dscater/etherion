@@ -198,7 +198,7 @@ class UserController extends Controller
             }
             if (Auth::user()->tipo == 'CLIENTE') {
                 $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)
-                    ->where("estado", "!=", "PENDIENTE")
+                    // ->where("estado", "!=", "PENDIENTE")
                     ->get();
             }
             $array_infos[] = [

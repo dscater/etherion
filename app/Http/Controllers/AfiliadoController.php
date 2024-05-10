@@ -86,7 +86,7 @@ class AfiliadoController extends Controller
     public function registro(Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci';
-        $this->validacion['email'] = 'required|unique:users,ci';
+        $this->validacion['email'] = 'required|unique:users,email';
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         $request['usuario'] = $request->email;

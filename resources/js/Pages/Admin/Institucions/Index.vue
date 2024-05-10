@@ -354,7 +354,39 @@ function limpiaRefs() {
                                                         >
                                                             Contraseña de envío
                                                         </div>
-                                                        {{ institucion.password }}
+                                                        {{
+                                                            institucion.password
+                                                        }}
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                </v-card>
+                            </v-col>
+                            <v-col cols="12">
+                                <v-card>
+                                    <v-card-text>
+                                        <v-row>
+                                            <v-col
+                                                cols="12"
+                                                class="d-flex align-center"
+                                            >
+                                                <v-row>
+                                                    <v-col cols="12">
+                                                        <h4
+                                                            class="text-center text-h6"
+                                                        >
+                                                            TERMINOS Y
+                                                            CONDICIONES
+                                                        </h4>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="12"
+                                                        v-html="
+                                                            institucion.terminos_condiciones
+                                                        "
+                                                    >
                                                     </v-col>
                                                 </v-row>
                                             </v-col>
@@ -771,7 +803,11 @@ function limpiaRefs() {
                                                 </v-row>
                                                 <v-row>
                                                     <v-col cols="12">
-                                                        <h4 class="text-subtitle-2 font-weight-bold">Envío de correos</h4>
+                                                        <h4
+                                                            class="text-subtitle-2 font-weight-bold"
+                                                        >
+                                                            Envío de correos
+                                                        </h4>
                                                     </v-col>
                                                     <v-col
                                                         cols="12"
@@ -804,9 +840,7 @@ function limpiaRefs() {
                                                             variant="outlined"
                                                             color="grey"
                                                             label="Host*"
-                                                            v-model="
-                                                                form.host
-                                                            "
+                                                            v-model="form.host"
                                                             required
                                                         ></v-text-field>
                                                     </v-col>
@@ -915,9 +949,7 @@ function limpiaRefs() {
                                                             variant="outlined"
                                                             color="grey"
                                                             label="Email de envío*"
-                                                            v-model="
-                                                                form.email
-                                                            "
+                                                            v-model="form.email"
                                                             required
                                                         ></v-text-field>
                                                     </v-col>
@@ -994,6 +1026,49 @@ function limpiaRefs() {
                                                             "
                                                             required
                                                         ></v-text-field>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="12">
+                                                        <h4
+                                                            class="text-subtitle-2 font-weight-bold"
+                                                        >
+                                                            Terminos y
+                                                            Condiciones
+                                                        </h4>
+                                                    </v-col>
+                                                    <v-col cols="12">
+                                                        <v-textarea
+                                                            :hide-details="
+                                                                form.errors
+                                                                    ?.terminos_condiciones
+                                                                    ? false
+                                                                    : true
+                                                            "
+                                                            :error="
+                                                                form.errors
+                                                                    ?.terminos_condiciones
+                                                                    ? true
+                                                                    : false
+                                                            "
+                                                            :error-messages="
+                                                                form.errors
+                                                                    ?.terminos_condiciones
+                                                                    ? form
+                                                                          .errors
+                                                                          ?.terminos_condiciones
+                                                                    : ''
+                                                            "
+                                                            density="compact"
+                                                            variant="outlined"
+                                                            color="grey"
+                                                            label="Terminos y Condiciones*"
+                                                            v-model="
+                                                                form.terminos_condiciones
+                                                            "
+                                                            auto-grow
+                                                            required
+                                                        ></v-textarea>
                                                     </v-col>
                                                 </v-row>
                                             </form>

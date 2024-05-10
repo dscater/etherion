@@ -62,6 +62,11 @@ Route::get('/registro', function () {
 })->name("registro");
 
 
+Route::get('/terminos_condiciones', function () {
+    return Inertia::render('Auth/TerminosCondiciones');
+})->name("terminos_condiciones");
+
+
 Route::get('/login', function () {
     if (Auth::check()) {
         return redirect()->route('inicio');
@@ -183,25 +188,25 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     // REPORTES
     Route::get('reportes/productos', [ReporteController::class, 'productos'])->name("reportes.productos");
     Route::get('reportes/r_productos', [ReporteController::class, 'r_productos'])->name("reportes.r_productos");
-    
+
     Route::get('reportes/orden_ventas', [ReporteController::class, 'orden_ventas'])->name("reportes.orden_ventas");
     Route::get('reportes/r_orden_ventas', [ReporteController::class, 'r_orden_ventas'])->name("reportes.r_orden_ventas");
-    
+
     Route::get('reportes/ingresos_comision', [ReporteController::class, 'ingresos_comision'])->name("reportes.ingresos_comision");
     Route::get('reportes/r_ingresos_comision', [ReporteController::class, 'r_ingresos_comision'])->name("reportes.r_ingresos_comision");
 
     Route::get('reportes/afiliados', [ReporteController::class, 'afiliados'])->name("reportes.afiliados");
     Route::get('reportes/r_afiliados', [ReporteController::class, 'r_afiliados'])->name("reportes.r_afiliados");
-    
+
     Route::get('reportes/clientes', [ReporteController::class, 'clientes'])->name("reportes.clientes");
     Route::get('reportes/r_clientes', [ReporteController::class, 'r_clientes'])->name("reportes.r_clientes");
-    
+
     Route::get('reportes/g_orden_ventas', [ReporteController::class, 'g_orden_ventas'])->name("reportes.g_orden_ventas");
     Route::get('reportes/r_g_orden_ventas', [ReporteController::class, 'r_g_orden_ventas'])->name("reportes.r_g_orden_ventas");
-    
+
     Route::get('reportes/g_ingresos_comision', [ReporteController::class, 'g_ingresos_comision'])->name("reportes.g_ingresos_comision");
     Route::get('reportes/r_g_ingresos_comision', [ReporteController::class, 'r_g_ingresos_comision'])->name("reportes.r_g_ingresos_comision");
-    
+
     Route::get('reportes/e_orden_ventas', [ReporteController::class, 'e_orden_ventas'])->name("reportes.e_orden_ventas");
     Route::get('reportes/r_e_orden_ventas', [ReporteController::class, 'r_e_orden_ventas'])->name("reportes.r_e_orden_ventas");
 });
