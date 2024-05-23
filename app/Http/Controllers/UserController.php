@@ -123,16 +123,22 @@ class UserController extends Controller
             "reportes.g_ingresos_comision",
             "reportes.e_orden_ventas",
         ],
-        "AFILIADO" => [
+        // "AFILIADO" => [
+        //     "productos.index",
+        //     "productos.create",
+        //     "productos.edit",
+        //     "productos.destroy",
+
+        //     "orden_ventas.index",
+        //     "orden_ventas.show",
+        // ],
+        "CLIENTE" => [
             "productos.index",
             "productos.create",
             "productos.edit",
             "productos.destroy",
 
-            "orden_ventas.index",
-            "orden_ventas.show",
-        ],
-        "CLIENTE" => [
+            "orden_ventas.ventas",
             "orden_ventas.index",
             "orden_ventas.show",
         ],
@@ -187,20 +193,33 @@ class UserController extends Controller
                 "url" => "productos.index"
             ];
         }
-        if (in_array('orden_ventas.index', self::$permisos[$tipo])) {
+
+        if (Auth::user()->tipo == 'CLIENTE') {
+            $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)
+                ->get();
+            $array_infos[] = [
+                'label' => 'Compras',
+                'cantidad' => count($orden_ventas),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/checklist.png"),
+                "url" => "orden_ventas.index"
+            ];
+
+            $orden_ventas = OrdenVenta::select("orden_ventas.*")
+                ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
+                ->join("productos", "productos.id", "=", "orden_detalles.producto_id")
+                ->where("productos.user_id", Auth::user()->id)
+                ->get();
+
+            $array_infos[] = [
+                'label' => 'Ventas',
+                'cantidad' => count($orden_ventas),
+                'color' => 'bg-yellow-accent-3',
+                'icon' => asset("imgs/box_check.png"),
+                "url" => "orden_ventas.index"
+            ];
+        } else {
             $orden_ventas = OrdenVenta::all();
-            if (Auth::user()->tipo == 'AFILIADO') {
-                $orden_ventas = OrdenVenta::select("orden_ventas.*")
-                    ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
-                    ->join("productos", "productos.id", "=", "orden_detalles.producto_id")
-                    ->where("productos.user_id", Auth::user()->id)
-                    ->get();
-            }
-            if (Auth::user()->tipo == 'CLIENTE') {
-                $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)
-                    // ->where("estado", "!=", "PENDIENTE")
-                    ->get();
-            }
             $array_infos[] = [
                 'label' => 'Ordenes de Ventas',
                 'cantidad' => count($orden_ventas),
@@ -209,6 +228,7 @@ class UserController extends Controller
                 "url" => "orden_ventas.index"
             ];
         }
+
         if (in_array('categorias.index', self::$permisos[$tipo])) {
             $categorias = Categoria::all();
             $array_infos[] = [

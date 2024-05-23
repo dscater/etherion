@@ -149,6 +149,7 @@ const scrollActive = () => {
                     oUser.permisos.includes('clientes.index') ||
                     oUser.permisos.includes('afiliados.index') ||
                     oUser.permisos.includes('orden_ventas.index') ||
+                    oUser.permisos.includes('orden_ventas.ventas') ||
                     oUser.permisos.includes('orden_ventas.show') ||
                     oUser.permisos.includes('pago_afiliados.show')
                 "
@@ -188,13 +189,35 @@ const scrollActive = () => {
                 @click="cambiarUrl(route('orden_ventas.index'))"
                 link
             >
-                <v-list-item-title>Orden de venta</v-list-item-title>
+                <v-list-item-title>{{
+                    oUser.tipo != "CLIENTE" ? "Orden de Venta" : "Compras"
+                }}</v-list-item-title>
                 <v-tooltip
                     v-if="rail && !mobile"
                     color="white"
                     activator="parent"
                     location="end"
-                    >Orden de venta</v-tooltip
+                    >{{
+                        oUser.tipo != "CLIENTE" ? "Orden de Venta" : "Compras"
+                    }}</v-tooltip
+                >
+            </v-list-item>
+            <v-list-item
+                :class="[
+                    route_current == 'orden_ventas.ventas' ? 'active' : '',
+                ]"
+                v-if="oUser.permisos.includes('orden_ventas.ventas')"
+                prepend-icon="mdi-archive-check"
+                @click="cambiarUrl(route('orden_ventas.ventas'))"
+                link
+            >
+                <v-list-item-title>Ventas</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Ventas</v-tooltip
                 >
             </v-list-item>
             <v-list-item
@@ -204,13 +227,17 @@ const scrollActive = () => {
                 @click="cambiarUrl(route('productos.index'))"
                 link
             >
-                <v-list-item-title>Productos</v-list-item-title>
+                <v-list-item-title>{{
+                    oUser.tipo != "CLIENTE" ? "Productos" : "Mis Productos"
+                }}</v-list-item-title>
                 <v-tooltip
                     v-if="rail && !mobile"
                     color="white"
                     activator="parent"
                     location="end"
-                    >Productos</v-tooltip
+                    >{{
+                        oUser.tipo != "CLIENTE" ? "Productos" : "Mis Productos"
+                    }}</v-tooltip
                 >
             </v-list-item>
             <v-list-item
@@ -400,7 +427,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Lista Orden de Ventas"
                     :class="[
-                        route_current == 'reportes.orden_ventas' ? 'active' : '',
+                        route_current == 'reportes.orden_ventas'
+                            ? 'active'
+                            : '',
                     ]"
                     @click="cambiarUrl(route('reportes.orden_ventas'))"
                     link
@@ -418,7 +447,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Ingresos por Comisión"
                     :class="[
-                        route_current == 'reportes.ingresos_comision' ? 'active' : '',
+                        route_current == 'reportes.ingresos_comision'
+                            ? 'active'
+                            : '',
                     ]"
                     @click="cambiarUrl(route('reportes.ingresos_comision'))"
                     link
@@ -472,7 +503,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Gráfico Orden Ventas"
                     :class="[
-                        route_current == 'reportes.g_orden_ventas' ? 'active' : '',
+                        route_current == 'reportes.g_orden_ventas'
+                            ? 'active'
+                            : '',
                     ]"
                     @click="cambiarUrl(route('reportes.g_orden_ventas'))"
                     link
@@ -486,11 +519,15 @@ const scrollActive = () => {
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.g_ingresos_comision')"
+                    v-if="
+                        oUser.permisos.includes('reportes.g_ingresos_comision')
+                    "
                     prepend-icon="mdi-chevron-right"
                     title="Gráfico Ingresos Comisión"
                     :class="[
-                        route_current == 'reportes.g_ingresos_comision' ? 'active' : '',
+                        route_current == 'reportes.g_ingresos_comision'
+                            ? 'active'
+                            : '',
                     ]"
                     @click="cambiarUrl(route('reportes.g_ingresos_comision'))"
                     link
@@ -508,7 +545,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Estado Orden de Ventas"
                     :class="[
-                        route_current == 'reportes.e_orden_ventas' ? 'active' : '',
+                        route_current == 'reportes.e_orden_ventas'
+                            ? 'active'
+                            : '',
                     ]"
                     @click="cambiarUrl(route('reportes.e_orden_ventas'))"
                     link

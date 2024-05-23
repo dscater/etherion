@@ -32,7 +32,12 @@ class OrdenVentaController extends Controller
         if (Auth::user()->tipo == 'CLIENTE') {
             return Inertia::render("Admin/OrdenVentas/Cliente");
         }
-        if (Auth::user()->tipo == 'AFILIADO') {
+        return Inertia::render("Admin/OrdenVentas/Index");
+    }
+
+    public function ventas()
+    {
+        if (Auth::user()->tipo == 'CLIENTE') {
             return Inertia::render("Admin/OrdenVentas/Afiliado");
         }
         return Inertia::render("Admin/OrdenVentas/Index");
@@ -73,23 +78,10 @@ class OrdenVentaController extends Controller
 
     public function paginado(Request $request)
     {
-
         $search = $request->search;
 
         $orden_ventas = [];
-        if (Auth::user()->tipo == 'AFILIADO') {
-            $orden_ventas = OrdenVenta::select("orden_ventas.*", "orden_detalles.precio_total", "orden_detalles.precio_sc", "orden_detalles.cantidad", "productos.descripcion")
-                ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
-                ->join("productos", "productos.id", "=", "orden_detalles.producto_id");
-            // $orden_ventas->where("orden_ventas.estado", "!=", "PENDIENTE");
-            $orden_ventas->where("productos.user_id", Auth::user()->id);
-            if (trim($search) != "") {
-                $orden_ventas->where(function ($query) use ($search) {
-                    $query->where('orden_ventas.codigo', 'LIKE', "%$search%")
-                        ->orWhere('productos.descripcion', 'LIKE', "%$search%");
-                });
-            }
-        } elseif (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'CLIENTE') {
             $orden_ventas = OrdenVenta::with(["user"])->select("orden_ventas.*");
             $orden_ventas->where("user_id", Auth::user()->id);
             // $orden_ventas->where("estado", "!=", "PENDIENTE");
@@ -104,6 +96,28 @@ class OrdenVentaController extends Controller
             }
         }
 
+        $orden_ventas = $orden_ventas->orderBy("id", "desc");
+
+        $orden_ventas = $orden_ventas->paginate($request->itemsPerPage);
+        return response()->JSON([
+            "orden_ventas" => $orden_ventas
+        ]);
+    }
+
+    public function ventas_paginado(Request $request)
+    {
+        $search = $request->search;
+        $orden_ventas = OrdenVenta::select("orden_ventas.*", "orden_detalles.precio_total", "orden_detalles.precio_sc", "orden_detalles.cantidad", "productos.descripcion")
+            ->join("orden_detalles", "orden_detalles.orden_venta_id", "=", "orden_ventas.id")
+            ->join("productos", "productos.id", "=", "orden_detalles.producto_id");
+        // $orden_ventas->where("orden_ventas.estado", "!=", "PENDIENTE");
+        $orden_ventas->where("productos.user_id", Auth::user()->id);
+        if (trim($search) != "") {
+            $orden_ventas->where(function ($query) use ($search) {
+                $query->where('orden_ventas.codigo', 'LIKE', "%$search%")
+                    ->orWhere('productos.descripcion', 'LIKE', "%$search%");
+            });
+        }
         $orden_ventas = $orden_ventas->orderBy("id", "desc");
 
         $orden_ventas = $orden_ventas->paginate($request->itemsPerPage);

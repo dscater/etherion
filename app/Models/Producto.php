@@ -16,6 +16,10 @@ class Producto extends Model
         "producto_tamano_id",
         "precio",
         "precio_total",
+        "color",
+        "modelo",
+        "marca",
+        "otros",
         "fecha_registro",
     ];
 

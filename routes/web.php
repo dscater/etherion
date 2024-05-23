@@ -170,8 +170,10 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     );
 
     // ORDEN DE VENTAS
+    Route::get("ventas", [OrdenVentaController::class, 'ventas'])->name("orden_ventas.ventas");
     Route::post("registraOrden", [OrdenVentaController::class, 'registraOrden'])->name("orden_ventas.registraOrden");
     Route::patch("orden_ventas/actualiza_estado/{orden_venta}", [OrdenVentaController::class, 'actualiza_estado'])->name("orden_ventas.actualiza_estado");
+    Route::get("orden_ventas/ventas_paginado", [OrdenVentaController::class, 'ventas_paginado'])->name("orden_ventas.ventas_paginado");
     Route::get("orden_ventas/paginado", [OrdenVentaController::class, 'paginado'])->name("orden_ventas.paginado");
     Route::get("orden_ventas/listado", [OrdenVentaController::class, 'listado'])->name("orden_ventas.listado");
     Route::resource("orden_ventas", OrdenVentaController::class)->only(

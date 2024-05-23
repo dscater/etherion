@@ -19,15 +19,8 @@ const form = useForm({
     password: "",
     password_confirmation: "",
     nombre: "",
-    paterno: "",
-    materno: "",
-    ci: "",
-    ci_exp: null,
-    dir: "",
     email: "",
     fono: "",
-    banco: "",
-    nro_cuenta: "",
     tipo: null,
     acepto: false,
 });
@@ -50,11 +43,13 @@ const listTipo = [
 const visible = ref(false);
 
 const submit = () => {
-    let url = route("afiliados.registro");
-    if (form.tipo == "AFILIADO") {
-    } else {
-        url = route("clientes.registro");
-    }
+    // let url = route("afiliados.registro");
+    // if (form.tipo == "AFILIADO") {
+    // } else {
+    //     url = route("clientes.registro");
+    // }
+
+    let url = route("clientes.registro");
 
     form.post(url, {
         onError: (err) => {
@@ -97,11 +92,11 @@ onMounted(() => {
                                         Crear Cuenta
                                     </h4>
                                     <v-row align="center" justify="center">
-                                        <v-col cols="12" sm="6" md="4" xl="3">
+                                        <v-col cols="12" sm="6" md="6" xl="4">
                                             <div
                                                 class="text-caption text-medium-emphasis"
                                             >
-                                                Nombre(s)
+                                                Nombre Completo
                                             </div>
 
                                             <v-text-field
@@ -130,257 +125,7 @@ onMounted(() => {
                                                 autofocus=""
                                             ></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Ap. Paterno
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.paterno
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.paterno
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.paterno
-                                                        ? form.errors?.paterno
-                                                        : ''
-                                                "
-                                                placeholder="Apellido Paterno"
-                                                prepend-inner-icon="mdi-account"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.paterno"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Ap. Materno
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.materno
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.materno
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.materno
-                                                        ? form.errors?.materno
-                                                        : ''
-                                                "
-                                                placeholder="Apellido Materno"
-                                                prepend-inner-icon="mdi-account"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.materno"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Nro. C.I.
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.ci
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.ci
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.ci
-                                                        ? form.errors?.ci
-                                                        : ''
-                                                "
-                                                placeholder="Nro. C.I."
-                                                prepend-inner-icon="mdi-card-account-details"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.ci"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Extensión C.I.
-                                            </div>
-
-                                            <v-select
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.ci_exp
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.ci_exp
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.ci_exp
-                                                        ? form.errors?.ci_exp
-                                                        : ''
-                                                "
-                                                :items="listExpedido"
-                                                item-value="value"
-                                                item-title="label"
-                                                placeholder="Extensión C.I."
-                                                prepend-inner-icon="mdi-card-account-details"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.ci_exp"
-                                                autofocus=""
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Registrarse para
-                                            </div>
-
-                                            <v-select
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.tipo
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.tipo
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.tipo
-                                                        ? form.errors?.tipo
-                                                        : ''
-                                                "
-                                                :items="listTipo"
-                                                item-value="value"
-                                                item-title="label"
-                                                placeholder="Registrarse para"
-                                                prepend-inner-icon="mdi-account-tag"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.tipo"
-                                                autofocus=""
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                            xl="3"
-                                            v-if="form.tipo == 'AFILIADO'"
-                                        >
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Nombre de Banco
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.banco
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.banco
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.banco
-                                                        ? form.errors?.banco
-                                                        : ''
-                                                "
-                                                placeholder="Nombre de Banco"
-                                                prepend-inner-icon="mdi-office-building"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.banco"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col
-                                            cols="12"
-                                            sm="6"
-                                            md="4"
-                                            xl="3"
-                                            v-if="form.tipo == 'AFILIADO'"
-                                        >
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Número de Cuenta Bancaria
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.nro_cuenta
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.nro_cuenta
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.nro_cuenta
-                                                        ? form.errors
-                                                              ?.nro_cuenta
-                                                        : ''
-                                                "
-                                                placeholder="Número de Cuenta Bancaria"
-                                                prepend-inner-icon="mdi-credit-card"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.nro_cuenta"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
+                                        <v-col cols="12" sm="6" md="6" xl="4">
                                             <div
                                                 class="text-caption text-medium-emphasis"
                                             >
@@ -413,40 +158,7 @@ onMounted(() => {
                                                 autofocus=""
                                             ></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
-                                            <div
-                                                class="text-caption text-medium-emphasis"
-                                            >
-                                                Dirección
-                                            </div>
-
-                                            <v-text-field
-                                                density="compact"
-                                                :hide-details="
-                                                    form.errors?.dir
-                                                        ? false
-                                                        : true
-                                                "
-                                                :error="
-                                                    form.errors?.dir
-                                                        ? true
-                                                        : false
-                                                "
-                                                :error-messages="
-                                                    form.errors?.dir
-                                                        ? form.errors?.dir
-                                                        : ''
-                                                "
-                                                placeholder="Dirección"
-                                                prepend-inner-icon="mdi-map-marker"
-                                                variant="outlined"
-                                                color="primary"
-                                                autocomplete="false"
-                                                v-model="form.dir"
-                                                autofocus=""
-                                            ></v-text-field>
-                                        </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
+                                        <v-col cols="12" sm="6" md="6" xl="4">
                                             <div
                                                 class="text-caption text-medium-emphasis"
                                             >
@@ -479,7 +191,7 @@ onMounted(() => {
                                                 autofocus=""
                                             ></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="4" xl="3">
+                                        <v-col cols="12" sm="6" md="6" xl="4">
                                             <div
                                                 class="text-caption text-medium-emphasis d-flex align-center justify-space-between"
                                             >

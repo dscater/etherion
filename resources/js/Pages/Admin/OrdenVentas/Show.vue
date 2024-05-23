@@ -13,7 +13,7 @@ const breadbrums = [
         name_url: "orden_ventas.index",
     },
     {
-        title: "Detall de Orden",
+        title: "Detalle de Orden",
         disabled: false,
         url: "",
         name_url: "",

@@ -243,6 +243,28 @@ const agregarProducto = () => {
     }
 };
 
+const detectar_scroll = () => {
+    const buscador_movil = document.querySelector(".buscador_movil");
+    let elementTop = 0;
+    let elementBottom = 0;
+    if (buscador_movil) {
+        const rect = buscador_movil.getBoundingClientRect();
+        elementTop = rect.top + window.scrollY;
+        elementBottom = rect.bottom + window.scrollY;
+    }
+
+    window.addEventListener("scroll", function () {
+        // console.log("Scroll en la ventana:", window.scrollY);
+        // console.log(elementBottom)
+        // console.log(window.scrollY)
+        if (elementBottom > 0 && window.scrollY > elementBottom) {
+            buscador_movil.classList.add("pegado");
+        } else {
+            buscador_movil.classList.remove("pegado");
+        }
+    });
+};
+
 onMounted(() => {
     carrito_store.inicializaCarrito();
     cargaListas();
@@ -254,6 +276,8 @@ onMounted(() => {
             menu_portal_store.setLoadingPage(false);
         }
     }, 300);
+
+    detectar_scroll();
 });
 </script>
 <template>
@@ -261,7 +285,7 @@ onMounted(() => {
 
     <!-- Product -->
     <div class="bg0 m-t-23 p-b-140">
-        <div class="container">
+        <div class="container contenedor_inicio">
             <div class="flex-w flex-sb-m p-b-10">
                 <div class="flex-w flex-c-m m-tb-10">
                     <div
@@ -290,7 +314,9 @@ onMounted(() => {
                 </div>
 
                 <!-- Search product -->
-                <div class="dis-none panel-search w-full p-t-10 p-b-15">
+                <div
+                    class="dis-none panel-search w-full p-t-10 p-b-15 buscador_escritorio"
+                >
                     <div class="bor8 dis-flex p-l-15">
                         <button
                             class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04"
@@ -447,6 +473,26 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+            <div class="row buscador_movil">
+                <div class="col-12">
+                    <div class="dis-flex p-l-15">
+                        <button
+                            class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04"
+                        >
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+
+                        <input
+                            v-model="params_productos.search"
+                            class="mtext-107 cl2 size-114 plh2 p-r-15"
+                            type="text"
+                            name="search-product"
+                            @keyup.prevent="preparaBusqueda"
+                            placeholder="Buscar"
+                        />
+                    </div>
+                </div>
+            </div>
             <div class="row" v-if="params_productos.search.trim() != ''">
                 <div class="col-12">
                     Buscando: {{ params_productos.search }}
@@ -458,12 +504,12 @@ onMounted(() => {
                 v-show="!loadingProductos"
             >
                 <div
-                    class="col-sm-6 col-md-4 col-lg-3 p-b-35 item_producto"
+                    class="col-6 col-sm-6 col-md-4 col-lg-3 p-b-35 item_producto"
                     v-for="item in listProductos"
                 >
                     <!-- Block2 -->
                     <div class="block2">
-                        <div class="block2-pic hov-img0">
+                        <div class="block2-pic hov-img0 imagen_producto">
                             <img
                                 :src="item.foto_productos[0].url_foto"
                                 alt="IMG-PRODUCTO"
@@ -602,10 +648,45 @@ onMounted(() => {
                             <span class="mtext-106 cl2">
                                 Bs. {{ oProducto?.precio_total }}
                             </span>
-
-                            <p class="stext-102 cl3 p-t-23">
+                            <p
+                                class="mtext-104 cl2 p-t-23 font-weight-bold mb-0 pb-0"
+                            >
                                 {{ oProducto?.descripcion }}
                             </p>
+                            <template v-if="oProducto">
+                                <p class="stext-104 cl3 p-t-23">
+                                    <strong>Color: </strong
+                                    >{{
+                                        oProducto.color
+                                            ? oProducto.color
+                                            : " S/D"
+                                    }}
+                                </p>
+                                <p class="stext-104 cl3 p-t-23">
+                                    <strong>Modelo: </strong
+                                    >{{
+                                        oProducto.modelo
+                                            ? oProducto.modelo
+                                            : " S/D"
+                                    }}
+                                </p>
+                                <p class="stext-104 cl3 p-t-23">
+                                    <strong>Marca: </strong
+                                    >{{
+                                        oProducto.marca
+                                            ? oProducto.marca
+                                            : " S/D"
+                                    }}
+                                </p>
+                                <p class="stext-104 cl3 p-t-23">
+                                    <strong>Otros: </strong
+                                    >{{
+                                        oProducto.otros
+                                            ? oProducto.otros
+                                            : " S/D"
+                                    }}
+                                </p>
+                            </template>
 
                             <!--  -->
                             <div class="p-t-33">
@@ -663,4 +744,37 @@ onMounted(() => {
     </div>
 </template>
 
-<style></style>
+<style scoped>
+.buscador_movil {
+    display: none;
+    transition: all 0.2s ease;
+}
+
+.contenedor_inicio {
+    min-height: 60vh !important;
+}
+
+@media (max-width: 768px) {
+    .imagen_producto {
+        max-height: 120px;
+    }
+
+    .buscador_escritorio,
+    .js-show-search {
+        display: none !important;
+    }
+
+    .buscador_movil {
+        display: block;
+    }
+
+    .buscador_movil.pegado {
+        width: 100%;
+        z-index: 200;
+        background-color: white;
+        position: fixed;
+        top: 0px;
+        box-shadow: 0px 0px 10px 3px black;
+    }
+}
+</style>

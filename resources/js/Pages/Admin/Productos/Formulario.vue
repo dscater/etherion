@@ -207,6 +207,86 @@ onMounted(() => {
                                     ></v-select>
                                 </v-col>
                                 <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.color ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.color ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.color
+                                                ? form.errors?.color
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        label="Color"
+                                        v-model="form.color"
+                                        required
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.modelo ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.modelo ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.modelo
+                                                ? form.errors?.modelo
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        label="Modelo"
+                                        v-model="form.modelo"
+                                        required
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.marca ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.marca ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.marca
+                                                ? form.errors?.marca
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        label="Marca"
+                                        v-model="form.marca"
+                                        required
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.otros ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.otros ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.otros
+                                                ? form.errors?.otros
+                                                : ''
+                                        "
+                                        density="compact"
+                                        variant="outlined"
+                                        label="Otros"
+                                        v-model="form.otros"
+                                        required
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
                                     <v-select
                                         no-data-text="Sin registros"
                                         :hide-details="

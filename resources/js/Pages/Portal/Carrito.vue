@@ -219,17 +219,10 @@ const cargaMapaGoogle = async (lat, lng, drag = false, dir = "") => {
     // Escucha el evento de arrastrar del marcador
     marker_map.addListener("dragend", (event) => {
         const position = marker_map.position;
-        // console.log(position.lat);
-        // console.log(position.lng);
         o_ordenVenta.lat = "" + position.lat;
         o_ordenVenta.lng = "" + position.lng;
         console.log(o_ordenVenta.lat);
         console.log(o_ordenVenta.lng);
-        // infoWindow.close();
-        // infoWindow.setContent(
-        //     `Pin dropped at: ${position.lat}, ${position.lng}`
-        // );
-        // infoWindow.open(AME.map, AME);
     });
 
     // evento click sobre el marcador
@@ -240,6 +233,20 @@ const cargaMapaGoogle = async (lat, lng, drag = false, dir = "") => {
     });
 };
 // FIN GOOGLE MAP
+
+const nro_paso = ref(0);
+
+const irAlPago = () => {
+    if (!user) {
+        window.location = "/login";
+    } else {
+        if (nro_paso.value == 0) {
+            nro_paso.value = 1;
+        } else {
+            nro_paso.value = 0;
+        }
+    }
+};
 
 onMounted(() => {
     cargaMapaGoogle("-16.496059", "-68.133345", true);
@@ -255,19 +262,23 @@ onMounted(() => {
     <Head title="Carrito"></Head>
 
     <!-- Shoping Cart -->
-    <form class="bg0 p-t-75 p-b-85">
+    <form class="bg0 p-t-75 p-b-85 form-carrito">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="col-12 m-lr-auto m-b-50" v-show="nro_paso == 0">
                     <div class="m-l-25 m-r--38 m-lr-0-xl">
                         <div class="wrap-table-shopping-cart">
                             <table class="table-shopping-cart">
                                 <tr class="table_head">
-                                    <th class="column-1">Producto</th>
-                                    <th class="column-2"></th>
-                                    <th class="column-3">Precio</th>
-                                    <th class="column-4">Cantidad</th>
-                                    <th class="column-5">Total</th>
+                                    <th class="column-1 text-center">
+                                        Producto
+                                    </th>
+                                    <th class="column-2 text-center"></th>
+                                    <th class="column-3 text-center">Precio</th>
+                                    <th class="column-4 text-center">
+                                        Cantidad
+                                    </th>
+                                    <th class="column-5 text-center">Total</th>
                                 </tr>
 
                                 <tr
@@ -299,10 +310,10 @@ onMounted(() => {
                                     <td class="column-2">
                                         {{ item.producto.descripcion }}
                                     </td>
-                                    <td class="column-3">
+                                    <td class="column-3 text-center">
                                         Bs. {{ item.producto.precio_total }}
                                     </td>
-                                    <td class="column-4">
+                                    <td class="column-4 text-center">
                                         <div
                                             class="wrap-num-product flex-w m-l-auto m-r-0"
                                         >
@@ -338,7 +349,7 @@ onMounted(() => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="column-5">
+                                    <td class="column-5 text-center">
                                         Bs. {{ item.precio_total }}
                                     </td>
                                 </tr>
@@ -350,14 +361,51 @@ onMounted(() => {
                             </table>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-center">
+                            <strong class="mtext-102 cl2"> Total: </strong>
+                            <span class="ltext-101 cl2">
+                                Bs. {{ carrito_store.total_final }}
+                            </span>
+                        </div>
+                        <div
+                            class="col-md-4 mx-auto"
+                            v-if="carrito_store.productos.length > 0"
+                        >
+                            <button
+                                type="button"
+                                class="btn btn-primary btn-block"
+                                @click="irAlPago"
+                            >
+                                <i class="fa fa-arrow-right"></i> Proceder con
+                                el Pago
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+                <div
+                    class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50"
+                    v-show="nro_paso == 1"
+                >
                     <div
-                        class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"
+                        class="bor10 p-lr-40 p-t-10 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"
                     >
+                        <div
+                            class="col-md-12 mb-3"
+                            v-if="carrito_store.productos.length > 0"
+                        >
+                            <button
+                                type="button"
+                                class="btn btn-default btn-block"
+                                @click.prevent="irAlPago"
+                            >
+                                <i class="fa fa-arrow-left"></i> Volver al carrito
+                            </button>
+                        </div>
+
                         <h4 class="mtext-109 text-center pb-3 bor12">
-                            Información orden de venta
+                            Información del Pago
                         </h4>
                         <div class="row mt-3">
                             <div class="col-12">
@@ -469,5 +517,9 @@ onMounted(() => {
 #google_map {
     width: 100%;
     height: 300px;
+}
+
+.form-carrito {
+    min-height: 60vh;
 }
 </style>

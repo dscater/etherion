@@ -30,12 +30,7 @@ onMounted(() => {
     }, 300);
 });
 
-const {
-    getOrdenVentasApi,
-    setOrdenVenta,
-    limpiarOrdenVenta,
-    deleteOrdenVenta,
-} = useOrdenVentas();
+const { getOrdenVentasPaginadoApi } = useOrdenVentas();
 const responseOrdenVentas = ref([]);
 const listOrdenVentas = ref([]);
 const itemsPerPage = ref(5);
@@ -95,7 +90,9 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseOrdenVentas.value = await getOrdenVentasApi(options.value);
+        responseOrdenVentas.value = await getOrdenVentasPaginadoApi(
+            options.value
+        );
         listOrdenVentas.value = responseOrdenVentas.value.data;
         totalItems.value = parseInt(responseOrdenVentas.value.total);
         loading.value = false;
@@ -169,7 +166,8 @@ const verOrdenVenta = (item) => {
                                         <v-chip
                                             :color="
                                                 [
-                                                    item.estado == 'ENTREGA PENDIENTE'
+                                                    item.estado ==
+                                                    'ENTREGA PENDIENTE'
                                                         ? 'primary'
                                                         : item.estado ==
                                                           'ENTREGADO'

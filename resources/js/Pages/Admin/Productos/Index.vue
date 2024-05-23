@@ -69,6 +69,26 @@ const headers = ref([
         sortable: false,
     },
     {
+        title: "Color",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Modelo",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Marca",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Otros",
+        align: "start",
+        sortable: false,
+    },
+    {
         title: "Fecha de Registro",
         align: "start",
         sortable: false,
@@ -222,6 +242,10 @@ const eliminarProducto = (item) => {
                                     <td>{{ item.categoria.nombre }}</td>
                                     <td>{{ item.producto_tamano.nombre }}</td>
                                     <td>{{ item.precio }}</td>
+                                    <td>{{ item.color }}</td>
+                                    <td>{{ item.modelo }}</td>
+                                    <td>{{ item.marca }}</td>
+                                    <td>{{ item.otros }}</td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
@@ -287,6 +311,30 @@ const eliminarProducto = (item) => {
                                                 data-label="Precio Bs.:"
                                             >
                                                 {{ item.precio }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Color:"
+                                            >
+                                                {{ item.color }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Modelo:"
+                                            >
+                                                {{ item.modelo }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Marca:"
+                                            >
+                                                {{ item.marca }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Otros:"
+                                            >
+                                                {{ item.otros }}
                                             </li>
                                             <li
                                                 class="flex-item"

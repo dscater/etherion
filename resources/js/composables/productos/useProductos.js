@@ -10,6 +10,10 @@ const oProducto = reactive({
     producto_tamano_id: "",
     precio: "",
     precio_total: "",
+    color: "",
+    modelo: "",
+    marca: "",
+    otros: "",
     foto_productos: reactive([]),
     eliminados: reactive([]),
     _method: "POST",
@@ -142,6 +146,10 @@ export const useProductos = () => {
             oProducto.producto_tamano_id = item.producto_tamano_id;
             oProducto.precio = item.precio;
             oProducto.precio_total = item.precio_total;
+            oProducto.color = item.color;
+            oProducto.modelo = item.modelo;
+            oProducto.marca = item.marca;
+            oProducto.otros = item.otros;
             oProducto.foto_productos = reactive([]);
             oProducto.eliminados = reactive([]);
             if (archivos) {
@@ -161,6 +169,10 @@ export const useProductos = () => {
         oProducto.producto_tamano_id = "";
         oProducto.precio = "";
         oProducto.precio_total = "";
+        oProducto.color = "";
+        oProducto.modelo = "";
+        oProducto.marca = "";
+        oProducto.otros = "";
         oProducto.foto_productos = reactive([]);
         oProducto.eliminados = reactive([]);
         oProducto._method = "POST";

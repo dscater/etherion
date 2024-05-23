@@ -64,6 +64,34 @@ export const useOrdenVentas = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
+
+    const getOrdenVentasPaginadoApi = async (data) => {
+        try {
+            const response = await axios.get(
+                route("orden_ventas.ventas_paginado", data),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
+            return response.data.orden_ventas;
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `${
+                    flash.error
+                        ? flash.error
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
+                }`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            throw err; // Puedes manejar el error según tus necesidades
+        }
+    };
+
     const saveOrdenVenta = async (data) => {
         try {
             const response = await axios.post(
@@ -159,6 +187,7 @@ export const useOrdenVentas = () => {
         oOrdenVenta,
         getOrdenVentas,
         getOrdenVentasApi,
+        getOrdenVentasPaginadoApi,
         saveOrdenVenta,
         deleteOrdenVenta,
         setOrdenVenta,

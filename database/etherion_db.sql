@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-05-2024 a las 15:09:53
+-- Tiempo de generación: 23-05-2024 a las 15:22:11
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -111,7 +111,8 @@ CREATE TABLE `clientes` (
 INSERT INTO `clientes` (`id`, `user_id`, `acepto_contrato`, `created_at`, `updated_at`) VALUES
 (1, 4, 1, '2024-04-08 15:45:24', '2024-04-08 15:45:24'),
 (2, 7, 1, '2024-04-10 21:47:10', '2024-04-10 21:47:10'),
-(3, 9, 1, '2024-05-10 15:06:45', '2024-05-10 15:06:45');
+(3, 9, 1, '2024-05-10 15:06:45', '2024-05-10 15:06:45'),
+(4, 10, 1, '2024-05-23 14:04:04', '2024-05-23 14:04:04');
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,8 @@ INSERT INTO `foto_productos` (`id`, `producto_id`, `foto`, `created_at`, `update
 (19, 12, 'imagen121712676600_0.jpg', '2024-04-09 15:30:00', '2024-04-09 15:30:00'),
 (20, 13, 'imagen131712678699_0.jpg', '2024-04-09 16:04:59', '2024-04-09 16:04:59'),
 (21, 14, 'imagen141712678733_0.jpg', '2024-04-09 16:05:33', '2024-04-09 16:05:33'),
-(22, 15, 'imagen151713888835_0.png', '2024-04-23 16:13:55', '2024-04-23 16:13:55');
+(22, 15, 'imagen151713888835_0.png', '2024-04-23 16:13:55', '2024-04-23 16:13:55'),
+(23, 16, 'imagen161716474413_0.png', '2024-05-23 14:26:53', '2024-05-23 14:26:53');
 
 -- --------------------------------------------------------
 
@@ -269,7 +271,10 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (76, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 3<br/>codigo: ORD.3<br/>nro: 3<br/>configuracion_pago_id: 2<br/>celular: 77777777<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP775A.TMP<br/>lat: -16.497347554634256<br/>lng: -68.13310731226626<br/>total_sc: 42.80<br/>total: 42.80<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:07:08<br/>updated_at: 2024-04-23 12:07:08<br/>', NULL, 'ORDEN DE VENTAS', '2024-04-23', '12:07:09', '2024-04-23 16:07:09', '2024-04-23 16:07:09'),
 (77, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600<br/>precio_total: 1792<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:13:55<br/>', NULL, 'PRODUCTOS', '2024-04-23', '12:13:55', '2024-04-23 16:13:55', '2024-04-23 16:13:55'),
 (78, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600.00<br/>precio_total: 1792.00<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:13:55<br/>', 'id: 15<br/>user_id: 2<br/>descripcion: COMPUTADORA I5<br/>categoria_id: 1<br/>producto_tamano_id: 2<br/>precio: 1600.00<br/>precio_total: 1792<br/>fecha_registro: 2024-04-23<br/>created_at: 2024-04-23 12:13:55<br/>updated_at: 2024-04-23 12:15:44<br/>', 'PRODUCTOS', '2024-04-23', '12:15:44', '2024-04-23 16:15:44', '2024-04-23 16:15:44'),
-(79, 9, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.4<br/>nro: 4<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP205A.TMP<br/>lat: -16.497128949388202<br/>lng: -68.13200375446388<br/>total_sc: 2875.12<br/>total: 2875.12<br/>estado: PENDIENTE<br/>user_id: 9<br/>fecha_registro: 2024-05-10<br/>created_at: 2024-05-10 11:07:51<br/>updated_at: 2024-05-10 11:07:51<br/>', NULL, 'ORDEN DE VENTAS', '2024-05-10', '11:07:51', '2024-05-10 15:07:51', '2024-05-10 15:07:51');
+(79, 9, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 4<br/>codigo: ORD.4<br/>nro: 4<br/>configuracion_pago_id: 2<br/>celular: 67676767<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP205A.TMP<br/>lat: -16.497128949388202<br/>lng: -68.13200375446388<br/>total_sc: 2875.12<br/>total: 2875.12<br/>estado: PENDIENTE<br/>user_id: 9<br/>fecha_registro: 2024-05-10<br/>created_at: 2024-05-10 11:07:51<br/>updated_at: 2024-05-10 11:07:51<br/>', NULL, 'ORDEN DE VENTAS', '2024-05-10', '11:07:51', '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
+(80, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>precio_total: 428.00<br/>color: <br/>modelo: <br/>marca: <br/>otros: <br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-04-09 12:46:23<br/>', 'id: 2<br/>user_id: 2<br/>descripcion: PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1<br/>categoria_id: 1<br/>producto_tamano_id: 1<br/>precio: 400.00<br/>precio_total: 428<br/>color: NEGRO, CAFE, AZUL<br/>modelo: MODELO #1<br/>marca: MARCA #1<br/>otros: OTROS DESC.<br/>fecha_registro: 2024-04-08<br/>created_at: 2024-04-08 12:46:02<br/>updated_at: 2024-05-23 10:26:10<br/>', 'PRODUCTOS', '2024-05-23', '10:26:10', '2024-05-23 14:26:10', '2024-05-23 14:26:10'),
+(81, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 16<br/>user_id: 2<br/>descripcion: PRODUCTO NUEVO<br/>categoria_id: 2<br/>producto_tamano_id: 1<br/>precio: 30<br/>precio_total: 33.9<br/>color: BLANCO Y AZUL<br/>modelo: MODELO #4<br/>marca: MARCA #4<br/>otros: DESCRIPCION OTROS<br/>fecha_registro: 2024-05-23<br/>created_at: 2024-05-23 10:26:53<br/>updated_at: 2024-05-23 10:26:53<br/>', NULL, 'PRODUCTOS', '2024-05-23', '10:26:53', '2024-05-23 14:26:53', '2024-05-23 14:26:53'),
+(82, 4, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ORDEN DE VENTA', 'id: 5<br/>codigo: ORD.5<br/>nro: 5<br/>configuracion_pago_id: 1<br/>celular: 76767667<br/>comprobante: C:\\USERS\\VICTO\\APPDATA\\LOCAL\\TEMP\\PHP5B63.TMP<br/>lat: -16.496059<br/>lng: -68.133345<br/>total_sc: 404.91<br/>total: 404.91<br/>estado: PENDIENTE<br/>user_id: 4<br/>fecha_registro: 2024-05-23<br/>created_at: 2024-05-23 11:05:19<br/>updated_at: 2024-05-23 11:05:19<br/>', NULL, 'ORDEN DE VENTAS', '2024-05-23', '11:05:19', '2024-05-23 15:05:19', '2024-05-23 15:05:19');
 
 -- --------------------------------------------------------
 
@@ -372,7 +377,9 @@ INSERT INTO `orden_detalles` (`id`, `orden_venta_id`, `producto_id`, `cantidad`,
 (8, 3, 9, 1.00, 42.80, 40.00, 42.80, '2024-04-23 16:07:09', '2024-04-23 16:07:09'),
 (9, 4, 15, 1.00, 1792.00, 1600.00, 1792.00, '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
 (10, 4, 14, 1.00, 227.12, 200.99, 227.12, '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
-(11, 4, 2, 2.00, 428.00, 800.00, 856.00, '2024-05-10 15:07:51', '2024-05-10 15:07:51');
+(11, 4, 2, 2.00, 428.00, 800.00, 856.00, '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
+(12, 5, 16, 2.00, 33.90, 60.00, 67.80, '2024-05-23 15:05:19', '2024-05-23 15:05:19'),
+(13, 5, 11, 1.00, 337.11, 300.99, 337.11, '2024-05-23 15:05:19', '2024-05-23 15:05:19');
 
 -- --------------------------------------------------------
 
@@ -406,7 +413,8 @@ INSERT INTO `orden_ventas` (`id`, `codigo`, `nro`, `configuracion_pago_id`, `cel
 (1, 'ORD.1', 1, 1, '67676767', '1712764289_1.pdf', '-16.496059', '-68.133345', 732.97, 824.44, 'ENTREGADO', 4, '2024-04-10', '2024-04-10 15:51:29', '2024-04-10 22:08:46'),
 (2, 'ORD.2', 2, 2, '67676767', '1712785738_2.pdf', '-16.496059', '-68.133345', 601.98, 674.22, 'ENTREGA PENDIENTE', 7, '2024-04-10', '2024-04-10 21:48:58', '2024-04-10 21:55:32'),
 (3, 'ORD.3', 3, 2, '77777777', '1713888429_3.pdf', '-16.497347554634256', '-68.13310731226626', 40.00, 42.80, 'PENDIENTE', 4, '2024-04-23', '2024-04-23 16:07:08', '2024-04-23 16:07:09'),
-(4, 'ORD.4', 4, 2, '67676767', '1715353671_4.pdf', '-16.497128949388202', '-68.13200375446388', 2600.99, 2875.12, 'PENDIENTE', 9, '2024-05-10', '2024-05-10 15:07:51', '2024-05-10 15:07:51');
+(4, 'ORD.4', 4, 2, '67676767', '1715353671_4.pdf', '-16.497128949388202', '-68.13200375446388', 2600.99, 2875.12, 'PENDIENTE', 9, '2024-05-10', '2024-05-10 15:07:51', '2024-05-10 15:07:51'),
+(5, 'ORD.5', 5, 1, '76767667', '1716476719_5.pdf', '-16.496059', '-68.133345', 360.99, 404.91, 'PENDIENTE', 4, '2024-05-23', '2024-05-23 15:05:19', '2024-05-23 15:05:19');
 
 -- --------------------------------------------------------
 
@@ -464,6 +472,10 @@ CREATE TABLE `productos` (
   `producto_tamano_id` bigint UNSIGNED NOT NULL,
   `precio` decimal(24,2) NOT NULL,
   `precio_total` decimal(24,2) NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modelo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marca` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otros` varchar(600) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -473,21 +485,22 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `producto_tamano_id`, `precio`, `precio_total`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(2, 2, 'PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1', 1, 1, 400.00, 428.00, '2024-04-08', '2024-04-08 16:46:02', '2024-04-09 16:46:23'),
-(3, 2, 'PRODUCTO #2 AF. 1', 2, 2, 290.50, 342.79, '2024-04-08', '2024-04-08 17:13:18', '2024-04-09 16:46:28'),
-(4, 5, 'DESCRIPCION PROD #1 AFILIADO 2', 2, 1, 190.00, 214.70, '2024-04-09', '2024-04-09 15:27:01', '2024-04-09 16:46:28'),
-(5, 5, 'PROD #2 AFI 2', 1, 2, 400.00, 448.00, '2024-04-09', '2024-04-09 15:27:18', '2024-04-09 16:46:23'),
-(6, 5, 'PROD #3 AFI 2', 2, 2, 50.50, 59.59, '2024-04-09', '2024-04-09 15:27:35', '2024-04-09 16:46:29'),
-(7, 5, 'PROD #4 AFI 2', 1, 2, 190.99, 213.91, '2024-04-09', '2024-04-09 15:28:00', '2024-04-09 16:46:23'),
-(8, 5, 'PROD # 5 AFI 2', 2, 1, 50.00, 56.50, '2024-04-09', '2024-04-09 15:28:29', '2024-04-09 16:46:29'),
-(9, 5, 'PROD #6 AFILIADO 2', 1, 1, 40.00, 42.80, '2024-04-09', '2024-04-09 15:28:46', '2024-04-09 16:46:23'),
-(10, 2, 'PRODUCTO #2 AFI 1', 1, 2, 300.00, 336.00, '2024-04-09', '2024-04-09 15:29:26', '2024-04-09 16:46:23'),
-(11, 2, 'PRODUCTO #4 AFILIADO 1', 1, 2, 300.99, 337.11, '2024-04-09', '2024-04-09 15:29:44', '2024-04-09 16:46:23'),
-(12, 2, 'PRODUCTO #6 AFILIADO 1', 2, 1, 100.99, 114.12, '2024-04-09', '2024-04-09 15:30:00', '2024-04-09 16:46:29'),
-(13, 2, 'PRODUCTO #7', 2, 1, 300.00, 339.00, '2024-04-09', '2024-04-09 16:04:59', '2024-04-09 16:46:29'),
-(14, 2, 'PRODUCTO # 8 AFI 1', 2, 1, 200.99, 227.12, '2024-04-09', '2024-04-09 16:05:33', '2024-04-09 16:46:29'),
-(15, 2, 'COMPUTADORA I5', 1, 2, 1600.00, 1792.00, '2024-04-23', '2024-04-23 16:13:55', '2024-04-23 16:15:44');
+INSERT INTO `productos` (`id`, `user_id`, `descripcion`, `categoria_id`, `producto_tamano_id`, `precio`, `precio_total`, `color`, `modelo`, `marca`, `otros`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(2, 2, 'PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1 PRODUCTO #1 AFILIADO 1', 1, 1, 400.00, 428.00, 'NEGRO, CAFE, AZUL', 'MODELO #1', 'MARCA #1', 'OTROS DESC.', '2024-04-08', '2024-04-08 16:46:02', '2024-05-23 14:26:10'),
+(3, 2, 'PRODUCTO #2 AF. 1', 2, 2, 290.50, 342.79, NULL, NULL, NULL, NULL, '2024-04-08', '2024-04-08 17:13:18', '2024-04-09 16:46:28'),
+(4, 5, 'DESCRIPCION PROD #1 AFILIADO 2', 2, 1, 190.00, 214.70, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:27:01', '2024-04-09 16:46:28'),
+(5, 5, 'PROD #2 AFI 2', 1, 2, 400.00, 448.00, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:27:18', '2024-04-09 16:46:23'),
+(6, 5, 'PROD #3 AFI 2', 2, 2, 50.50, 59.59, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:27:35', '2024-04-09 16:46:29'),
+(7, 5, 'PROD #4 AFI 2', 1, 2, 190.99, 213.91, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:28:00', '2024-04-09 16:46:23'),
+(8, 5, 'PROD # 5 AFI 2', 2, 1, 50.00, 56.50, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:28:29', '2024-04-09 16:46:29'),
+(9, 5, 'PROD #6 AFILIADO 2', 1, 1, 40.00, 42.80, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:28:46', '2024-04-09 16:46:23'),
+(10, 2, 'PRODUCTO #2 AFI 1', 1, 2, 300.00, 336.00, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:29:26', '2024-04-09 16:46:23'),
+(11, 2, 'PRODUCTO #4 AFILIADO 1', 1, 2, 300.99, 337.11, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:29:44', '2024-04-09 16:46:23'),
+(12, 2, 'PRODUCTO #6 AFILIADO 1', 2, 1, 100.99, 114.12, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 15:30:00', '2024-04-09 16:46:29'),
+(13, 2, 'PRODUCTO #7', 2, 1, 300.00, 339.00, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 16:04:59', '2024-04-09 16:46:29'),
+(14, 2, 'PRODUCTO # 8 AFI 1', 2, 1, 200.99, 227.12, NULL, NULL, NULL, NULL, '2024-04-09', '2024-04-09 16:05:33', '2024-04-09 16:46:29'),
+(15, 2, 'COMPUTADORA I5', 1, 2, 1600.00, 1792.00, NULL, NULL, NULL, NULL, '2024-04-23', '2024-04-23 16:13:55', '2024-04-23 16:15:44'),
+(16, 2, 'PRODUCTO NUEVO', 2, 1, 30.00, 33.90, 'BLANCO Y AZUL', 'MODELO #4', 'MARCA #4', 'DESCRIPCION OTROS', '2024-05-23', '2024-05-23 14:26:53', '2024-05-23 14:26:53');
 
 -- --------------------------------------------------------
 
@@ -526,9 +539,9 @@ CREATE TABLE `users` (
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `paterno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `materno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ci` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ci_exp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ci` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ci_exp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -545,12 +558,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
-(2, 'eduardo@gmail.com', '$2y$12$H210oHjJfzjgkQ0eqteu.ecgcHOdMQtJF/ibwoc4SBLBntnGQfrBS', 'EDUARDO', 'RAMIRES', 'RAMIRES', '3434', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '77777777', 'AFILIADO', NULL, 1, '2024-04-08', '2024-04-08 15:10:05', '2024-04-08 15:40:05'),
+(2, 'eduardo@gmail.com', '$2y$12$H210oHjJfzjgkQ0eqteu.ecgcHOdMQtJF/ibwoc4SBLBntnGQfrBS', 'EDUARDO', 'RAMIRES', 'RAMIRES', '3434', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '77777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:10:05', '2024-04-08 15:40:05'),
 (4, 'marcos@gmail.com', '$2y$12$WyvGWNAM9qAb/P4qikQP8uREWqIlwuqMhX4GKH182fkQ8RJ6t0bSS', 'MARCOS', 'MAMANI', '', '123123', 'CB', 'LOS OLIVOS', 'marcos@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-08', '2024-04-08 15:45:24', '2024-04-08 15:46:45'),
-(5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'AFILIADO', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29'),
+(5, 'alberto@gmail.com', '$2y$12$95as.MevAI.w9oclvyUsY.7RWjjweCfPSgOXmGPzAFDC76IrkDXyO', 'ALBERTO', 'GONZALES', '', '78787878', 'LP', 'LOS OLIVOS', 'alberto@gmail.com', '7777777', 'CLIENTE', NULL, 1, '2024-04-09', '2024-04-09 15:24:29', '2024-04-09 15:24:29'),
 (6, 'JUAN@GMAIL.COM', '$2y$12$mbovBCjyoUkYkHCc8H2Wv.4BFsfZL16onIy4P6/kxXfB5a0zAImNG', 'JUAN', 'PERES', '', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'OPERADOR', NULL, 1, '2024-04-10', '2024-04-10 16:46:53', '2024-04-10 16:46:53'),
 (7, 'carlos@gmail.com', '$2y$12$r0vh/Z.eQbxx/Mb9rB5uCefItMNYgy8B0p/17uDfWMM3yJckNHffC', 'CARLOS', 'GONZALES', '', '898789', 'CB', 'LOS OLIVOS', 'carlos@gmail.com', '7878787878', 'CLIENTE', NULL, 1, '2024-04-10', '2024-04-10 21:47:10', '2024-04-10 21:47:10'),
-(9, 'juanm@gmail.com', '$2y$12$HzeTRSYNTQ6B3CsHfP0qyuyegufqCuGSvXs94V9fLe2wWVF2JIL3K', 'JUAN', 'MARTINEZ', 'MAMANI', '232323', 'LP', 'LOS OLIVOS', 'juanm@gmail.com', '7676767667', 'CLIENTE', NULL, 1, '2024-05-10', '2024-05-10 15:06:44', '2024-05-10 15:06:45');
+(9, 'juanm@gmail.com', '$2y$12$HzeTRSYNTQ6B3CsHfP0qyuyegufqCuGSvXs94V9fLe2wWVF2JIL3K', 'JUAN', 'MARTINEZ', 'MAMANI', '232323', 'LP', 'LOS OLIVOS', 'juanm@gmail.com', '7676767667', 'CLIENTE', NULL, 1, '2024-05-10', '2024-05-10 15:06:44', '2024-05-10 15:06:45'),
+(10, 'luis@gmail.com', '$2y$12$yBVqOZylxoIBXYnF72GXbes3GYfFewgGRxk2GSS281IZcauapuHgW', 'LUIS PORTUGAL', NULL, NULL, NULL, NULL, NULL, 'luis@gmail.com', '7676776676', 'CLIENTE', NULL, 1, '2024-05-23', '2024-05-23 14:04:03', '2024-05-23 14:04:04');
 
 --
 -- Índices para tablas volcadas
@@ -692,7 +706,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion_pagos`
@@ -704,13 +718,13 @@ ALTER TABLE `configuracion_pagos`
 -- AUTO_INCREMENT de la tabla `foto_productos`
 --
 ALTER TABLE `foto_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -728,13 +742,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `orden_detalles`
 --
 ALTER TABLE `orden_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_ventas`
 --
 ALTER TABLE `orden_ventas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pago_afiliados`
@@ -752,7 +766,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `producto_tamanos`
@@ -764,7 +778,7 @@ ALTER TABLE `producto_tamanos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

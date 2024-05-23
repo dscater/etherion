@@ -669,12 +669,12 @@ class ReporteController extends Controller
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
         $tipo =  $request->tipo;
-        $afiliados = User::where("tipo", "AFILIADO")->get();
+        $afiliados = User::where("tipo", "CLIENTE")->get();
 
         if ($filtro != 'todos') {
             if ($filtro == 'fechas') {
                 if ($fecha_ini && $fecha_fin) {
-                    $afiliados = User::where("tipo", "AFILIADO")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
+                    $afiliados = User::where("tipo", "CLIENTE")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
                 }
             }
         }
@@ -729,7 +729,7 @@ class ReporteController extends Controller
 
         $fila = 2;
 
-        $sheet->setCellValue('A' . $fila, "LISTA DE AFILIADOS");
+        $sheet->setCellValue('A' . $fila, "LISTA DE CLIENTES");
         $sheet->mergeCells("A" . $fila . ":J" . $fila);  //COMBINAR CELDAS
         $sheet->getStyle('A' . $fila . ':J' . $fila)->getAlignment()->setHorizontal('center');
         $sheet->getStyle('A' . $fila . ':J' . $fila)->applyFromArray($this->styleTextoForm);

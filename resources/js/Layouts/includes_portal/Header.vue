@@ -185,11 +185,6 @@ onMounted(() => {
                         <ul class="main-menu">
                             <li
                                 v-for="item in listMenu"
-                                :class="[
-                                    menu_portal_store.ruta_actual == item.ruta
-                                        ? 'active-menu'
-                                        : '',
-                                ]"
                             >
                                 <Link
                                     :href="item.url"
