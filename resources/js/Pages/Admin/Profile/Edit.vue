@@ -193,7 +193,7 @@ const enviaFormulario = () => {
                                             user.full_name
                                         }}</v-col>
                                     </v-row>
-                                    <v-row>
+                                    <v-row v-if="user.tipo!='AFILIADO'">
                                         <v-col cols="4" class="text-right"
                                             >C.I.:
                                         </v-col>
@@ -201,7 +201,7 @@ const enviaFormulario = () => {
                                             user.full_ci
                                         }}</v-col>
                                     </v-row>
-                                    <v-row>
+                                    <v-row v-if="user.tipo!='AFILIADO'">
                                         <v-col cols="4" class="text-right"
                                             >Dirección:
                                         </v-col>

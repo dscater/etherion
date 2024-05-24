@@ -669,12 +669,12 @@ class ReporteController extends Controller
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
         $tipo =  $request->tipo;
-        $afiliados = User::where("tipo", "CLIENTE")->get();
+        $afiliados = User::where("tipo", "AFILIADO")->get();
 
         if ($filtro != 'todos') {
             if ($filtro == 'fechas') {
                 if ($fecha_ini && $fecha_fin) {
-                    $afiliados = User::where("tipo", "CLIENTE")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
+                    $afiliados = User::where("tipo", "AFILIADO")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
                 }
             }
         }
@@ -729,53 +729,41 @@ class ReporteController extends Controller
 
         $fila = 2;
 
-        $sheet->setCellValue('A' . $fila, "LISTA DE CLIENTES");
-        $sheet->mergeCells("A" . $fila . ":J" . $fila);  //COMBINAR CELDAS
-        $sheet->getStyle('A' . $fila . ':J' . $fila)->getAlignment()->setHorizontal('center');
-        $sheet->getStyle('A' . $fila . ':J' . $fila)->applyFromArray($this->styleTextoForm);
+        $sheet->setCellValue('A' . $fila, "LISTA DE AFILIADOS");
+        $sheet->mergeCells("A" . $fila . ":F" . $fila);  //COMBINAR CELDAS
+        $sheet->getStyle('A' . $fila . ':F' . $fila)->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A' . $fila . ':F' . $fila)->applyFromArray($this->styleTextoForm);
         $fila++;
         $fila++;
         $fila++;
         $sheet->setCellValue('A' . $fila, "No.");
         $sheet->setCellValue('B' . $fila, "Nombre completo");
-        $sheet->setCellValue('C' . $fila, "C.I.");
-        $sheet->setCellValue('D' . $fila, "Dirección");
-        $sheet->setCellValue('E' . $fila, "Email");
-        $sheet->setCellValue('F' . $fila, "Teléfono");
-        $sheet->setCellValue('G' . $fila, "Banco");
-        $sheet->setCellValue('H' . $fila, "Nro. cuenta");
-        $sheet->setCellValue('I' . $fila, "Acceso");
-        $sheet->setCellValue('J' . $fila, "Fecha de Registro");
-        $sheet->getStyle('A' . $fila . ':J' . $fila)->applyFromArray($this->styleArray2);
+        $sheet->setCellValue('C' . $fila, "Email");
+        $sheet->setCellValue('D' . $fila, "Teléfono");
+        $sheet->setCellValue('E' . $fila, "Acceso");
+        $sheet->setCellValue('F' . $fila, "Fecha de Registro");
+        $sheet->getStyle('A' . $fila . ':F' . $fila)->applyFromArray($this->styleArray2);
         $fila++;
         $cont = 1;
         foreach ($afiliados as $afiliado) {
             $sheet->setCellValue('A' . $fila, $cont++);
             $sheet->setCellValue('B' . $fila, $afiliado->full_name);
-            $sheet->setCellValue('C' . $fila, $afiliado->full_ci);
-            $sheet->setCellValue('D' . $fila, $afiliado->dir);
-            $sheet->setCellValue('E' . $fila, $afiliado->email);
-            $sheet->setCellValue('F' . $fila, $afiliado->fono);
-            $sheet->setCellValue('G' . $fila, $afiliado->afiliado->banco);
-            $sheet->setCellValue('H' . $fila, $afiliado->afiliado->nro_cuenta);
-            $sheet->setCellValue('I' . $fila, $afiliado->acceso == 1 ? 'HABILITADO' : 'DENEGADO');
-            $sheet->setCellValue('J' . $fila, $afiliado->fecha_registro_t);
-            $sheet->getStyle('A' . $fila . ':J' . $fila)->applyFromArray($this->estilo_conenido);
+            $sheet->setCellValue('C' . $fila, $afiliado->email);
+            $sheet->setCellValue('D' . $fila, $afiliado->fono);
+            $sheet->setCellValue('E' . $fila, $afiliado->acceso == 1 ? 'HABILITADO' : 'DENEGADO');
+            $sheet->setCellValue('F' . $fila, $afiliado->fecha_registro_t);
+            $sheet->getStyle('A' . $fila . ':F' . $fila)->applyFromArray($this->estilo_conenido);
             $fila++;
         }
 
         $sheet->getColumnDimension('A')->setWidth(6);
-        $sheet->getColumnDimension('B')->setWidth(20);
-        $sheet->getColumnDimension('C')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(35);
+        $sheet->getColumnDimension('C')->setWidth(35);
         $sheet->getColumnDimension('D')->setWidth(15);
         $sheet->getColumnDimension('E')->setWidth(15);
-        $sheet->getColumnDimension('F')->setWidth(20);
-        $sheet->getColumnDimension('G')->setWidth(15);
-        $sheet->getColumnDimension('H')->setWidth(15);
-        $sheet->getColumnDimension('I')->setWidth(15);
-        $sheet->getColumnDimension('J')->setWidth(10);
+        $sheet->getColumnDimension('F')->setWidth(15);
 
-        foreach (range('A', 'J') as $columnID) {
+        foreach (range('A', 'F') as $columnID) {
             $sheet->getStyle($columnID)->getAlignment()->setWrapText(true);
         }
 
@@ -784,7 +772,7 @@ class ReporteController extends Controller
         $sheet->getPageMargins()->setRight(0.1);
         $sheet->getPageMargins()->setLeft(0.1);
         $sheet->getPageMargins()->setBottom(0.1);
-        $sheet->getPageSetup()->setPrintArea('A:J');
+        $sheet->getPageSetup()->setPrintArea('A:F');
         $sheet->getPageSetup()->setFitToWidth(1);
         $sheet->getPageSetup()->setFitToHeight(0);
 
@@ -807,12 +795,12 @@ class ReporteController extends Controller
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
         $tipo =  $request->tipo;
-        $clientes = User::where("tipo", "CLIENTE")->get();
+        $clientes = User::where("tipo", "AFILIADO")->get();
 
         if ($filtro != 'todos') {
             if ($filtro == 'fechas') {
                 if ($fecha_ini && $fecha_fin) {
-                    $clientes = User::where("tipo", "CLIENTE")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
+                    $clientes = User::where("tipo", "AFILIADO")->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin])->get();
                 }
             }
         }
@@ -867,7 +855,7 @@ class ReporteController extends Controller
 
         $fila = 2;
 
-        $sheet->setCellValue('A' . $fila, "LISTA DE CLIENTES");
+        $sheet->setCellValue('A' . $fila, "LISTA DE AFILIADOS");
         $sheet->mergeCells("A" . $fila . ":H" . $fila);  //COMBINAR CELDAS
         $sheet->getStyle('A' . $fila . ':H' . $fila)->getAlignment()->setHorizontal('center');
         $sheet->getStyle('A' . $fila . ':H' . $fila)->applyFromArray($this->styleTextoForm);

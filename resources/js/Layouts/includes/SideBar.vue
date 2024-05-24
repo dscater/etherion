@@ -295,7 +295,7 @@ const scrollActive = () => {
                 >
             </v-list-item>
 
-            <v-list-item
+            <!-- <v-list-item
                 :class="[route_current == 'clientes.index' ? 'active' : '']"
                 v-if="oUser.permisos.includes('clientes.index')"
                 prepend-icon="mdi-account-group"
@@ -310,7 +310,7 @@ const scrollActive = () => {
                     location="end"
                     >Clientes</v-tooltip
                 >
-            </v-list-item>
+            </v-list-item> -->
 
             <v-list-item
                 :class="[route_current == 'afiliados.index' ? 'active' : '']"
@@ -480,7 +480,7 @@ const scrollActive = () => {
                         >Lista de Afiliados</v-tooltip
                     ></v-list-item
                 >
-                <v-list-item
+                <!-- <v-list-item
                     v-if="oUser.permisos.includes('reportes.clientes')"
                     prepend-icon="mdi-chevron-right"
                     title="Lista de Clientes"
@@ -497,7 +497,7 @@ const scrollActive = () => {
                         location="end"
                         >Lista de Clientes</v-tooltip
                     ></v-list-item
-                >
+                > -->
                 <v-list-item
                     v-if="oUser.permisos.includes('reportes.g_orden_ventas')"
                     prepend-icon="mdi-chevron-right"

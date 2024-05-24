@@ -15,16 +15,9 @@ class AfiliadoController extends Controller
 {
     public $validacion = [
         "nombre" => "required|min:1",
-        "paterno" => "required|min:1",
-        "ci" => "required|min:1",
-        "ci_exp" => "required",
-        "dir" => "required|min:1",
         "fono" => "required|min:1",
-        "tipo" => "required",
         "acepto" => "required|boolean|accepted",
         'password' => 'required|confirmed|min:8',
-        "banco" => "required|min:1",
-        "nro_cuenta" => "required|min:1",
     ];
 
     public $mensajes = [
@@ -85,11 +78,11 @@ class AfiliadoController extends Controller
 
     public function registro(Request $request)
     {
-        $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci';
         $this->validacion['email'] = 'required|unique:users,email';
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         $request['usuario'] = $request->email;
+        $request['tipo'] = 'AFILIADO';
         $pass_aux = $request->password;
         DB::beginTransaction();
         try {

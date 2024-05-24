@@ -96,7 +96,7 @@ const { props } = usePage();
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col cols="12" v-if="props.auth.user.tipo == 'CLIENTE'">
+            <v-col cols="12" v-if="props.auth.user.tipo == 'AFILIADO'">
                 <v-row justify="center">
                     <v-col cols="auto">
                         <a :href="route('portal.carrito')"

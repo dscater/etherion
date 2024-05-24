@@ -41,7 +41,7 @@ class ProductoController extends Controller
 
     public function index()
     {
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             return Inertia::render("Admin/Productos/Index");
         }
         return Inertia::render("Admin/Productos/Afiliados");
@@ -56,7 +56,7 @@ class ProductoController extends Controller
     {
         $productos = Producto::with(["categoria", "producto_tamano", "user", "foto_productos"]);
 
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             $productos = $productos->where("user_id", Auth::user()->id);
         }
 
@@ -120,7 +120,7 @@ class ProductoController extends Controller
             $productos->where("productos.descripcion", "LIKE", "%$search%");
         }
 
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             $productos = $productos->where("user_id", Auth::user()->id);
         }
 

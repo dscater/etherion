@@ -28,10 +28,10 @@ class UserController extends Controller
             "afiliados.edit",
             "afiliados.destroy",
 
-            "clientes.index",
-            "clientes.create",
-            "clientes.edit",
-            "clientes.destroy",
+            // "clientes.index",
+            // "clientes.create",
+            // "clientes.edit",
+            // "clientes.destroy",
 
             "categorias.index",
             "categorias.create",
@@ -81,10 +81,10 @@ class UserController extends Controller
             "afiliados.edit",
             "afiliados.destroy",
 
-            "clientes.index",
-            "clientes.create",
-            "clientes.edit",
-            "clientes.destroy",
+            // "clientes.index",
+            // "clientes.create",
+            // "clientes.edit",
+            // "clientes.destroy",
 
             "categorias.index",
             "categorias.create",
@@ -132,7 +132,7 @@ class UserController extends Controller
         //     "orden_ventas.index",
         //     "orden_ventas.show",
         // ],
-        "CLIENTE" => [
+        "AFILIADO" => [
             "productos.index",
             "productos.create",
             "productos.edit",
@@ -194,7 +194,7 @@ class UserController extends Controller
             ];
         }
 
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             $orden_ventas = OrdenVenta::where("user_id", Auth::user()->id)
                 ->get();
             $array_infos[] = [
@@ -250,7 +250,7 @@ class UserController extends Controller
             ];
         }
         if (in_array('clientes.index', self::$permisos[$tipo])) {
-            $clientes = User::where("tipo", "CLIENTE")->get();
+            $clientes = User::where("tipo", "AFILIADO")->get();
             $array_infos[] = [
                 'label' => 'Clientes',
                 'cantidad' => count($clientes),

@@ -49,7 +49,7 @@ const submit = () => {
     //     url = route("clientes.registro");
     // }
 
-    let url = route("clientes.registro");
+    let url = route("afiliados.registro");
 
     form.post(url, {
         onError: (err) => {

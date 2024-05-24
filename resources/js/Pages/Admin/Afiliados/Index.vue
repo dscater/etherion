@@ -44,8 +44,6 @@ const headers = ref([
     },
     { title: "Correo", key: "email", align: "start", sortable: false },
     { title: "Nombre", key: "full_name", align: "start", sortable: false },
-    { title: "C.I.", key: "full_ci", align: "start", sortable: false },
-    { title: "Dirección", key: "dir", align: "start", sortable: false },
     { title: "Teléfono/Celular", key: "fono", align: "start", sortable: false },
     { title: "Foto Perfil", key: "foto", align: "start", sortable: false },
     { title: "Acceso", key: "acceso", align: "start", sortable: false },
@@ -179,8 +177,6 @@ const eliminarUsuario = (item) => {
                                     <td class="text-xs-right">
                                         {{ item.full_name }}
                                     </td>
-                                    <td>{{ item.full_ci }}</td>
-                                    <td>{{ item.dir }}</td>
                                     <td>{{ item.fono }}</td>
                                     <td>
                                         <v-avatar color="primary">
@@ -266,18 +262,6 @@ const eliminarUsuario = (item) => {
                                                 data-label="Nombre"
                                             >
                                                 {{ item.full_name }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="C.I:"
-                                            >
-                                                {{ item.full_ci }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Dirección"
-                                            >
-                                                {{ item.dir }}
                                             </li>
                                             <li
                                                 class="flex-item"

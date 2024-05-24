@@ -393,7 +393,6 @@ onMounted(() => {
                     >
                         <div
                             class="col-md-12 mb-3"
-                            v-if="carrito_store.productos.length > 0"
                         >
                             <button
                                 type="button"
@@ -485,7 +484,7 @@ onMounted(() => {
                             type="button"
                             v-if="
                                 user &&
-                                user.tipo == 'CLIENTE' &&
+                                user.tipo == 'AFILIADO' &&
                                 carrito_store.productos.length > 0
                             "
                             class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
@@ -494,11 +493,11 @@ onMounted(() => {
                             Confirmar orden de venta
                         </button>
                         <div
-                            v-if="user && user.tipo != 'CLIENTE'"
+                            v-if="user && user.tipo != 'AFILIADO'"
                             class="text-info text-center mt-3"
                         >
                             DEBES INICIAR SESIÓN COMO
-                            <strong>CLIENTE</strong> PARA PODER REALIZAR
+                            <strong>AFILIADO</strong> PARA PODER REALIZAR
                             COMPRA<br />
                             <a :href="route('login')">Inicar sesión</a>
                         </div>

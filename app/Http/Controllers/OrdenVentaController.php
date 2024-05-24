@@ -29,7 +29,7 @@ class OrdenVentaController extends Controller
 
     public function index()
     {
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             return Inertia::render("Admin/OrdenVentas/Cliente");
         }
         return Inertia::render("Admin/OrdenVentas/Index");
@@ -37,7 +37,7 @@ class OrdenVentaController extends Controller
 
     public function ventas()
     {
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             return Inertia::render("Admin/OrdenVentas/Afiliado");
         }
         return Inertia::render("Admin/OrdenVentas/Index");
@@ -81,7 +81,7 @@ class OrdenVentaController extends Controller
         $search = $request->search;
 
         $orden_ventas = [];
-        if (Auth::user()->tipo == 'CLIENTE') {
+        if (Auth::user()->tipo == 'AFILIADO') {
             $orden_ventas = OrdenVenta::with(["user"])->select("orden_ventas.*");
             $orden_ventas->where("user_id", Auth::user()->id);
             // $orden_ventas->where("estado", "!=", "PENDIENTE");

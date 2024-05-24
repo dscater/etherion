@@ -163,12 +163,8 @@
             <tr>
                 <th width="3%">N°</th>
                 <th>NOMBRE COMPLETO</th>
-                <th>C.I.</th>
-                <th>DIRECCIÓN</th>
                 <th>EMAIL</th>
                 <th>TELÉFONO</th>
-                <th>BANCO</th>
-                <th>NRO. CUENTA</th>
                 <th>ACCESO</th>
                 <th width="9%">FECHA DE REGISTRO</th>
             </tr>
@@ -181,12 +177,8 @@
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
                     <td>{{ $afiliado->full_name }}</td>
-                    <td class="">{{ $afiliado->full_ci }}</td>
-                    <td class="">{{ $afiliado->dir }}</td>
                     <td class="">{{ $afiliado->email }}</td>
                     <td class="">{{ $afiliado->fono }}</td>
-                    <td class="">{{ $afiliado->afiliado->banco }}</td>
-                    <td class="">{{ $afiliado->afiliado->nro_cuenta }}</td>
                     <td class="centreado">{{ $afiliado->acceso == 1 ? 'HABILITADO' : 'DENEGADO' }}</td>
                     <td class="centreado">{{ $afiliado->fecha_registro_t }}</td>
                 </tr>
